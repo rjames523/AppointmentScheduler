@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppointmentScheduler.Connections;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,7 @@ namespace AppointmentScheduler
 
         private void openCustomersButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void openApptsButton_Click(object sender, EventArgs e)
