@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace schedulerLoginForm
 {
-    public partial class schedulerLoginForm : Form
+    public partial class SchedulerLoginForm : Form
     {
-        public schedulerLoginForm()
+        public SchedulerLoginForm()
         {
             InitializeComponent();
         }
@@ -26,7 +26,6 @@ namespace schedulerLoginForm
         StreamWriter sw;
 
         //public delegate void CultureChanged(object obj, EventArgs e);
-
 
         private void loginButton_Click(object sender, EventArgs e)
         {
@@ -59,7 +58,7 @@ namespace schedulerLoginForm
 
         private void schedulerLoginForm_Load(object sender, EventArgs e)
         {
-            rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(schedulerLoginForm).Assembly);
+            rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(SchedulerLoginForm).Assembly);
             culture = CultureInfo.CurrentUICulture;
             usernameLabel.Text = rm.GetString("usernameLabel", culture);
             passwordLabel.Text = rm.GetString("passwordLabel", culture);

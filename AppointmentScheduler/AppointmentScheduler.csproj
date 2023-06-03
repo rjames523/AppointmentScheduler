@@ -46,6 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppointmentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppointmentsForm.Designer.cs">
+      <DependentUpon>AppointmentsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connections\DBConnection.cs" />
+    <Compile Include="CustomersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomersForm.Designer.cs">
+      <DependentUpon>CustomersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LandingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LandingForm.Designer.cs">
+      <DependentUpon>LandingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Res.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -56,14 +75,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Res.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="schedulerLoginForm.cs">
+    <Compile Include="SchedulerLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="schedulerLoginForm.Designer.cs">
-      <DependentUpon>schedulerLoginForm.cs</DependentUpon>
+    <Compile Include="SchedulerLoginForm.Designer.cs">
+      <DependentUpon>SchedulerLoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AppointmentsForm.resx">
+      <DependentUpon>AppointmentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomersForm.resx">
+      <DependentUpon>CustomersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LandingForm.resx">
+      <DependentUpon>LandingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Res.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.en.Designer.cs</LastGenOutput>
@@ -82,8 +110,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="schedulerLoginForm.resx">
-      <DependentUpon>schedulerLoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="SchedulerLoginForm.resx">
+      <DependentUpon>SchedulerLoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

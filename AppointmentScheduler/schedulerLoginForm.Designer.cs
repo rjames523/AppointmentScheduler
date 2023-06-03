@@ -1,6 +1,6 @@
 ﻿namespace schedulerLoginForm
 {
-    partial class schedulerLoginForm
+    partial class SchedulerLoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -105,7 +105,7 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Copyright (c) 2023";
             // 
-            // schedulerLoginForm
+            // SchedulerLoginForm
             // 
             this.AcceptButton = this.loginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -118,8 +118,8 @@
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.appNameLabel);
-            this.Name = "schedulerLoginForm";
-            this.Text = "Appointment Scheduler";
+            this.Name = "SchedulerLoginForm";
+            this.Text = "The Scheduler";
             this.Load += new System.EventHandler(this.schedulerLoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
