@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addCustomerButton" xml:space="preserve">
+    <value>Add Customer</value>
+    <comment>Opens the Add Customer form</comment>
+  </data>
+  <data name="createAppointmentButton" xml:space="preserve">
+    <value>Create Appointment</value>
+    <comment>Opens the Create Appointment form</comment>
+  </data>
+  <data name="deleteCustomerButton" xml:space="preserve">
+    <value>Delete Customer</value>
+    <comment>Deletes the customer from the database</comment>
+  </data>
   <data name="loginButton" xml:space="preserve">
     <value>Login</value>
     <comment>Used to login to the application</comment>
