@@ -20,12 +20,14 @@ namespace AppointmentScheduler
 
         private void openCustomersButton_Click(object sender, EventArgs e)
         {
-            
+            CustomersForm customersForm = new CustomersForm();
+            customersForm.ShowDialog();
         }
 
         private void openApptsButton_Click(object sender, EventArgs e)
         {
-
+            AppointmentsForm appointmentsForm = new AppointmentsForm();
+            appointmentsForm.ShowDialog();
         }
     }
 }
