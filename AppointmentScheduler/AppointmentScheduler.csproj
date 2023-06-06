@@ -94,6 +94,18 @@
     </Compile>
     <Compile Include="Connections\Customer.cs" />
     <Compile Include="Connections\DBConnection.cs" />
+    <Compile Include="CreateAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateAppointmentForm.Designer.cs">
+      <DependentUpon>CreateAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCustomerForm.Designer.cs">
+      <DependentUpon>CreateCustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomersForm.cs">
       <SubType>Form</SubType>
     </Compile>
