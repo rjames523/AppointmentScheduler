@@ -1,4 +1,5 @@
-﻿using AppointmentScheduler.Connections;
+﻿using AppointmentScheduler;
+using AppointmentScheduler.Connections;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,6 +56,11 @@ namespace schedulerLoginForm
                     sw.WriteLine($"{DateTime.Now.ToString(timestampFormat)}   The user, {username}, has logged in successfully");
                 }
             }
+
+            this.Hide();
+            LandingForm landingForm = new LandingForm();
+            landingForm.ShowDialog();
+            this.Close();
         }
 
         private void schedulerLoginForm_Load(object sender, EventArgs e)

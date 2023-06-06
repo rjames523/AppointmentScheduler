@@ -117,13 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addCustomerButton" xml:space="preserve">
+    <value>Ajouter un client</value>
+    <comment>Opens the Add Customer form</comment>
+  </data>
+  <data name="addressLabel" xml:space="preserve">
+    <value>Dirección:</value>
+    <comment>Customer street address label</comment>
+  </data>
+  <data name="appointmentsGroupBox" xml:space="preserve">
+    <value>Rendez-vous</value>
+    <comment>Label for Appointment group box</comment>
+  </data>
+  <data name="appointmentsLandingInfoLabel" xml:space="preserve">
+    <value>Créer, modifier et annuler des rendez-vous pour les clients</value>
+    <comment>Description of what can be done with appointments in the database</comment>
+  </data>
+  <data name="cityLabel" xml:space="preserve">
+    <value>Ciudad:</value>
+    <comment>Customer city label</comment>
+  </data>
+  <data name="countryLabel" xml:space="preserve">
+    <value>Pays:</value>
+    <comment>Customer country label</comment>
+  </data>
+  <data name="createAppointmentButton" xml:space="preserve">
+    <value>Créer un rendez-vous</value>
+    <comment>Opens the Create Appointment form</comment>
+  </data>
+  <data name="createCustomerAppointmentButton" xml:space="preserve">
+    <value>Créer un client</value>
+    <comment>Creates the appointment including customers information</comment>
+  </data>
+  <data name="customerLandingInfoLabel" xml:space="preserve">
+    <value>Afficher, modifier et supprimer des clients</value>
+    <comment>Description of what can be done with customers in the database</comment>
+  </data>
+  <data name="customersGroupBox" xml:space="preserve">
+    <value>Clientes</value>
+    <comment>Label for Customer groupbox</comment>
+  </data>
+  <data name="deleteCustomerButton" xml:space="preserve">
+    <value>Supprimer le client</value>
+    <comment>Deletes the customer from the database</comment>
+  </data>
   <data name="loginButton" xml:space="preserve">
     <value>Connexion</value>
     <comment>Used to login to the application</comment>
   </data>
+  <data name="nameLabel" xml:space="preserve">
+    <value>Nom:</value>
+    <comment>Customer name label</comment>
+  </data>
+  <data name="openApptsButton" xml:space="preserve">
+    <value>Ouvrir</value>
+    <comment>Opens the Appointments form</comment>
+  </data>
+  <data name="openCustomersButton" xml:space="preserve">
+    <value>Ouvrir</value>
+    <comment>Opens the Customers form</comment>
+  </data>
   <data name="passwordLabel" xml:space="preserve">
     <value>Mot de passe</value>
     <comment>Employee's password</comment>
+  </data>
+  <data name="updateCustomerButton" xml:space="preserve">
+    <value>Mettre à jour les informations client</value>
+    <comment>Opens the Update Customer Information form</comment>
   </data>
   <data name="usernameLabel" xml:space="preserve">
     <value>Nom d’utilisateur</value>
