@@ -1,6 +1,6 @@
 ﻿namespace AppointmentScheduler
 {
-    partial class CreateAppointmentForm
+    partial class ScheduleAppointmentForm
     {
         /// <summary>
         /// Required designer variable.

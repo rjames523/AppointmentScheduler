@@ -15,9 +15,9 @@ using System.Windows.Forms;
 
 namespace AppointmentScheduler
 {
-    public partial class CreateAppointmentForm : Form
+    public partial class ScheduleAppointmentForm : Form
     {
-        public CreateAppointmentForm()
+        public ScheduleAppointmentForm()
         {
             InitializeComponent();
         }
@@ -42,7 +42,7 @@ namespace AppointmentScheduler
 
         private void CreateAppointmentForm_Load(object sender, EventArgs e)
         {
-            rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(CreateAppointmentForm).Assembly);
+            rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(ScheduleAppointmentForm).Assembly);
             culture = CultureInfo.CurrentUICulture;
             nameLabel.Text = rm.GetString("nameLabel", culture);
             addressLabel.Text = rm.GetString("addressLabel", culture);
