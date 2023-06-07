@@ -25,13 +25,13 @@ namespace AppointmentScheduler
         ResourceManager rm;
         CultureInfo culture;
 
-        private void openCustomersButton_Click(object sender, EventArgs e)
+        private void viewCustomersButton_Click(object sender, EventArgs e)
         {
             CustomersForm customersForm = new CustomersForm();
             customersForm.ShowDialog();
         }
 
-        private void openApptsButton_Click(object sender, EventArgs e)
+        private void viewApptsButton_Click(object sender, EventArgs e)
         {
             AppointmentsForm appointmentsForm = new AppointmentsForm();
             appointmentsForm.ShowDialog();
@@ -48,12 +48,34 @@ namespace AppointmentScheduler
         {
             rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(LandingForm).Assembly);
             culture = CultureInfo.CurrentUICulture;
-            customerLandingInfoLabel.Text = rm.GetString("customerLandingInfoLabel", culture);
-            appointmentsLandingInfoLabel.Text = rm.GetString("appointmentsLandingInfoLabel", culture);
+            viewCustomersLabel.Text = rm.GetString("customerLandingInfoLabel", culture);
+            viewCurrentApptsLabel.Text = rm.GetString("appointmentsLandingInfoLabel", culture);
             customersGroupBox.Text = rm.GetString("customersGroupBox", culture);
             appointmentsGroupBox.Text = rm.GetString("appointmentsGroupBox", culture);
-            openCustomersButton.Text = rm.GetString("openCustomersButton", culture);
-            openApptsButton.Text = rm.GetString("openApptsButton", culture);
+            viewCustomersButton.Text = rm.GetString("openCustomersButton", culture);
+            viewCurrApptsButton.Text = rm.GetString("openApptsButton", culture);
+
+            // add remaining control culture-based text
+            // update description of culture fields in resx files
+        }
+
+        private void addCustomersButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifyCustomersButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void scheduleNewApptButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifyApptButton_Click(object sender, EventArgs e)
+        {
 
         }
     }
