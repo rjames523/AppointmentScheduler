@@ -94,6 +94,12 @@
     </Compile>
     <Compile Include="Connections\Customer.cs" />
     <Compile Include="Connections\DBConnection.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="ScheduleAppointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
