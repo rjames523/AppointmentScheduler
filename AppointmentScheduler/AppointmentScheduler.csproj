@@ -94,11 +94,11 @@
     </Compile>
     <Compile Include="Connections\Customer.cs" />
     <Compile Include="Connections\DBConnection.cs" />
-    <Compile Include="CreateAppointmentForm.cs">
+    <Compile Include="ScheduleAppointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateAppointmentForm.Designer.cs">
-      <DependentUpon>CreateAppointmentForm.cs</DependentUpon>
+    <Compile Include="ScheduleAppointmentForm.Designer.cs">
+      <DependentUpon>ScheduleAppointmentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateCustomerForm.cs">
       <SubType>Form</SubType>
@@ -139,8 +139,8 @@
     <EmbeddedResource Include="AppointmentsForm.resx">
       <DependentUpon>AppointmentsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateAppointmentForm.resx">
-      <DependentUpon>CreateAppointmentForm.cs</DependentUpon>
+    <EmbeddedResource Include="ScheduleAppointmentForm.resx">
+      <DependentUpon>ScheduleAppointmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>

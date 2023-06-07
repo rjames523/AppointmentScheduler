@@ -48,12 +48,12 @@ namespace AppointmentScheduler
         {
             rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(LandingForm).Assembly);
             culture = CultureInfo.CurrentUICulture;
-            viewCustomersLabel.Text = rm.GetString("customerLandingInfoLabel", culture);
-            viewCurrentApptsLabel.Text = rm.GetString("appointmentsLandingInfoLabel", culture);
+            viewCustomersLabel.Text = rm.GetString("viewCustomersLabel", culture);
+            viewCurrApptsLabel.Text = rm.GetString("viewCurrApptsLabel", culture);
             customersGroupBox.Text = rm.GetString("customersGroupBox", culture);
             appointmentsGroupBox.Text = rm.GetString("appointmentsGroupBox", culture);
-            viewCustomersButton.Text = rm.GetString("openCustomersButton", culture);
-            viewCurrApptsButton.Text = rm.GetString("openApptsButton", culture);
+            viewCustomersButton.Text = rm.GetString("viewCustomersButton", culture);
+            viewCurrApptsButton.Text = rm.GetString("viewCurrApptsButton", culture);
 
             // add remaining control culture-based text
             // update description of culture fields in resx files

@@ -42,7 +42,7 @@
             this.modifyApptButton = new System.Windows.Forms.Button();
             this.viewCurrApptsButton = new System.Windows.Forms.Button();
             this.scheduleNewApptButton = new System.Windows.Forms.Button();
-            this.viewCurrentApptsLabel = new System.Windows.Forms.Label();
+            this.viewCurrApptsLabel = new System.Windows.Forms.Label();
             this.logOutButton = new System.Windows.Forms.Button();
             this.customersGroupBox.SuspendLayout();
             this.appointmentsGroupBox.SuspendLayout();
@@ -151,7 +151,7 @@
             this.appointmentsGroupBox.Controls.Add(this.modifyApptButton);
             this.appointmentsGroupBox.Controls.Add(this.viewCurrApptsButton);
             this.appointmentsGroupBox.Controls.Add(this.scheduleNewApptButton);
-            this.appointmentsGroupBox.Controls.Add(this.viewCurrentApptsLabel);
+            this.appointmentsGroupBox.Controls.Add(this.viewCurrApptsLabel);
             this.appointmentsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appointmentsGroupBox.Location = new System.Drawing.Point(351, 85);
             this.appointmentsGroupBox.Margin = new System.Windows.Forms.Padding(2);
@@ -218,15 +218,15 @@
             this.scheduleNewApptButton.UseVisualStyleBackColor = true;
             this.scheduleNewApptButton.Click += new System.EventHandler(this.scheduleNewApptButton_Click);
             // 
-            // viewCurrentApptsLabel
+            // viewCurrApptsLabel
             // 
-            this.viewCurrentApptsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewCurrentApptsLabel.Location = new System.Drawing.Point(96, 38);
-            this.viewCurrentApptsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.viewCurrentApptsLabel.Name = "viewCurrentApptsLabel";
-            this.viewCurrentApptsLabel.Size = new System.Drawing.Size(184, 33);
-            this.viewCurrentApptsLabel.TabIndex = 1;
-            this.viewCurrentApptsLabel.Text = "View all upcoming appointments";
+            this.viewCurrApptsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewCurrApptsLabel.Location = new System.Drawing.Point(96, 38);
+            this.viewCurrApptsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.viewCurrApptsLabel.Name = "viewCurrApptsLabel";
+            this.viewCurrApptsLabel.Size = new System.Drawing.Size(184, 33);
+            this.viewCurrApptsLabel.TabIndex = 1;
+            this.viewCurrApptsLabel.Text = "View all upcoming appointments";
             // 
             // logOutButton
             // 
@@ -266,7 +266,7 @@
         private System.Windows.Forms.GroupBox customersGroupBox;
         private System.Windows.Forms.Label viewCustomersLabel;
         private System.Windows.Forms.GroupBox appointmentsGroupBox;
-        private System.Windows.Forms.Label viewCurrentApptsLabel;
+        private System.Windows.Forms.Label viewCurrApptsLabel;
         private System.Windows.Forms.Button viewCustomersButton;
         private System.Windows.Forms.Button viewCurrApptsButton;
         private System.Windows.Forms.Button logOutButton;
