@@ -215,6 +215,9 @@
   <data name="viewCurrApptsButton" xml:space="preserve">
     <value>Voir</value>
   </data>
+  <data name="viewCurrApptsLabel" xml:space="preserve">
+    <value>Voir tous les rendez-vous à venir</value>
+  </data>
   <data name="viewCustomersButton" xml:space="preserve">
     <value>Voir</value>
   </data>
