@@ -121,6 +121,12 @@
     <value>Ajouter un client</value>
     <comment>Opens the Add Customer form</comment>
   </data>
+  <data name="addCustomersButton" xml:space="preserve">
+    <value />
+  </data>
+  <data name="addCustomersLabel" xml:space="preserve">
+    <value />
+  </data>
   <data name="addressLabel" xml:space="preserve">
     <value>Dirección:</value>
     <comment>Customer street address label</comment>
@@ -149,10 +155,6 @@
     <value>Créer un client</value>
     <comment>Creates the appointment including customers information</comment>
   </data>
-  <data name="customerLandingInfoLabel" xml:space="preserve">
-    <value>Afficher, modifier et supprimer des clients</value>
-    <comment>Description of what can be done with customers in the database</comment>
-  </data>
   <data name="customersGroupBox" xml:space="preserve">
     <value>Clientes</value>
     <comment>Label for Customer groupbox</comment>
@@ -164,6 +166,21 @@
   <data name="loginButton" xml:space="preserve">
     <value>Connexion</value>
     <comment>Used to login to the application</comment>
+  </data>
+  <data name="logOutButton" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="modifyApptButton" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="modifyApptLabel" xml:space="preserve">
+    <value>Modifier un rendez-vous client à venir</value>
+  </data>
+  <data name="modifyCustomerInfoLabel" xml:space="preserve">
+    <value>Modifier les informations client</value>
+  </data>
+  <data name="modifyCustomersButton" xml:space="preserve">
+    <value>Modifier</value>
   </data>
   <data name="nameLabel" xml:space="preserve">
     <value>Nom:</value>
@@ -181,6 +198,12 @@
     <value>Mot de passe</value>
     <comment>Employee's password</comment>
   </data>
+  <data name="scheduleNewApptButton" xml:space="preserve">
+    <value>Calendrier</value>
+  </data>
+  <data name="scheduleNewApptLabel" xml:space="preserve">
+    <value>Planifier un nouveau rendez-vous</value>
+  </data>
   <data name="updateCustomerButton" xml:space="preserve">
     <value>Mettre à jour les informations client</value>
     <comment>Opens the Update Customer Information form</comment>
@@ -188,5 +211,15 @@
   <data name="usernameLabel" xml:space="preserve">
     <value>Nom d’utilisateur</value>
     <comment>Employee's username</comment>
+  </data>
+  <data name="viewCurrApptsButton" xml:space="preserve">
+    <value>Voir</value>
+  </data>
+  <data name="viewCustomersButton" xml:space="preserve">
+    <value>Voir</value>
+  </data>
+  <data name="viewCustomersLabel" xml:space="preserve">
+    <value>Voir tous les clients actuels</value>
+    <comment>Description of the View Customers form</comment>
   </data>
 </root>

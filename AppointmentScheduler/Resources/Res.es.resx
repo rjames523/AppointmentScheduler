@@ -121,6 +121,12 @@
     <value>Agregar cliente</value>
     <comment>Opens the Add Customer form</comment>
   </data>
+  <data name="addCustomersButton" xml:space="preserve">
+    <value />
+  </data>
+  <data name="addCustomersLabel" xml:space="preserve">
+    <value />
+  </data>
   <data name="addressLabel" xml:space="preserve">
     <value>Dirección:</value>
     <comment>Customer street address label</comment>
@@ -149,10 +155,6 @@
     <value>Crear Cita:</value>
     <comment>Creates the appointment including customers information</comment>
   </data>
-  <data name="customerLandingInfoLabel" xml:space="preserve">
-    <value>Ver, editar y eliminar clientes</value>
-    <comment>Description of what can be done with customers in the database</comment>
-  </data>
   <data name="customersGroupBox" xml:space="preserve">
     <value>Clientes</value>
     <comment>Label for Customer groupbox</comment>
@@ -165,13 +167,24 @@
     <value>Iniciar sesión</value>
     <comment>Used to login to the application</comment>
   </data>
+  <data name="logOutButton" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="modifyApptButton" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="modifyApptLabel" xml:space="preserve">
+    <value>Modificar una próxima cita con un cliente</value>
+  </data>
+  <data name="modifyCustomerInfoLabel" xml:space="preserve">
+    <value>Modificar la información del cliente</value>
+  </data>
+  <data name="modifyCustomersButton" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
   <data name="nameLabel" xml:space="preserve">
     <value>Nombre:</value>
     <comment>Customer name label</comment>
-  </data>
-  <data name="openApptsButton" xml:space="preserve">
-    <value>Abierta</value>
-    <comment>Opens the Appointments form</comment>
   </data>
   <data name="openCustomersButton" xml:space="preserve">
     <value>Abierta</value>
@@ -181,6 +194,12 @@
     <value>Contraseña</value>
     <comment>Employee's password</comment>
   </data>
+  <data name="scheduleNewApptButton" xml:space="preserve">
+    <value>Cronograma</value>
+  </data>
+  <data name="scheduleNewApptLabel" xml:space="preserve">
+    <value>Programar una nueva cita</value>
+  </data>
   <data name="updateCustomerButton" xml:space="preserve">
     <value>Actualizar información del cliente</value>
     <comment>Opens the Update Customer Information form</comment>
@@ -188,5 +207,15 @@
   <data name="usernameLabel" xml:space="preserve">
     <value>Nombre de usuario</value>
     <comment>Employee's username</comment>
+  </data>
+  <data name="viewCurrApptsButton" xml:space="preserve">
+    <value>Vista</value>
+  </data>
+  <data name="viewCustomersButton" xml:space="preserve">
+    <value>Vista</value>
+  </data>
+  <data name="viewCustomersLabel" xml:space="preserve">
+    <value>Ver todas las clientas actuales</value>
+    <comment>Description of the View Customers form</comment>
   </data>
 </root>
