@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AppointmentScheduler.Models;
+using MySqlX.XDevAPI.Relational;
 
 namespace AppointmentScheduler.Connections
 {
@@ -12,7 +14,8 @@ namespace AppointmentScheduler.Connections
         MySqlConnection connection;
         MySqlCommand command;
         MySqlDataReader reader;
-        string connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
+        // home laptop testing -- string connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
+        string connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule"; // work laptop testing
 
         public DBConnection()
         {
@@ -40,7 +43,44 @@ namespace AppointmentScheduler.Connections
 
             while (reader.Read())
             {
-                reader.GetName(0);
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    Customer newCust = new Customer();
+                    switch (reader.GetName(i).ToLower())
+                    {
+                        case "customerid":
+                            newCust.CustomerID = (int)reader.GetValue(i);
+                            break;
+                        case "customername":
+                            newCust.CustomerName = (string)reader.GetValue(i);
+                            break;
+                        case "addressid":
+                            //get the address ID ***
+                            break;
+                        case "active":
+                            newCust.Active = (bool)reader.GetValue(i);
+                            break;
+                            //do something
+                        case "createdate":
+                            newCust.CreateDate = (DateTime)reader.GetValue(i);
+                            break;
+                            //do something
+                        case "createdby":
+                            newCust.CreatedBy = (string)reader.GetValue(i);
+                            break;
+                            //do something
+                        case "lastupdate":
+                            newCust.LastUpdate = (DateTime)reader.GetValue(i);
+                            break;
+                            // do something
+                        case "lastupdatedby":
+                            newCust.LastUpdatedBy = (string)reader.GetValue(i);
+                            break;
+                            // do something
+                        default:
+                            return;
+                    }
+                }
             }
 
             connection.Close();
