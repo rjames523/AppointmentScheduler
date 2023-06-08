@@ -23,7 +23,7 @@ namespace AppointmentScheduler.Models
         public DateTime End { get; set; }
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
-        public Timestamp LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public string LastUpdatedBy { get; set; }
 
 
@@ -34,7 +34,7 @@ namespace AppointmentScheduler.Models
             _userID = user.UserID;
             _customerID = customer.CustomerID;
         }
-        public Appointment(User user, Customer customer, int appointmentID, string title, string description, string location, string contact, string type, string uRL, DateTime start, DateTime end, DateTime createDate, string createdBy, Timestamp lastUpdate, string lastUpdatedBy)
+        public Appointment(User user, Customer customer, int appointmentID, string title, string description, string location, string contact, string type, string uRL, DateTime start, DateTime end, DateTime createDate, string createdBy, DateTime lastUpdate, string lastUpdatedBy)
         {
             _customerID = customer.CustomerID;
             _userID = user.UserID;

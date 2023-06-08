@@ -16,7 +16,7 @@ namespace AppointmentScheduler.Models
         public bool Active { get; set; } //Database value is likely either 0 or 1, aka False or True
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
-        public Timestamp LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public string LastUpdatedBy { get; set; }
 
         public Customer() { }
@@ -26,7 +26,7 @@ namespace AppointmentScheduler.Models
             _addressID = address.AddressID;
         }
 
-        public Customer(Address address, int customerID, string customerName, bool active, DateTime createDate, string createdBy, Timestamp lastUpdate, string lastUpdatedBy)
+        public Customer(Address address, int customerID, string customerName, bool active, DateTime createDate, string createdBy, DateTime lastUpdate, string lastUpdatedBy)
         {
             _addressID = address.AddressID;
             CustomerID = customerID;

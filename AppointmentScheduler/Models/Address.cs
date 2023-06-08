@@ -18,7 +18,7 @@ namespace AppointmentScheduler.Models
         public string Phone { get; set; }
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
-        public Timestamp LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public string LastUpdatedBy { get; set; }
 
         public Address() { }
@@ -28,7 +28,7 @@ namespace AppointmentScheduler.Models
             _cityID = city.CityID;
         }
 
-        public Address(City city, int addressID, string address1, string address2, string postalCode, string phone, DateTime createDate, string createdBy, Timestamp lastUpdate, string lastUpdatedBy)
+        public Address(City city, int addressID, string address1, string address2, string postalCode, string phone, DateTime createDate, string createdBy, DateTime lastUpdate, string lastUpdatedBy)
         {
             _cityID = city.CityID;
             AddressID = addressID;

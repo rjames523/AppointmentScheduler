@@ -15,12 +15,12 @@ namespace AppointmentScheduler.Models
         public bool Active { get; set; } //Database value is likely either 0 or 1, aka False or True
         public DateTime CreateDate { get; set; }
         public User CreatedBy { get; set; } //Need to be string?
-        public Timestamp LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public User LastUpdatedBy { get; set; } //Need to be string?
 
         public User() { }
 
-        public User(int userID, string userName, string password, bool active, DateTime createDate, User createdBy, Timestamp lastUpdate, User lastUpdatedBy)
+        public User(int userID, string userName, string password, bool active, DateTime createDate, User createdBy, DateTime lastUpdate, User lastUpdatedBy)
         {
             UserID = userID;
             UserName = userName;
