@@ -122,10 +122,10 @@
     <comment>Opens the Add Customer form</comment>
   </data>
   <data name="addCustomersButton" xml:space="preserve">
-    <value />
+    <value>Agregar</value>
   </data>
   <data name="addCustomersLabel" xml:space="preserve">
-    <value />
+    <value>Agregar nuevas clientes</value>
   </data>
   <data name="addressLabel" xml:space="preserve">
     <value>Dirección:</value>
@@ -199,6 +199,9 @@
   </data>
   <data name="scheduleNewApptLabel" xml:space="preserve">
     <value>Programar una nueva cita</value>
+  </data>
+  <data name="updateCustomerAppointmentButton" xml:space="preserve">
+    <value>Actualizar cita</value>
   </data>
   <data name="updateCustomerButton" xml:space="preserve">
     <value>Actualizar información del cliente</value>

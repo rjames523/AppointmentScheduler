@@ -122,10 +122,10 @@
     <comment>Opens the Add Customer form</comment>
   </data>
   <data name="addCustomersButton" xml:space="preserve">
-    <value />
+    <value>Add</value>
   </data>
   <data name="addCustomersLabel" xml:space="preserve">
-    <value />
+    <value>Add new customers</value>
   </data>
   <data name="addressLabel" xml:space="preserve">
     <value>Street Address:</value>
@@ -203,6 +203,9 @@
   </data>
   <data name="scheduleNewApptLabel" xml:space="preserve">
     <value>Schedule a new appointment</value>
+  </data>
+  <data name="updateCustomerAppointmentButton" xml:space="preserve">
+    <value>Update Appointment</value>
   </data>
   <data name="updateCustomerButton" xml:space="preserve">
     <value>Update Customer Information</value>
