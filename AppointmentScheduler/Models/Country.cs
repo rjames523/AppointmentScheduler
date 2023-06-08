@@ -14,18 +14,18 @@ namespace AppointmentScheduler.Models
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime LastUpdate { get; set; }
-        public string LastUpdatedBy { get; set; }
+        public string LastUpdateBy { get; set; }
 
         public Country() { }
 
-        public Country(int countryID, string countryName, DateTime createDate, string createdBy, DateTime lastUpdate, string lastUpdatedBy)
+        public Country(int countryID, string countryName, DateTime createDate, string createdBy, DateTime lastUpdate, string LastUpdateBy)
         {
             CountryID = countryID;
             CountryName = countryName;
             CreateDate = createDate;
             CreatedBy = createdBy;
             LastUpdate = lastUpdate;
-            LastUpdatedBy = lastUpdatedBy;
+            LastUpdateBy = LastUpdateBy;
         }
     }
 }

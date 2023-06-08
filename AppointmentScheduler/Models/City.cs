@@ -16,7 +16,7 @@ namespace AppointmentScheduler.Models
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime LastUpdate { get; set; }
-        public string LastUpdatedBy { get; set; }
+        public string LastUpdateBy { get; set; }
 
         public City() { }
 
@@ -25,14 +25,14 @@ namespace AppointmentScheduler.Models
             _countryId = country.CountryID;
         }
 
-        public City(Country country, int cityID, DateTime createDate, string createdBy, DateTime lastUpdate, string lastUpdatedBy)
+        public City(Country country, int cityID, DateTime createDate, string createdBy, DateTime lastUpdate, string LastUpdateBy)
         {
             _countryId = country.CountryID;
             CityID = cityID;
             CreateDate = createDate;
             CreatedBy = createdBy;
             LastUpdate = lastUpdate;
-            LastUpdatedBy = lastUpdatedBy;
+            LastUpdateBy = LastUpdateBy;
         }
     }
 }

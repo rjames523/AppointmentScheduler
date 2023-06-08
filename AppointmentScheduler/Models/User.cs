@@ -16,11 +16,11 @@ namespace AppointmentScheduler.Models
         public DateTime CreateDate { get; set; }
         public User CreatedBy { get; set; } //Need to be string?
         public DateTime LastUpdate { get; set; }
-        public User LastUpdatedBy { get; set; } //Need to be string?
+        public User LastUpdateBy { get; set; } //Need to be string?
 
         public User() { }
 
-        public User(int userID, string userName, string password, bool active, DateTime createDate, User createdBy, DateTime lastUpdate, User lastUpdatedBy)
+        public User(int userID, string userName, string password, bool active, DateTime createDate, User createdBy, DateTime lastUpdate, User LastUpdateBy)
         {
             UserID = userID;
             UserName = userName;
@@ -29,7 +29,7 @@ namespace AppointmentScheduler.Models
             CreateDate = createDate;
             CreatedBy = createdBy;
             LastUpdate = lastUpdate;
-            LastUpdatedBy = lastUpdatedBy;
+            LastUpdateBy = LastUpdateBy;
         }
     }
 }
