@@ -92,7 +92,6 @@
     <Compile Include="AppointmentsForm.Designer.cs">
       <DependentUpon>AppointmentsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connections\Customer.cs" />
     <Compile Include="Connections\DBConnection.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Appointment.cs" />

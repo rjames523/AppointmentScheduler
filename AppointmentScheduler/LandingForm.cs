@@ -24,11 +24,14 @@ namespace AppointmentScheduler
 
         ResourceManager rm;
         CultureInfo culture;
+        DBConnection conn;
 
         private void viewCustomersButton_Click(object sender, EventArgs e)
         {
-            CustomersForm customersForm = new CustomersForm();
-            customersForm.ShowDialog();
+            /*CustomersForm customersForm = new CustomersForm();
+            customersForm.ShowDialog();*/
+            conn = new DBConnection();
+            conn.GetAllCustomers();
         }
 
         private void viewApptsButton_Click(object sender, EventArgs e)
