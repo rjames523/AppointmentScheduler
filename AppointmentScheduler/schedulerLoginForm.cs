@@ -10,6 +10,7 @@ using System.IO;
 using System.IO.Pipes;
 using System.Linq;
 using System.Resources;
+using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,32 +36,50 @@ namespace schedulerLoginForm
             string password = passwordTxtBox.Text;
             string timestampFormat = culture.DateTimeFormat.SortableDateTimePattern;
 
-            ///////////////////////////////////////////////////////////////////////
-            // Add check for incorrect/correct credentials (use database values)///
-            ///////////////////////////////////////////////////////////////////////
-
-            if (File.Exists("../login.log"))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                var fileStream = new FileStream("../login.log", FileMode.Append, FileAccess.Write);
-                using (sw = new StreamWriter(fileStream))
-                {
-                    sw.WriteLine($"{DateTime.Now.ToString(timestampFormat)}   The user, {username}, has logged in successfully");
-                }
+                MessageBox.Show("You must enter a username and password to continue", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                var fileStream = new FileStream("../login.log", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-
-                using (sw = new StreamWriter(fileStream))
+                try
                 {
-                    sw.WriteLine($"{DateTime.Now.ToString(timestampFormat)}   The user, {username}, has logged in successfully");
+
+
+                    DBConnection conn = new DBConnection();
+                    if (conn.AuthenticateUser(username, password))
+                    {
+                        if (File.Exists("../login.log"))
+                        {
+                            var fileStream = new FileStream("../login.log", FileMode.Append, FileAccess.Write);
+                            using (sw = new StreamWriter(fileStream))
+                            {
+                                sw.WriteLine($"{DateTime.Now.ToString(timestampFormat)}   The user, {username}, has logged in successfully");
+                            }
+                        }
+                        else
+                        {
+                            var fileStream = new FileStream("../login.log", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
+                            using (sw = new StreamWriter(fileStream))
+                            {
+                                sw.WriteLine($"{DateTime.Now.ToString(timestampFormat)}   The user, {username}, has logged in successfully");
+                            }
+                        }
+
+                        this.Hide();
+                        LandingForm landingForm = new LandingForm();
+                        landingForm.ShowDialog();
+                        this.Close();
+                    }
+                }
+                catch (InvalidCredentialException ex)
+                {
+                    MessageBox.Show(ex.ToString(), "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
-            this.Hide();
-            LandingForm landingForm = new LandingForm();
-            landingForm.ShowDialog();
-            this.Close();
+            
         }
 
         private void schedulerLoginForm_Load(object sender, EventArgs e)

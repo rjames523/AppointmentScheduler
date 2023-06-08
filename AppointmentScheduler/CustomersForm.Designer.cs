@@ -28,20 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.customersDGV = new System.Windows.Forms.DataGridView();
             this.addCustomerButton = new System.Windows.Forms.Button();
             this.createAppointmentButton = new System.Windows.Forms.Button();
             this.deleteCustomerButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // customersDGV
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 13);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(711, 357);
-            this.dataGridView1.TabIndex = 0;
+            this.customersDGV.AllowUserToAddRows = false;
+            this.customersDGV.AllowUserToDeleteRows = false;
+            this.customersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.customersDGV.Location = new System.Drawing.Point(13, 13);
+            this.customersDGV.Name = "customersDGV";
+            this.customersDGV.RowHeadersVisible = false;
+            this.customersDGV.Size = new System.Drawing.Size(711, 357);
+            this.customersDGV.TabIndex = 0;
             // 
             // addCustomerButton
             // 
@@ -78,18 +81,19 @@
             this.Controls.Add(this.deleteCustomerButton);
             this.Controls.Add(this.createAppointmentButton);
             this.Controls.Add(this.addCustomerButton);
-            this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.customersDGV);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CustomersForm";
             this.Text = "The Scheduler - Customers";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.CustomersForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView customersDGV;
         private System.Windows.Forms.Button addCustomerButton;
         private System.Windows.Forms.Button createAppointmentButton;
         private System.Windows.Forms.Button deleteCustomerButton;

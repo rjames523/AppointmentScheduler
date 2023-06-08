@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.createAppointmentCalendar = new System.Windows.Forms.MonthCalendar();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.availableTimesRTextBox = new System.Windows.Forms.RichTextBox();
             this.availableApptLabel = new System.Windows.Forms.Label();
             this.calendarLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
@@ -52,13 +52,13 @@
             this.createAppointmentCalendar.TabIndex = 0;
             this.createAppointmentCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.createAppointmentCalendar_DateChanged);
             // 
-            // richTextBox1
+            // availableTimesRTextBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(241, 236);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(227, 153);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.availableTimesRTextBox.Location = new System.Drawing.Point(241, 236);
+            this.availableTimesRTextBox.Name = "availableTimesRTextBox";
+            this.availableTimesRTextBox.Size = new System.Drawing.Size(227, 153);
+            this.availableTimesRTextBox.TabIndex = 1;
+            this.availableTimesRTextBox.Text = "";
             // 
             // availableApptLabel
             // 
@@ -172,7 +172,7 @@
             this.appNameLabel.Text = "The Scheduler";
             this.appNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // CreateAppointmentForm
+            // ScheduleAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -189,10 +189,10 @@
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.calendarLabel);
             this.Controls.Add(this.availableApptLabel);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.availableTimesRTextBox);
             this.Controls.Add(this.createAppointmentCalendar);
-            this.Name = "CreateAppointmentForm";
-            this.Text = "Create Appointment";
+            this.Name = "ScheduleAppointmentForm";
+            this.Text = "Schedule Appointment";
             this.Load += new System.EventHandler(this.CreateAppointmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,7 +202,7 @@
         #endregion
 
         private System.Windows.Forms.MonthCalendar createAppointmentCalendar;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox availableTimesRTextBox;
         private System.Windows.Forms.Label availableApptLabel;
         private System.Windows.Forms.Label calendarLabel;
         private System.Windows.Forms.Label nameLabel;

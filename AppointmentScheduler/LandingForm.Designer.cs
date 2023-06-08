@@ -38,7 +38,7 @@
             this.viewCustomersLabel = new System.Windows.Forms.Label();
             this.appointmentsGroupBox = new System.Windows.Forms.GroupBox();
             this.modifyApptLabel = new System.Windows.Forms.Label();
-            this.registerNewApptLabel = new System.Windows.Forms.Label();
+            this.scheduleNewApptLabel = new System.Windows.Forms.Label();
             this.modifyApptButton = new System.Windows.Forms.Button();
             this.viewCurrApptsButton = new System.Windows.Forms.Button();
             this.scheduleNewApptButton = new System.Windows.Forms.Button();
@@ -147,7 +147,7 @@
             // appointmentsGroupBox
             // 
             this.appointmentsGroupBox.Controls.Add(this.modifyApptLabel);
-            this.appointmentsGroupBox.Controls.Add(this.registerNewApptLabel);
+            this.appointmentsGroupBox.Controls.Add(this.scheduleNewApptLabel);
             this.appointmentsGroupBox.Controls.Add(this.modifyApptButton);
             this.appointmentsGroupBox.Controls.Add(this.viewCurrApptsButton);
             this.appointmentsGroupBox.Controls.Add(this.scheduleNewApptButton);
@@ -172,15 +172,15 @@
             this.modifyApptLabel.TabIndex = 8;
             this.modifyApptLabel.Text = "Modify an upcoming customer appointment";
             // 
-            // registerNewApptLabel
+            // scheduleNewApptLabel
             // 
-            this.registerNewApptLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerNewApptLabel.Location = new System.Drawing.Point(96, 100);
-            this.registerNewApptLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.registerNewApptLabel.Name = "registerNewApptLabel";
-            this.registerNewApptLabel.Size = new System.Drawing.Size(184, 33);
-            this.registerNewApptLabel.TabIndex = 7;
-            this.registerNewApptLabel.Text = "Schedule a new appointment";
+            this.scheduleNewApptLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scheduleNewApptLabel.Location = new System.Drawing.Point(96, 100);
+            this.scheduleNewApptLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.scheduleNewApptLabel.Name = "scheduleNewApptLabel";
+            this.scheduleNewApptLabel.Size = new System.Drawing.Size(184, 33);
+            this.scheduleNewApptLabel.TabIndex = 7;
+            this.scheduleNewApptLabel.Text = "Schedule a new appointment";
             // 
             // modifyApptButton
             // 
@@ -276,7 +276,7 @@
         private System.Windows.Forms.Label modifyCustomerInfoLabel;
         private System.Windows.Forms.Button scheduleNewApptButton;
         private System.Windows.Forms.Label modifyApptLabel;
-        private System.Windows.Forms.Label registerNewApptLabel;
+        private System.Windows.Forms.Label scheduleNewApptLabel;
         private System.Windows.Forms.Button modifyApptButton;
     }
 }

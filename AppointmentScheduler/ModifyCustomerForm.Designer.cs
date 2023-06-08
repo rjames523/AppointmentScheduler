@@ -1,6 +1,6 @@
 ﻿namespace AppointmentScheduler
 {
-    partial class CreateCustomerForm
+    partial class ModifyCustomerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ModifyCustomerForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "CreateCustomerForm";
+            this.ClientSize = new System.Drawing.Size(638, 388);
+            this.Name = "ModifyCustomerForm";
+            this.Text = "Modify Customer";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

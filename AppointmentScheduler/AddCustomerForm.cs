@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AppointmentScheduler
 {
-    public partial class CreateCustomerForm : Form
+    public partial class AddCustomerForm : Form
     {
-        public CreateCustomerForm()
+        public AddCustomerForm()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppointmentScheduler.Connections;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace AppointmentScheduler
         public CustomersForm()
         {
             InitializeComponent();
+        }
+
+        DBConnection conn;
+
+        private void CustomersForm_Load(object sender, EventArgs e)
+        {
+            conn = new DBConnection();
+            customersDGV.DataSource = conn.GetAllCustomers();
         }
     }
 }

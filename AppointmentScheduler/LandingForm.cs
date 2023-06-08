@@ -28,10 +28,10 @@ namespace AppointmentScheduler
 
         private void viewCustomersButton_Click(object sender, EventArgs e)
         {
-            /*CustomersForm customersForm = new CustomersForm();
-            customersForm.ShowDialog();*/
-            conn = new DBConnection();
-            conn.GetAllCustomers();
+            this.Hide();
+            CustomersForm customersForm = new CustomersForm();
+            customersForm.ShowDialog();
+            this.Show();
         }
 
         private void viewApptsButton_Click(object sender, EventArgs e)
@@ -43,6 +43,9 @@ namespace AppointmentScheduler
         private void logOutButton_Click(object sender, EventArgs e)
         {
             GC.Collect();
+            this.Hide();
+            SchedulerLoginForm loginForm = new SchedulerLoginForm();
+            loginForm.ShowDialog();
             this.Close();
 
         }
@@ -57,6 +60,14 @@ namespace AppointmentScheduler
             appointmentsGroupBox.Text = rm.GetString("appointmentsGroupBox", culture);
             viewCustomersButton.Text = rm.GetString("viewCustomersButton", culture);
             viewCurrApptsButton.Text = rm.GetString("viewCurrApptsButton", culture);
+            addCustomersButton.Text = rm.GetString("addCustomersButton", culture);
+            addCustomersLabel.Text = rm.GetString("addCustomersLabel", culture);
+            scheduleNewApptLabel.Text = rm.GetString("scheduleNewApptLabel", culture);
+            scheduleNewApptButton.Text = rm.GetString("scheduleNewApptButton", culture);
+            modifyCustomersButton.Text = rm.GetString("modifyCustomersButton", culture);
+            modifyCustomerInfoLabel.Text = rm.GetString("modifyCustomerInfoLabel", culture);
+            modifyApptButton.Text = rm.GetString("modifyApptButton", culture);
+            modifyApptLabel.Text = rm.GetString("modifyApptLabel", culture);
 
             // add remaining control culture-based text
             // update description of culture fields in resx files

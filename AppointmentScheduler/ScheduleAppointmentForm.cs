@@ -32,7 +32,10 @@ namespace AppointmentScheduler
 
         private void createAppointmentButton_Click(object sender, EventArgs e)
         {
-
+            if (availableTimesRTextBox.SelectedText == string.Empty)
+            {
+                MessageBox.Show("You must select an appointment time to continue", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void customerNamesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,6 +55,7 @@ namespace AppointmentScheduler
             availableApptLabel.Text = rm.GetString("availableApptLabel", culture);
 
             // Calendar culture?
+            // Be sure to use customer's Country to change calendar culture/time zone
         }
     }
 }
