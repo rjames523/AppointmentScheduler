@@ -34,6 +34,7 @@
             this.usernameTxtBox = new System.Windows.Forms.TextBox();
             this.passwordTxtBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
+            this.loginStatusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // appNameLabel
@@ -51,7 +52,7 @@
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(112, 86);
+            this.usernameLabel.Location = new System.Drawing.Point(112, 131);
             this.usernameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(55, 13);
@@ -62,7 +63,7 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(112, 142);
+            this.passwordLabel.Location = new System.Drawing.Point(112, 187);
             this.passwordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -73,8 +74,8 @@
             // 
             // usernameTxtBox
             // 
-            this.usernameTxtBox.Location = new System.Drawing.Point(115, 102);
-            this.usernameTxtBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.usernameTxtBox.Location = new System.Drawing.Point(115, 147);
+            this.usernameTxtBox.Margin = new System.Windows.Forms.Padding(2);
             this.usernameTxtBox.Multiline = true;
             this.usernameTxtBox.Name = "usernameTxtBox";
             this.usernameTxtBox.Size = new System.Drawing.Size(128, 22);
@@ -82,8 +83,8 @@
             // 
             // passwordTxtBox
             // 
-            this.passwordTxtBox.Location = new System.Drawing.Point(115, 158);
-            this.passwordTxtBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passwordTxtBox.Location = new System.Drawing.Point(115, 203);
+            this.passwordTxtBox.Margin = new System.Windows.Forms.Padding(2);
             this.passwordTxtBox.Multiline = true;
             this.passwordTxtBox.Name = "passwordTxtBox";
             this.passwordTxtBox.Size = new System.Drawing.Size(128, 22);
@@ -92,8 +93,8 @@
             // loginButton
             // 
             this.loginButton.AutoSize = true;
-            this.loginButton.Location = new System.Drawing.Point(142, 206);
-            this.loginButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.loginButton.Location = new System.Drawing.Point(142, 251);
+            this.loginButton.Margin = new System.Windows.Forms.Padding(2);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(70, 28);
             this.loginButton.TabIndex = 5;
@@ -101,19 +102,30 @@
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
+            // loginStatusLabel
+            // 
+            this.loginStatusLabel.AutoSize = true;
+            this.loginStatusLabel.Location = new System.Drawing.Point(136, 88);
+            this.loginStatusLabel.Name = "loginStatusLabel";
+            this.loginStatusLabel.Size = new System.Drawing.Size(83, 13);
+            this.loginStatusLabel.TabIndex = 6;
+            this.loginStatusLabel.Text = "Access Granted";
+            this.loginStatusLabel.Visible = false;
+            // 
             // SchedulerLoginForm
             // 
             this.AcceptButton = this.loginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 266);
+            this.ClientSize = new System.Drawing.Size(355, 307);
+            this.Controls.Add(this.loginStatusLabel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordTxtBox);
             this.Controls.Add(this.usernameTxtBox);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.appNameLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SchedulerLoginForm";
             this.Text = "The Scheduler";
             this.Load += new System.EventHandler(this.schedulerLoginForm_Load);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.TextBox usernameTxtBox;
         private System.Windows.Forms.TextBox passwordTxtBox;
         private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Label loginStatusLabel;
     }
 }
 
