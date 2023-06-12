@@ -12,6 +12,7 @@ using System.Linq;
 using System.Resources;
 using System.Security.Authentication;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,8 +29,6 @@ namespace schedulerLoginForm
         CultureInfo culture;
         StreamWriter sw;
 
-        //public delegate void CultureChanged(object obj, EventArgs e);
-
         private void loginButton_Click(object sender, EventArgs e)
         {
             string username = usernameTxtBox.Text;
@@ -38,13 +37,26 @@ namespace schedulerLoginForm
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("You must enter a username and password to continue", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                switch (CultureInfo.CurrentUICulture.ToString())
+                {
+                    case "en-US":
+                        MessageBox.Show("You must enter a username and password to continue", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case "fr-CA":
+                        MessageBox.Show("Vous devez entrer un nom d'utilisateur et un mot de passe pour continuer", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    case "es-ES":
+                        MessageBox.Show("Debe ingresar un nombre de usuario y contraseña para continuar", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
+                    default:
+                        MessageBox.Show("An unknown error occurred", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        break;
+                }
             }
             else
             {
                 try
                 {
-
 
                     DBConnection conn = new DBConnection();
                     if (conn.AuthenticateUser(username, password))
@@ -67,10 +79,33 @@ namespace schedulerLoginForm
                             }
                         }
 
+                        // Fix this!
+                        loginStatusLabel.Visible = true;
+                        Thread.Sleep(500);
+
+
                         this.Hide();
                         LandingForm landingForm = new LandingForm();
                         landingForm.ShowDialog();
                         this.Close();
+                    }
+                    else
+                    {
+                        switch (CultureInfo.CurrentUICulture.ToString())
+                        {
+                            case "en-US":
+                                MessageBox.Show("The username and/or password is incorrect.", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            case "fr-CA":
+                                MessageBox.Show("Le nom d'utilisateur et/ou le mot de passe sont incorrects.", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            case "es-ES":
+                                MessageBox.Show("El nombre de usuario y/o la contraseña son incorrectos.", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            default:
+                                MessageBox.Show("An unknown error occurred", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                                break;
+                        }
                     }
                 }
                 catch (InvalidCredentialException ex)
@@ -89,6 +124,8 @@ namespace schedulerLoginForm
             usernameLabel.Text = rm.GetString("usernameLabel", culture);
             passwordLabel.Text = rm.GetString("passwordLabel", culture);
             loginButton.Text = rm.GetString("loginButton", culture);
+
+            loginStatusLabel.Text = string.Empty;
         }
     }
 }
