@@ -14,6 +14,9 @@ namespace AppointmentScheduler.Connections
         MySqlConnection connection;
         MySqlCommand command;
         MySqlDataReader reader;
+
+        public static User loggedInUser;
+
         // home laptop testing -- string connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
         private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule"; // work laptop testing
 
@@ -42,6 +45,7 @@ namespace AppointmentScheduler.Connections
 
             if (reader.HasRows)
             {
+                loggedInUser = reader.GetValue(0) as User;
                 connection.Close();
                 return true;
             }
@@ -152,6 +156,23 @@ namespace AppointmentScheduler.Connections
 
             connection.Close();
             return countryList;
+        }
+
+        public void InsertCustomer(Customer customer)
+        {
+            connection.Open();
+
+            string sql = "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@customername, (SELECT COUNT(*)+=1 FROM address), 1, @createdate, @createdby, NOW(), @lastupdatedby)";
+            command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@customername", customer.CustomerName);
+            command.Parameters.AddWithValue("@createdate", DateTime.Now);
+            command.Parameters.AddWithValue("@createdby", customer.CreatedBy);
+            command.Parameters.AddWithValue("@lastupdatedby", customer.LastUpdatedBy);
+
+            command.ExecuteNonQuery();
+
+            connection.Close();
         }
     }
 }
