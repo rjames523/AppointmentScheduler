@@ -58,7 +58,7 @@ namespace schedulerLoginForm
                 try
                 {
 
-                    DBConnection conn = new DBConnection();
+                    DbConn conn = new DbConn();
                     if (conn.AuthenticateUser(username, password))
                     {
                         if (File.Exists("../login.log"))
@@ -80,8 +80,8 @@ namespace schedulerLoginForm
                         }
 
                         // Fix this!
-                        loginStatusLabel.Visible = true;
-                        Thread.Sleep(500);
+                        // this.loginStatusLabel.Visible = true;
+                        // Thread.Sleep(500);
 
 
                         this.Hide();
@@ -125,7 +125,7 @@ namespace schedulerLoginForm
             passwordLabel.Text = rm.GetString("passwordLabel", culture);
             loginButton.Text = rm.GetString("loginButton", culture);
 
-            loginStatusLabel.Text = string.Empty;
+            loginStatusLabel.Text = "Access Denied";
         }
     }
 }
