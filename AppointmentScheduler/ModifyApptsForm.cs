@@ -19,7 +19,7 @@ namespace AppointmentScheduler
             InitializeComponent();
         }
 
-        DBConnection conn;
+        DbConn conn;
 
         private void ModifyApptsForm_Load(object sender, EventArgs e)
         {
