@@ -110,7 +110,7 @@
             this.addCustomersLabel.Name = "addCustomersLabel";
             this.addCustomersLabel.Size = new System.Drawing.Size(178, 33);
             this.addCustomersLabel.TabIndex = 3;
-            this.addCustomersLabel.Text = "Add new customers";
+            this.addCustomersLabel.Text = "Add a new customer";
             // 
             // modifyCustomerInfoLabel
             // 
