@@ -18,11 +18,11 @@ namespace AppointmentScheduler
             InitializeComponent();
         }
 
-        DBConnection conn;
+        DbConn conn;
 
         private void CustomersForm_Load(object sender, EventArgs e)
         {
-            conn = new DBConnection();
+            conn = new DbConn();
             customersDGV.DataSource = conn.GetAllCustomers();
         }
     }
