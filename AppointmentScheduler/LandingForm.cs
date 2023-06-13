@@ -24,7 +24,7 @@ namespace AppointmentScheduler
 
         ResourceManager rm;
         CultureInfo culture;
-        DBConnection conn;
+        DbConn conn;
 
         private void viewCustomersButton_Click(object sender, EventArgs e)
         {
@@ -52,7 +52,7 @@ namespace AppointmentScheduler
 
         private void LandingForm_Load(object sender, EventArgs e)
         {
-            rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(LandingForm).Assembly);
+            /* rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(LandingForm).Assembly);
             culture = CultureInfo.CurrentUICulture;
             viewCustomersLabel.Text = rm.GetString("viewCustomersLabel", culture);
             viewCurrApptsLabel.Text = rm.GetString("viewCurrApptsLabel", culture);
@@ -67,7 +67,7 @@ namespace AppointmentScheduler
             modifyCustomersButton.Text = rm.GetString("modifyCustomersButton", culture);
             modifyCustomerInfoLabel.Text = rm.GetString("modifyCustomerInfoLabel", culture);
             modifyApptButton.Text = rm.GetString("modifyApptButton", culture);
-            modifyApptLabel.Text = rm.GetString("modifyApptLabel", culture);
+            modifyApptLabel.Text = rm.GetString("modifyApptLabel", culture); */
 
             // add remaining control culture-based text
             // update description of culture fields in resx files
@@ -75,22 +75,34 @@ namespace AppointmentScheduler
 
         private void addCustomersButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            AddCustomerForm addCustForm = new AddCustomerForm();
+            addCustForm.ShowDialog();
+            this.Show();
         }
 
         private void modifyCustomersButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ModifyCustomerForm modifyCustForm = new ModifyCustomerForm();
+            modifyCustForm.ShowDialog();
+            this.Show();
         }
 
         private void scheduleNewApptButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ScheduleAppointmentForm scheduleApptForm = new ScheduleAppointmentForm();
+            scheduleApptForm.ShowDialog();
+            this.Show();
         }
 
         private void modifyApptButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ModifyApptsForm modifyApptsForm = new ModifyApptsForm();
+            modifyApptsForm.ShowDialog();
+            this.Show();
         }
     }
 }
