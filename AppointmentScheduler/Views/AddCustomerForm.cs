@@ -1,4 +1,5 @@
 ﻿using AppointmentScheduler.Connections;
+using AppointmentScheduler.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,17 +23,20 @@ namespace AppointmentScheduler
 
         private void addCustomerButton_Click(object sender, EventArgs e)
         {
-
-            foreach (TextBox control in this.Controls.OfType<TextBox>())
+            // Checks to see if any textbox on the form is null or whitespace
+            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text)))
             {
-                if (string.IsNullOrEmpty(control.Text) || string.IsNullOrWhiteSpace(control.Text))
-                {
-                    BuildErrorMessage();
-                    break;
-                }
+                BuildErrorMessage();
             }
+            else
+            {
+                Customer cust = new Customer();
+                cust.CustomerName = firstNameTxtBox.Text + " " + lastNameTxtBox.Text;
+                
+                Address address = new Address();
+                address.Address1 = streetAddrTxtBox.Text;
 
-
+            }
         }
 
         private void AddCustomerForm_Load(object sender, EventArgs e)
@@ -49,31 +53,31 @@ namespace AppointmentScheduler
 
             errorBlankInfo.Append("The following fields are required to add customer:\n\n");
 
-            if (firstNameTxtBox.Text == String.Empty)
+            if (string.IsNullOrWhiteSpace(firstNameTxtBox.Text))
             {
                 errorBlankInfo.AppendLine("First Name");
             }
-            if (lastNameTxtBox.Text == String.Empty)
+            if (string.IsNullOrWhiteSpace(lastNameTxtBox.Text))
             {
                 errorBlankInfo.AppendLine("Last Name");
             }
-            if (streetAddrTxtBox.Text == String.Empty)
+            if (string.IsNullOrWhiteSpace(streetAddrTxtBox.Text))
             {
                 errorBlankInfo.AppendLine("Street Address");
             }
-            if (cityTxtBox.Text == String.Empty)
+            if (string.IsNullOrWhiteSpace(cityTxtBox.Text))
             {
                 errorBlankInfo.AppendLine("City");
             }
-            if (countryComboBox.Text == String.Empty)
+            if (string.IsNullOrWhiteSpace(countryComboBox.Text))
             {
                 errorBlankInfo.AppendLine("Country");
             }
-            if (postalCodeTxtBox.Text == String.Empty)
+            if (string.IsNullOrWhiteSpace(postalCodeTxtBox.Text))
             {
                 errorBlankInfo.AppendLine("Postal Code");
             }
-            if (phoneTxtBox.Text == String.Empty)
+            if (string.IsNullOrWhiteSpace(phoneTxtBox.Text))
             {
                 errorBlankInfo.AppendLine("Phone");
             }

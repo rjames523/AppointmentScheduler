@@ -80,6 +80,7 @@
             // 
             // addCustomersButton
             // 
+            this.addCustomersButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addCustomersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCustomersButton.Location = new System.Drawing.Point(12, 90);
             this.addCustomersButton.Margin = new System.Windows.Forms.Padding(2);
@@ -92,6 +93,7 @@
             // 
             // modifyCustomersButton
             // 
+            this.modifyCustomersButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.modifyCustomersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modifyCustomersButton.Location = new System.Drawing.Point(12, 152);
             this.modifyCustomersButton.Margin = new System.Windows.Forms.Padding(2);
@@ -124,6 +126,7 @@
             // 
             // viewCustomersButton
             // 
+            this.viewCustomersButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.viewCustomersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.viewCustomersButton.Location = new System.Drawing.Point(12, 28);
             this.viewCustomersButton.Margin = new System.Windows.Forms.Padding(2);
@@ -184,6 +187,7 @@
             // 
             // modifyApptButton
             // 
+            this.modifyApptButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.modifyApptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modifyApptButton.Location = new System.Drawing.Point(12, 152);
             this.modifyApptButton.Margin = new System.Windows.Forms.Padding(2);
@@ -196,6 +200,7 @@
             // 
             // viewCurrApptsButton
             // 
+            this.viewCurrApptsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.viewCurrApptsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.viewCurrApptsButton.Location = new System.Drawing.Point(12, 29);
             this.viewCurrApptsButton.Margin = new System.Windows.Forms.Padding(2);
@@ -208,6 +213,7 @@
             // 
             // scheduleNewApptButton
             // 
+            this.scheduleNewApptButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.scheduleNewApptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scheduleNewApptButton.Location = new System.Drawing.Point(12, 90);
             this.scheduleNewApptButton.Margin = new System.Windows.Forms.Padding(2);
@@ -230,6 +236,7 @@
             // 
             // logOutButton
             // 
+            this.logOutButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logOutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logOutButton.Location = new System.Drawing.Point(570, 310);
             this.logOutButton.Margin = new System.Windows.Forms.Padding(2);

@@ -52,6 +52,7 @@ namespace AppointmentScheduler
 
         private void LandingForm_Load(object sender, EventArgs e)
         {
+            // Loads control text using language from current UI culture
             /* rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(LandingForm).Assembly);
             culture = CultureInfo.CurrentUICulture;
             viewCustomersLabel.Text = rm.GetString("viewCustomersLabel", culture);
@@ -68,9 +69,6 @@ namespace AppointmentScheduler
             modifyCustomerInfoLabel.Text = rm.GetString("modifyCustomerInfoLabel", culture);
             modifyApptButton.Text = rm.GetString("modifyApptButton", culture);
             modifyApptLabel.Text = rm.GetString("modifyApptLabel", culture); */
-
-            // add remaining control culture-based text
-            // update description of culture fields in resx files
         }
 
         private void addCustomersButton_Click(object sender, EventArgs e)

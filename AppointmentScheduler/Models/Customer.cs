@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.WellKnownTypes;
+﻿using AppointmentScheduler.Connections;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,11 @@ namespace AppointmentScheduler.Models
         public DateTime LastUpdate { get; set; }
         public string LastUpdatedBy { get; set; }
 
-        public Customer() { }
+        public Customer() 
+        {
+            CreatedBy = DbConn.loggedInUser.UserName;
+            LastUpdatedBy = DbConn.loggedInUser.UserName;
+        }
 
         public Customer(Address address)
         {

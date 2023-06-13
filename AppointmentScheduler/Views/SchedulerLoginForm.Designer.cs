@@ -93,6 +93,7 @@
             // loginButton
             // 
             this.loginButton.AutoSize = true;
+            this.loginButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginButton.Location = new System.Drawing.Point(142, 251);
             this.loginButton.Margin = new System.Windows.Forms.Padding(2);
             this.loginButton.Name = "loginButton";
