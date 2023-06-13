@@ -19,7 +19,7 @@ namespace AppointmentScheduler.Models
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime LastUpdate { get; set; }
-        public string LastUpdateBy { get; set; }
+        public string LastUpdatedBy { get; set; }
 
         public Address() { }
 
@@ -39,7 +39,7 @@ namespace AppointmentScheduler.Models
             CreateDate = createDate;
             CreatedBy = createdBy;
             LastUpdate = lastUpdate;
-            LastUpdateBy = LastUpdateBy;
+            LastUpdatedBy = LastUpdateBy;
         }
     }
 }
