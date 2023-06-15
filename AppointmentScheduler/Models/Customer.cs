@@ -14,7 +14,8 @@ namespace AppointmentScheduler.Models
 
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
-        public int AddressID { get; set; }
+        // Address object property added to mirror database implementation
+        public Address Address { get; set; }
         public bool Active { get; set; } //Database value is likely either 0 or 1, aka False or True
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
@@ -25,11 +26,6 @@ namespace AppointmentScheduler.Models
         {
             CreatedBy = DbConn.loggedInUser.UserName;
             LastUpdatedBy = DbConn.loggedInUser.UserName;
-        }
-
-        public Customer(Address address)
-        {
-            AddressID = address.AddressID;
         }
 
         public Customer(Address address, int customerID, string customerName, bool active, DateTime createDate, string createdBy, DateTime lastUpdate, string LastUpdateBy)
