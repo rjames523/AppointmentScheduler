@@ -101,7 +101,7 @@ namespace AppointmentScheduler.Connections
                             return null;
                     }
                 }
-
+                
                 customerList.Add(newCust);
             }
             reader.Close();
