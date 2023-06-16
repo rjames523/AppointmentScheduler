@@ -9,11 +9,11 @@ namespace AppointmentScheduler.Models
 {
     public class Address
     {
-        private int _cityID;
 
         public int AddressID { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
+        public City City { get; set; }
         public string PostalCode { get; set; }
         public string Phone { get; set; }
         public DateTime CreateDate { get; set; }
@@ -23,14 +23,9 @@ namespace AppointmentScheduler.Models
 
         public Address() { }
 
-        public Address(City city)
-        {
-            _cityID = city.CityID;
-        }
-
         public Address(City city, int addressID, string address1, string address2, string postalCode, string phone, DateTime createDate, string createdBy, DateTime lastUpdate, string LastUpdateBy)
         {
-            _cityID = city.CityID;
+            City.CityID = city.CityID;
             AddressID = addressID;
             Address1 = address1;
             Address2 = address2;
