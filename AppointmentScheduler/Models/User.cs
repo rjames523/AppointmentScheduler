@@ -14,13 +14,13 @@ namespace AppointmentScheduler.Models
         public string Password { get; set; }
         public bool Active { get; set; } //Database value is likely either 0 or 1, aka False or True
         public DateTime CreateDate { get; set; }
-        public User CreatedBy { get; set; } //Need to be string?
+        public string CreatedBy { get; set; }
         public DateTime LastUpdate { get; set; }
-        public User LastUpdatedBy { get; set; } //Need to be string?
+        public string LastUpdatedBy { get; set; }
 
         public User() { }
 
-        public User(int userID, string userName, string password, bool active, DateTime createDate, User createdBy, DateTime lastUpdate, User LastUpdateBy)
+        public User(int userID, string userName, string password, bool active, DateTime createDate, string createdBy, DateTime lastUpdate, string LastUpdateBy)
         {
             UserID = userID;
             UserName = userName;

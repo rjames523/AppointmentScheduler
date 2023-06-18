@@ -114,7 +114,6 @@ namespace schedulerLoginForm
                 }
             }
 
-            
         }
 
         private void schedulerLoginForm_Load(object sender, EventArgs e)
@@ -125,7 +124,7 @@ namespace schedulerLoginForm
             passwordLabel.Text = rm.GetString("passwordLabel", culture);
             loginButton.Text = rm.GetString("loginButton", culture);
 
-            loginStatusLabel.Text = "Access Denied";
+            loginFailStatusLabel.Text = rm.GetString("loginFailStatusLabel", culture);
         }
     }
 }

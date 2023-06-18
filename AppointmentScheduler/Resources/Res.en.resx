@@ -167,6 +167,9 @@
     <value>Login</value>
     <comment>Used to login to the application</comment>
   </data>
+  <data name="loginFailStatusLabel" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
   <data name="logOutButton" xml:space="preserve">
     <value>Log out</value>
   </data>

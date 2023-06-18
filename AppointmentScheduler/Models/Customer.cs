@@ -15,12 +15,13 @@ namespace AppointmentScheduler.Models
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
         // Address object property added to mirror database implementation
-        public Address Address { get; set; }
+        public int AddressID { get; set; }
+        public Address Address { get; set; } = new Address();
         public bool Active { get; set; } //Database value is likely either 0 or 1, aka False or True
         public DateTime CreateDate { get; set; }
-        public string CreatedBy { get; set; }
+        public string CreatedBy { get; set; } = DbConn.loggedInUser.UserName;
         public DateTime LastUpdate { get; set; }
-        public string LastUpdatedBy { get; set; }
+        public string LastUpdatedBy { get; set; } = DbConn.loggedInUser.UserName;
 
         public Customer() 
         {

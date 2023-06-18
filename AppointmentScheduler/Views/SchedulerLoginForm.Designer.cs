@@ -34,7 +34,7 @@
             this.usernameTxtBox = new System.Windows.Forms.TextBox();
             this.passwordTxtBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
-            this.loginStatusLabel = new System.Windows.Forms.Label();
+            this.loginFailStatusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // appNameLabel
@@ -105,13 +105,13 @@
             // 
             // loginStatusLabel
             // 
-            this.loginStatusLabel.AutoSize = true;
-            this.loginStatusLabel.Location = new System.Drawing.Point(136, 88);
-            this.loginStatusLabel.Name = "loginStatusLabel";
-            this.loginStatusLabel.Size = new System.Drawing.Size(83, 13);
-            this.loginStatusLabel.TabIndex = 6;
-            this.loginStatusLabel.Text = "Access Granted";
-            this.loginStatusLabel.Visible = false;
+            this.loginFailStatusLabel.AutoSize = true;
+            this.loginFailStatusLabel.Location = new System.Drawing.Point(136, 88);
+            this.loginFailStatusLabel.Name = "loginStatusLabel";
+            this.loginFailStatusLabel.Size = new System.Drawing.Size(83, 13);
+            this.loginFailStatusLabel.TabIndex = 6;
+            this.loginFailStatusLabel.Text = "Access Granted";
+            this.loginFailStatusLabel.Visible = false;
             // 
             // SchedulerLoginForm
             // 
@@ -119,7 +119,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(355, 307);
-            this.Controls.Add(this.loginStatusLabel);
+            this.Controls.Add(this.loginFailStatusLabel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordTxtBox);
             this.Controls.Add(this.usernameTxtBox);
@@ -143,7 +143,7 @@
         private System.Windows.Forms.TextBox usernameTxtBox;
         private System.Windows.Forms.TextBox passwordTxtBox;
         private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.Label loginStatusLabel;
+        private System.Windows.Forms.Label loginFailStatusLabel;
     }
 }
 
