@@ -29,7 +29,7 @@ namespace AppointmentScheduler
         private void viewCustomersButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            CustomersForm customersForm = new CustomersForm();
+            ViewCustomersForm customersForm = new ViewCustomersForm();
             customersForm.ShowDialog();
             this.Show();
         }
@@ -81,10 +81,10 @@ namespace AppointmentScheduler
 
         private void modifyCustomersButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ModifyCustomerForm modifyCustForm = new ModifyCustomerForm();
-            modifyCustForm.ShowDialog();
-            this.Show();
+            //this.Hide();
+            //ModifyCustomerForm modifyCustForm = new ModifyCustomerForm();
+            //modifyCustForm.ShowDialog();
+            //this.Show();
         }
 
         private void scheduleNewApptButton_Click(object sender, EventArgs e)
