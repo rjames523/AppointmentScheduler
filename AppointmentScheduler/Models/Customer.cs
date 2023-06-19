@@ -2,15 +2,18 @@
 using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AppointmentScheduler.Models
 {
-    public class Customer
+    public class Customer : INotifyPropertyChanged
     {
         private int _addressID;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
@@ -42,6 +45,11 @@ namespace AppointmentScheduler.Models
             CreatedBy = createdBy;
             LastUpdate = lastUpdate;
             LastUpdatedBy = LastUpdateBy;
+        }
+
+        public void NotifyPropertyChanged(String property = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }
