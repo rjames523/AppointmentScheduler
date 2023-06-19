@@ -31,28 +31,49 @@ namespace AppointmentScheduler
             }
             else
             {
-                Address custAddress = new Address();
-                custAddress.Address1 =streetAddrTxtBox.Text;
-                custAddress.Address2 = address2TextBox.Text;
-                custAddress.City.CityID = cityComboBox.SelectedIndex;
-                custAddress.LastUpdate = DateTime.Now;
-                custAddress.PostalCode = postalCodeTxtBox.Text;
-                custAddress.Phone  = phoneTxtBox.Text;
-                custAddress.CreateDate = DateTime.Now;
-                custAddress.CreatedBy = DbConn.loggedInUser.UserName;
-                custAddress.LastUpdatedBy = DbConn.loggedInUser.UserName;
+                try
+                {
+                    int countryId = conn.GetAllCountries().Count + 1;
 
-                int countryID = conn.AddCountry(countryComboBox.SelectedItem.ToString());
-                int cityID = conn.AddCity(cityComboBox.Text);
-                int addressID = conn.AddCustomerAddress(custAddress);
+                    Address custAddress = new Address();
+                    custAddress.AddressID = conn.GetAddressCount();
+                    custAddress.Address1 = streetAddrTxtBox.Text;
+                    custAddress.Address2 = address2TextBox.Text;
+                    custAddress.City.CityID = conn.GetAllCities().Count + 1;
+                    custAddress.LastUpdate = DateTime.Now;
+                    custAddress.PostalCode = postalCodeTxtBox.Text;
+                    custAddress.Phone = phoneTxtBox.Text;
+                    custAddress.CreateDate = DateTime.Now;
+                    custAddress.CreatedBy = DbConn.loggedInUser.UserName;
+                    custAddress.LastUpdatedBy = DbConn.loggedInUser.UserName;
 
-                Customer cust = new Customer();
-                cust.CustomerName = firstNameTxtBox.Text.Trim() + " " + lastNameTxtBox.Text.Trim();
 
-                
-                Address address = new Address();
-                address.Address1 = streetAddrTxtBox.Text;
+                    conn.AddCountry(countryId, countryComboBox.SelectedItem.ToString());
+                    conn.AddCity(custAddress.City.CityID, countryId, cityComboBox.Text);
+                    conn.AddCustomerAddress(custAddress);
 
+                    Customer cust = new Customer()
+                    {
+                        CustomerID = conn.GetAllCustomers().Count + 1,
+                        CustomerName = custNameTxtBox.Text,
+                        Active = true,
+                        Address = custAddress,
+                        CreateDate = DateTime.Now.ToUniversalTime(),
+                        CreatedBy = DbConn.loggedInUser.UserName,
+                        LastUpdate = DateTime.Now.ToUniversalTime(),
+                        LastUpdatedBy = DbConn.loggedInUser.UserName
+                    };
+
+                    conn.AddCustomer(cust);
+
+                    MessageBox.Show("Customer has been added successfully.", "The Scheduler - Modify Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -61,7 +82,17 @@ namespace AppointmentScheduler
             conn = new DbConn();
             countryComboBox.DataSource = conn.GetAllCountries().Select(x => x.CountryName).ToList();
             cityComboBox.DataSource = conn.GetAllCities().Select(y => y.CityName).ToList();
-            this.ActiveControl = firstNameTxtBox;
+            this.ActiveControl = custNameTxtBox;
+
+
+            ///Test Data////
+            custNameTxtBox.Text = "Testing Test";
+            streetAddrTxtBox.Text = "1278 Fake Name Rd";
+            postalCodeTxtBox.Text = "17826";
+            phoneTxtBox.Text = "890-092-0838";
+            cityComboBox.SelectedIndex = 1;
+            countryComboBox.SelectedIndex = 2;
+
         }
 
         private void BuildErrorMessage()
@@ -71,13 +102,9 @@ namespace AppointmentScheduler
 
             errorBlankInfo.Append("The following fields are required to add customer:\n\n");
 
-            if (string.IsNullOrWhiteSpace(firstNameTxtBox.Text))
+            if (string.IsNullOrWhiteSpace(custNameTxtBox.Text))
             {
-                errorBlankInfo.AppendLine("First Name");
-            }
-            if (string.IsNullOrWhiteSpace(lastNameTxtBox.Text))
-            {
-                errorBlankInfo.AppendLine("Last Name");
+                errorBlankInfo.AppendLine("Customer Name");
             }
             if (string.IsNullOrWhiteSpace(streetAddrTxtBox.Text))
             {
