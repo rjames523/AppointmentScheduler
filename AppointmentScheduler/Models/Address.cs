@@ -22,7 +22,9 @@ namespace AppointmentScheduler.Models
         public DateTime LastUpdate { get; set; }
         public string LastUpdatedBy { get; set; } = DbConn.loggedInUser.UserName;
 
-        public Address() { }
+        public Address()
+        { 
+        }
 
         public Address(City city, int addressID, string address1, string address2, string postalCode, string phone, DateTime createDate, string createdBy, DateTime lastUpdate, string LastUpdateBy)
         {

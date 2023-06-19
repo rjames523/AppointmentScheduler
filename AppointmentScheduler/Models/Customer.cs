@@ -23,8 +23,11 @@ namespace AppointmentScheduler.Models
         public DateTime LastUpdate { get; set; }
         public string LastUpdatedBy { get; set; } = DbConn.loggedInUser.UserName;
 
+        public List<Customer> customerList { get; set; }
+
         public Customer() 
         {
+            Address = new Address();
             CreatedBy = DbConn.loggedInUser.UserName;
             LastUpdatedBy = DbConn.loggedInUser.UserName;
         }
