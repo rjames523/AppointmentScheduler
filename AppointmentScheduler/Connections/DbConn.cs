@@ -18,9 +18,13 @@ namespace AppointmentScheduler.Connections
         public static User loggedInUser;
 
         // home laptop testing --
-        string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
+        // string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
 
-        //private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule"; // work laptop testing
+        // work laptop
+        // private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule";  testing
+
+        // school VM
+        private string _connectionStr = @"server=127.0.0.1;userid=sqlUser;password=Passw0rd!;database=client_schedule";
 
         public DbConn()
         {
@@ -232,7 +236,7 @@ namespace AppointmentScheduler.Connections
         {
             connection.Open();
 
-            string sql = "INSERT INTO address( address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES( @address1, @address2, @cityid, @postalcode, @phone, @createdate, @createdby, @lastupdate, @lastupdateby)";
+            string sql = "INSERT INTO address( address, address2, cityid, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES( @address1, @address2, @cityid, @postalcode, @phone, @createdate, @createdby, @lastupdate, @lastupdateby)";
             command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@address1", customerAddr.Address1);
@@ -247,6 +251,28 @@ namespace AppointmentScheduler.Connections
             command.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             command.ExecuteNonQuery();
+
+            connection.Close();
+            return 0;
+        }
+
+        public int AddCity(string cityName)
+        {
+            connection.Open();
+
+            string sql = "INSERT INTO city( cityid, city, countryid, createdate, createdby, lastupdate, lastupdatedby) VALUES( @cityid, @cityname, @countryid, @createdate, @createdby, @lastupdate, @lastupdateby)";
+            command = new MySqlCommand(sql, connection);
+
+            connection.Close();
+            return 0;
+        }
+
+        public int AddCountry(string countryName)
+        { 
+            connection.Open();
+
+            string sql = "INSERT INTO country( countryid, country, createdate, createdby, lastupdate, lastupdatedby) VALUES( @countryid, @country, @createdate, @createdby, @lastupdate, @lastupdateby)";
+            command = new MySqlCommand(sql, connection);
 
             connection.Close();
             return 0;
