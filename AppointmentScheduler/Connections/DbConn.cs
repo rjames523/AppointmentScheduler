@@ -495,6 +495,56 @@ namespace AppointmentScheduler.Connections
             throw new NotImplementedException();
         }
 
-        
+        public void DeleteCustomerData(Customer selectedCustomer)
+        {
+            connection.Open();
+
+            // Delete any customer appointments
+            DeleteCustomerAppointments(selectedCustomer);
+
+            DeleteCustomerInfo(selectedCustomer);
+            
+            DeleteCustomerAddress(selectedCustomer);
+
+            connection.Close();
+        }
+
+        private void DeleteCustomerInfo(Customer selectedCustomer)
+        {
+            string sql = "DELETE FROM customer WHERE customerId = @customerid";
+
+            cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@customerid", selectedCustomer.CustomerID);
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Parameters.Clear();
+        }
+
+        private void DeleteCustomerAppointments(Customer selectedCustomer)
+        {
+            string sql = "DELETE FROM appointment WHERE customerId = @customerid";
+
+            cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@customerid", selectedCustomer.CustomerID);
+
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+        }
+
+        private void DeleteCustomerAddress(Customer selectedCustomer)
+        {
+            string sql = "DELETE a FROM address a INNER JOIN customer c ON c.addressId = a.addressId WHERE c.customerId = @customerid";
+
+            cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@customerid", selectedCustomer.CustomerID);
+
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+
+        }
     }
 }
