@@ -25,7 +25,7 @@ namespace AppointmentScheduler
         private void addCustomerButton_Click(object sender, EventArgs e)
         {
             // Checks to see if any textbox on the form is null or whitespace
-            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text) && x.Name != "address2TextBox"))
+            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text) && x.Name != "address2TextBox") && !string.IsNullOrWhiteSpace(countryComboBox.Text) && !string.IsNullOrWhiteSpace(cityComboBox.Text))
             {
                 BuildErrorMessage();
             }
@@ -42,6 +42,8 @@ namespace AppointmentScheduler
                 custAddress.CreatedBy = DbConn.loggedInUser.UserName;
                 custAddress.LastUpdatedBy = DbConn.loggedInUser.UserName;
 
+                int countryID = conn.AddCountry(countryComboBox.SelectedItem.ToString());
+                int cityID = conn.AddCity(cityComboBox.Text);
                 int addressID = conn.AddCustomerAddress(custAddress);
 
                 Customer cust = new Customer();
