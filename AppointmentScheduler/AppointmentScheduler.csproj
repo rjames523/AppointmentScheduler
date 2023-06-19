@@ -131,11 +131,11 @@
     <Compile Include="Views\AddCustomerForm.Designer.cs">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomersForm.cs">
+    <Compile Include="Views\ViewCustomersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CustomersForm.Designer.cs">
-      <DependentUpon>CustomersForm.cs</DependentUpon>
+    <Compile Include="Views\ViewCustomersForm.Designer.cs">
+      <DependentUpon>ViewCustomersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LandingForm.cs">
       <SubType>Form</SubType>
@@ -176,8 +176,8 @@
     <EmbeddedResource Include="Views\ScheduleAppointmentForm.resx">
       <DependentUpon>ScheduleAppointmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CustomersForm.resx">
-      <DependentUpon>CustomersForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ViewCustomersForm.resx">
+      <DependentUpon>ViewCustomersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LandingForm.resx">
       <DependentUpon>LandingForm.cs</DependentUpon>
