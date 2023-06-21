@@ -36,7 +36,7 @@ namespace AppointmentScheduler
 
         private void viewApptsButton_Click(object sender, EventArgs e)
         {
-            AppointmentsForm appointmentsForm = new AppointmentsForm();
+            ViewAppointmentsForm appointmentsForm = new ViewAppointmentsForm();
             appointmentsForm.ShowDialog();
         }
 

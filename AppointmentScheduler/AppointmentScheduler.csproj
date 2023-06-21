@@ -94,11 +94,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\AppointmentsForm.cs">
+    <Compile Include="Views\ViewAppointmentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AppointmentsForm.Designer.cs">
-      <DependentUpon>AppointmentsForm.cs</DependentUpon>
+    <Compile Include="Views\ViewAppointmentsForm.Designer.cs">
+      <DependentUpon>ViewAppointmentsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Connections\DbConn.cs" />
     <Compile Include="Models\Address.cs" />
@@ -164,8 +164,8 @@
     <EmbeddedResource Include="Views\AddCustomerForm.resx">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AppointmentsForm.resx">
-      <DependentUpon>AppointmentsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ViewAppointmentsForm.resx">
+      <DependentUpon>ViewAppointmentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ModifyApptsForm.resx">
       <DependentUpon>ModifyApptsForm.cs</DependentUpon>
