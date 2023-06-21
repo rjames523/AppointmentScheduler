@@ -45,14 +45,7 @@ namespace AppointmentScheduler
 
         private void CreateAppointmentForm_Load(object sender, EventArgs e)
         {
-            rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(ScheduleAppointmentForm).Assembly);
-            culture = CultureInfo.CurrentUICulture;
-            nameLabel.Text = rm.GetString("nameLabel", culture);
-            addressLabel.Text = rm.GetString("addressLabel", culture);
-            cityLabel.Text = rm.GetString("cityLabel", culture);
-            countryLabel.Text = rm.GetString("countryLabel", culture);
-            calendarLabel.Text = rm.GetString("calendarLabel", culture);
-            availableApptLabel.Text = rm.GetString("availableApptLabel", culture);
+            
 
             // Calendar culture?
             // Be sure to use customer's Country to change calendar culture/time zone
