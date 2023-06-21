@@ -33,10 +33,11 @@
             this.selectedCustNameTxtBox = new System.Windows.Forms.TextBox();
             this.appNameLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.custApptsListBox = new System.Windows.Forms.ListBox();
             this.editApptButton = new System.Windows.Forms.Button();
             this.cancelApptButton = new System.Windows.Forms.Button();
+            this.customerSpecificApptsDGV = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerSpecificApptsDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // customersDGV
@@ -60,7 +61,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(636, 142);
+            this.label1.Location = new System.Drawing.Point(625, 142);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 18);
             this.label1.TabIndex = 18;
@@ -69,7 +70,8 @@
             // selectedCustNameTxtBox
             // 
             this.selectedCustNameTxtBox.Enabled = false;
-            this.selectedCustNameTxtBox.Location = new System.Drawing.Point(639, 162);
+            this.selectedCustNameTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectedCustNameTxtBox.Location = new System.Drawing.Point(628, 162);
             this.selectedCustNameTxtBox.Multiline = true;
             this.selectedCustNameTxtBox.Name = "selectedCustNameTxtBox";
             this.selectedCustNameTxtBox.Size = new System.Drawing.Size(311, 30);
@@ -96,21 +98,11 @@
             this.label2.TabIndex = 21;
             this.label2.Text = "Customers:";
             // 
-            // custApptsListBox
-            // 
-            this.custApptsListBox.FormattingEnabled = true;
-            this.custApptsListBox.ItemHeight = 16;
-            this.custApptsListBox.Location = new System.Drawing.Point(639, 199);
-            this.custApptsListBox.Name = "custApptsListBox";
-            this.custApptsListBox.Size = new System.Drawing.Size(407, 212);
-            this.custApptsListBox.TabIndex = 22;
-            this.custApptsListBox.SelectedIndexChanged += new System.EventHandler(this.custApptsListBox_SelectedIndexChanged);
-            // 
             // editApptButton
             // 
-            this.editApptButton.Location = new System.Drawing.Point(744, 428);
+            this.editApptButton.Location = new System.Drawing.Point(770, 434);
             this.editApptButton.Name = "editApptButton";
-            this.editApptButton.Size = new System.Drawing.Size(75, 32);
+            this.editApptButton.Size = new System.Drawing.Size(87, 41);
             this.editApptButton.TabIndex = 23;
             this.editApptButton.Text = "Edit";
             this.editApptButton.UseVisualStyleBackColor = true;
@@ -118,21 +110,40 @@
             // 
             // cancelApptButton
             // 
-            this.cancelApptButton.Location = new System.Drawing.Point(863, 428);
+            this.cancelApptButton.Location = new System.Drawing.Point(889, 434);
             this.cancelApptButton.Name = "cancelApptButton";
-            this.cancelApptButton.Size = new System.Drawing.Size(75, 32);
+            this.cancelApptButton.Size = new System.Drawing.Size(87, 41);
             this.cancelApptButton.TabIndex = 24;
             this.cancelApptButton.Text = "Cancel";
             this.cancelApptButton.UseVisualStyleBackColor = true;
+            // 
+            // customerSpecificApptsDGV
+            // 
+            this.customerSpecificApptsDGV.AllowUserToAddRows = false;
+            this.customerSpecificApptsDGV.AllowUserToDeleteRows = false;
+            this.customerSpecificApptsDGV.AllowUserToResizeColumns = false;
+            this.customerSpecificApptsDGV.AllowUserToResizeRows = false;
+            this.customerSpecificApptsDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.customerSpecificApptsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.customerSpecificApptsDGV.Location = new System.Drawing.Point(628, 199);
+            this.customerSpecificApptsDGV.Name = "customerSpecificApptsDGV";
+            this.customerSpecificApptsDGV.ReadOnly = true;
+            this.customerSpecificApptsDGV.RowHeadersVisible = false;
+            this.customerSpecificApptsDGV.RowHeadersWidth = 51;
+            this.customerSpecificApptsDGV.RowTemplate.Height = 24;
+            this.customerSpecificApptsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.customerSpecificApptsDGV.Size = new System.Drawing.Size(494, 215);
+            this.customerSpecificApptsDGV.TabIndex = 25;
+            this.customerSpecificApptsDGV.SelectionChanged += new System.EventHandler(this.customerSpecificApptsDGV_SelectionChanged);
             // 
             // ViewAppointmentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 491);
+            this.Controls.Add(this.customerSpecificApptsDGV);
             this.Controls.Add(this.cancelApptButton);
             this.Controls.Add(this.editApptButton);
-            this.Controls.Add(this.custApptsListBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.appNameLabel);
             this.Controls.Add(this.selectedCustNameTxtBox);
@@ -142,6 +153,7 @@
             this.Text = "The Scheduler - Appointments";
             this.Load += new System.EventHandler(this.ViewAppointmentsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerSpecificApptsDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,8 +166,8 @@
         private System.Windows.Forms.TextBox selectedCustNameTxtBox;
         private System.Windows.Forms.Label appNameLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox custApptsListBox;
         private System.Windows.Forms.Button editApptButton;
         private System.Windows.Forms.Button cancelApptButton;
+        private System.Windows.Forms.DataGridView customerSpecificApptsDGV;
     }
 }
