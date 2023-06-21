@@ -11,7 +11,7 @@ using System.Net.NetworkInformation;
 
 namespace AppointmentScheduler.Connections
 {
-    public class DbConn : INotifyPropertyChanged
+    public class DbConn
     {
         MySqlConnection connection;
         MySqlCommand cmd;
@@ -109,13 +109,13 @@ namespace AppointmentScheduler.Connections
             }
         }
 
-        public void GetAllCustomers()
+        public List<Customer> GetAllCustomers()
         {
             connection.Open();
 
             Customer.AllCustomers.Clear();
 
-            //List<Customer> customerList = new List<Customer>();
+            List<Customer> customerList = new List<Customer>();
             //string sql = "SELECT * FROM customer";
             string sql = "SELECT * FROM customer c INNER JOIN address a " +
                                     "ON c.addressid = a.addressid " +
@@ -189,13 +189,14 @@ namespace AppointmentScheduler.Connections
                 }
 
                 Customer.AllCustomers.Add(newCust);
+                customerList.Add(newCust);
 
             }
             reader.Close();
 
             connection.Close();
 
-            //return customerList;
+            return customerList;
 
         }
 
@@ -549,15 +550,13 @@ namespace AppointmentScheduler.Connections
 
         }
 
-        public void NotifyPropertyChanged(String property = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
 
-        public void GetAllCustomerAppointments()
+        public List<Appointment> GetAllCustomerAppointments()
         {
             connection.Open();
 
+            List<Appointment> appointments = new List<Appointment>();
+           
             string sql = "SELECT * FROM appointment";
 
             cmd = new MySqlCommand(sql, connection);
@@ -620,11 +619,14 @@ namespace AppointmentScheduler.Connections
                 }
 
                 Appointment.AllCustomerAppts.Add(custAppt);
+                appointments.Add(custAppt);
 
             }
             reader.Close();
 
             connection.Close();
+
+            return appointments;
         }
     }
 }
