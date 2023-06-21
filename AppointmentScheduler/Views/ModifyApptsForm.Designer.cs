@@ -69,7 +69,7 @@
             // updateCustomerAppointmentButton
             // 
             this.updateCustomerAppointmentButton.Location = new System.Drawing.Point(343, 674);
-            this.updateCustomerAppointmentButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.updateCustomerAppointmentButton.Margin = new System.Windows.Forms.Padding(4);
             this.updateCustomerAppointmentButton.Name = "updateCustomerAppointmentButton";
             this.updateCustomerAppointmentButton.Size = new System.Drawing.Size(135, 50);
             this.updateCustomerAppointmentButton.TabIndex = 26;
@@ -112,7 +112,7 @@
             // availableTimesRTextBox
             // 
             this.availableTimesRTextBox.Location = new System.Drawing.Point(410, 430);
-            this.availableTimesRTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.availableTimesRTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.availableTimesRTextBox.Name = "availableTimesRTextBox";
             this.availableTimesRTextBox.Size = new System.Drawing.Size(301, 207);
             this.availableTimesRTextBox.TabIndex = 16;
@@ -126,12 +126,13 @@
             this.createAppointmentCalendar.MaxSelectionCount = 1;
             this.createAppointmentCalendar.Name = "createAppointmentCalendar";
             this.createAppointmentCalendar.TabIndex = 15;
+            this.createAppointmentCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.createAppointmentCalendar_DateChanged);
             this.createAppointmentCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.createAppointmentCalendar_DateSelected);
             // 
             // typeTxtBox
             // 
             this.typeTxtBox.Location = new System.Drawing.Point(552, 149);
-            this.typeTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.typeTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.typeTxtBox.Name = "typeTxtBox";
             this.typeTxtBox.Size = new System.Drawing.Size(233, 22);
             this.typeTxtBox.TabIndex = 25;
@@ -161,7 +162,7 @@
             // titleTxtBox
             // 
             this.titleTxtBox.Location = new System.Drawing.Point(295, 113);
-            this.titleTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.titleTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.titleTxtBox.Name = "titleTxtBox";
             this.titleTxtBox.Size = new System.Drawing.Size(233, 22);
             this.titleTxtBox.TabIndex = 23;
@@ -169,7 +170,7 @@
             // apptDescriptionRTxtBox
             // 
             this.apptDescriptionRTxtBox.Location = new System.Drawing.Point(32, 176);
-            this.apptDescriptionRTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.apptDescriptionRTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.apptDescriptionRTxtBox.Multiline = true;
             this.apptDescriptionRTxtBox.Name = "apptDescriptionRTxtBox";
             this.apptDescriptionRTxtBox.Size = new System.Drawing.Size(233, 196);
@@ -326,7 +327,7 @@
             this.Controls.Add(this.availableApptLabel);
             this.Controls.Add(this.availableTimesRTextBox);
             this.Controls.Add(this.createAppointmentCalendar);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ModifyApptsForm";
             this.Text = "Modify Appointment";
             this.Load += new System.EventHandler(this.ModifyApptsForm_Load);
