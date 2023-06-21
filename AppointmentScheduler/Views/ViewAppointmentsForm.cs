@@ -22,16 +22,26 @@ namespace AppointmentScheduler
 
         DbConn conn;
         private bool initialLoad;
-
+        List<Appointment> appts;
+        List<Customer> customerList;
+        Customer selectedCustomer;
         Appointment selectedCustAppt;
 
         private void ViewAppointmentsForm_Load(object sender, EventArgs e)
         {
             initialLoad = true;
+            selectedCustomer = new Customer();
+            appts = new List<Appointment>();
+            customerList = new List<Customer>();
             conn = new DbConn();
-            conn.GetAllCustomers();
-            conn.GetAllCustomerAppointments();
-            customersDGV.DataSource = Appointment.AllCustomerAppts;
+            customersDGV.DataSource = conn.GetAllCustomers();
+
+            foreach (DataGridViewColumn col in customersDGV.Columns)
+            {
+                if (col.Name == "Address")
+                   customersDGV.Columns[col.Name].Visible = false;
+            }
+
             customersDGV.ClearSelection();
             initialLoad = false;
         }
@@ -46,19 +56,26 @@ namespace AppointmentScheduler
                 {
                     selectedCustNameTxtBox.Text = customer.CustomerName;
 
-                    custApptsListBox.Items.Clear();
+                    //customerSpecificApptsDGV.DataSource = null;
 
                     List<Appointment> selectedCustomerAppts = GetCustomerSpecificAppts(customer);
 
-                    if (Appointment.AllCustomerAppts.Count == 0)
-                    {
-                        custApptsListBox.Items.Add("There are no scheduled appointments.");
-                    }
-                    else
+                    if (appts.Count != 0)
                     {
                         foreach (Appointment appt in selectedCustomerAppts)
                         {
-                            custApptsListBox.Items.Add($"{appt.Type}\t{appt.Start.ToShortTimeString()}\t{appt.End.ToShortTimeString()}");
+                            //custApptsListBox.Items.Add($"{appt.Type}\t{appt.Start.ToShortTimeString()}\t{appt.End.ToShortTimeString()}");
+                            
+                        }
+
+                        customerSpecificApptsDGV.DataSource = selectedCustomerAppts;
+                        customerSpecificApptsDGV.ClearSelection();
+
+                        foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                        {
+                            
+                            if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
+                                customerSpecificApptsDGV.Columns[col.Name].Visible = false;
                         }
                     }
                 }
@@ -66,8 +83,6 @@ namespace AppointmentScheduler
                 {
 
                 }
-
-                
 
                 // Stops this block from running again when selection is changed
                 //initialLoad = true;
@@ -79,13 +94,17 @@ namespace AppointmentScheduler
 
         private List<Appointment> GetCustomerSpecificAppts(Customer customer)
         {
-            var custAppts = Appointment.AllCustomerAppts.Where(x => x.CustomerID == customer.CustomerID).ToList();
+            
+            appts = conn.GetAllCustomerAppointments();
+            var custAppts = appts.Where(x => x.CustomerID == customer.CustomerID).ToList();
             return custAppts;
         }
 
         public Customer GetSelectedCustomer()
         {
-            Customer selectedCustomer = new Customer();
+            
+            customerList = new List<Customer>();
+            customerList = conn.GetAllCustomers();
 
             foreach (DataGridViewRow row in customersDGV.SelectedRows)
             {
@@ -93,7 +112,7 @@ namespace AppointmentScheduler
                 {
                     if (col.Name == "CustomerID")
                     {
-                        selectedCustomer = (Customer)Customer.AllCustomers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                        selectedCustomer = customerList.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
                     }
                 }
             }
@@ -111,10 +130,28 @@ namespace AppointmentScheduler
 
         private void custApptsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (custApptsListBox.SelectedIndex > -1)
+            //if (custApptsListBox.SelectedIndex > -1)
+            //{
+            //    selectedCustAppt = appts.Where(x => x.AppointmentID == (custApptsListBox.SelectedIndex + 1) && x.CustomerID == selectedCustomer.CustomerID).First();
+            //}
+        }
+
+        private void customerSpecificApptsDGV_SelectionChanged(object sender, EventArgs e)
+        {
+            if (customerSpecificApptsDGV.SelectedRows.Count > 0)
             {
-                selectedCustAppt = Appointment.AllCustomerAppts.Where(x => x.AppointmentID == custApptsListBox.SelectedIndex + 1).First();
+                foreach (DataGridViewRow row in customerSpecificApptsDGV.SelectedRows)
+                {
+                    foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                    {
+                        if (col.Name == "AppointmentID")
+                        {
+                            selectedCustAppt = appts.Where(x => x.AppointmentID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                        }
+                    }
+                }
             }
+            
         }
     }
 }
