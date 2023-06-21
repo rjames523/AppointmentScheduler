@@ -54,7 +54,7 @@ namespace AppointmentScheduler
 
                     Customer cust = new Customer()
                     {
-                        CustomerID = conn.GetAllCustomers().Count + 1,
+                        CustomerID = Customer.AllCustomers.Count + 1,
                         CustomerName = custNameTxtBox.Text,
                         Active = true,
                         Address = custAddress,

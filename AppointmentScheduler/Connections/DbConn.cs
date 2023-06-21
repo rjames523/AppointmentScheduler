@@ -5,15 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AppointmentScheduler.Models;
-using MySqlX.XDevAPI.Relational;
+using System.ComponentModel;
+using System.Net.NetworkInformation;
+//using MySqlX.XDevAPI.Relational;
 
 namespace AppointmentScheduler.Connections
 {
-    public class DbConn
+    public class DbConn : INotifyPropertyChanged
     {
         MySqlConnection connection;
         MySqlCommand cmd;
         MySqlDataReader reader;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public static User loggedInUser;
 
@@ -51,12 +55,6 @@ namespace AppointmentScheduler.Connections
 
             if (reader.HasRows)
             {
-                //while (reader.Read())
-                //{
-                //    loggedInUser = reader[0] as User;
-                //    connection.Close();
-                //    return true;
-                //}
                 loggedInUser = new User();
                 while (reader.Read())
                 {
@@ -111,11 +109,13 @@ namespace AppointmentScheduler.Connections
             }
         }
 
-        public List<Customer> GetAllCustomers()
+        public void GetAllCustomers()
         {
             connection.Open();
 
-            List<Customer> customerList = new List<Customer>();
+            Customer.AllCustomers.Clear();
+
+            //List<Customer> customerList = new List<Customer>();
             //string sql = "SELECT * FROM customer";
             string sql = "SELECT * FROM customer c INNER JOIN address a " +
                                     "ON c.addressid = a.addressid " +
@@ -184,17 +184,18 @@ namespace AppointmentScheduler.Connections
                             newCust.LastUpdatedBy = (string)reader.GetValue(i);
                             break;
                         default:
-                            return null;
+                            break;
                     }
                 }
 
-                customerList.Add(newCust);
+                Customer.AllCustomers.Add(newCust);
+
             }
             reader.Close();
 
             connection.Close();
 
-            return customerList;
+            //return customerList;
 
         }
 
@@ -254,7 +255,7 @@ namespace AppointmentScheduler.Connections
             int addressCount = int.Parse(cmd.ExecuteScalar().ToString());
 
             connection.Close();
-            return addressCount;
+            return addressCount + 1;
         }
 
         /*
@@ -300,9 +301,10 @@ namespace AppointmentScheduler.Connections
         {
             connection.Open();
 
-            string sql = "INSERT INTO address( address, address2, cityid, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES( @address1, @address2, @cityid, @postalcode, @phone, @createdate, @createdby, @lastupdate, @lastupdateby)";
+            string sql = "INSERT INTO address( addressid, address, address2, cityid, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES( @addressid, @address1, @address2, @cityid, @postalcode, @phone, @createdate, @createdby, @lastupdate, @lastupdateby)";
             cmd = new MySqlCommand(sql, connection);
 
+            cmd.Parameters.AddWithValue("@addressid", Customer.AllCustomers.Count + 1);
             cmd.Parameters.AddWithValue("@address1", customerAddr.Address1);
             cmd.Parameters.AddWithValue("@address2", customerAddr.Address2);
             cmd.Parameters.AddWithValue("@cityid", customerAddr.City.CityID);
@@ -545,6 +547,84 @@ namespace AppointmentScheduler.Connections
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
 
+        }
+
+        public void NotifyPropertyChanged(String property = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+
+        public void GetAllCustomerAppointments()
+        {
+            connection.Open();
+
+            string sql = "SELECT * FROM appointment";
+
+            cmd = new MySqlCommand(sql, connection);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Appointment custAppt = new Appointment();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    switch (reader.GetName(i).ToLower())
+                    {
+                        case "appointmentid":
+                            custAppt.AppointmentID = (int)reader.GetValue(i);
+                            break;
+                        case "customerid":
+                            custAppt.CustomerID = (int)reader.GetValue(i);
+                            break;
+                        case "userid":
+                            custAppt.UserID = (int)reader.GetValue(i);
+                            break;
+                        case "title":
+                            custAppt.Title = (string)reader.GetValue(i);
+                            break;
+                        case "description":
+                            custAppt.Description = (string)reader.GetValue(i);
+                            break;
+                        case "location":
+                            custAppt.Location = (string)reader.GetValue(i);
+                            break;
+                        case "contact":
+                            custAppt.Contact = (string)reader.GetValue(i);
+                            break;
+                        case "type":
+                            custAppt.Type = (string)reader.GetValue(i);
+                            break;
+                        case "url":
+                            custAppt.Url = (string)reader.GetValue(i);
+                            break;
+                        case "start":
+                            custAppt.Start = (DateTime)reader.GetValue(i);
+                            break;
+                        case "end":
+                            custAppt.End = (DateTime)reader.GetValue(i);
+                            break;
+                        case "createdate":
+                            custAppt.CreateDate = (DateTime)reader.GetValue(i);
+                            break;
+                        case "createdby":
+                            custAppt.CreatedBy = (string)reader.GetValue(i);
+                            break;
+                        case "lastupdate":
+                            custAppt.LastUpdate = (DateTime)reader.GetValue(i);
+                            break;
+                        case "lastupdateby":
+                            custAppt.LastUpdatedBy = (string)reader.GetValue(i);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                Appointment.AllCustomerAppts.Add(custAppt);
+
+            }
+            reader.Close();
+
+            connection.Close();
         }
     }
 }
