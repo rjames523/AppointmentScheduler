@@ -1,4 +1,5 @@
 ﻿using AppointmentScheduler.Connections;
+using AppointmentScheduler.Models;
 using schedulerLoginForm;
 using System;
 using System.Collections.Generic;
@@ -36,8 +37,10 @@ namespace AppointmentScheduler
 
         private void viewApptsButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             ViewAppointmentsForm appointmentsForm = new ViewAppointmentsForm();
             appointmentsForm.ShowDialog();
+            this.Show();
         }
 
         private void logOutButton_Click(object sender, EventArgs e)
@@ -52,23 +55,38 @@ namespace AppointmentScheduler
 
         private void LandingForm_Load(object sender, EventArgs e)
         {
-            // Loads control text using language from current UI culture
-            /* rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(LandingForm).Assembly);
-            culture = CultureInfo.CurrentUICulture;
-            viewCustomersLabel.Text = rm.GetString("viewCustomersLabel", culture);
-            viewCurrApptsLabel.Text = rm.GetString("viewCurrApptsLabel", culture);
-            customersGroupBox.Text = rm.GetString("customersGroupBox", culture);
-            appointmentsGroupBox.Text = rm.GetString("appointmentsGroupBox", culture);
-            viewCustomersButton.Text = rm.GetString("viewCustomersButton", culture);
-            viewCurrApptsButton.Text = rm.GetString("viewCurrApptsButton", culture);
-            addCustomersButton.Text = rm.GetString("addCustomersButton", culture);
-            addCustomersLabel.Text = rm.GetString("addCustomersLabel", culture);
-            scheduleNewApptLabel.Text = rm.GetString("scheduleNewApptLabel", culture);
-            scheduleNewApptButton.Text = rm.GetString("scheduleNewApptButton", culture);
-            modifyCustomersButton.Text = rm.GetString("modifyCustomersButton", culture);
-            modifyCustomerInfoLabel.Text = rm.GetString("modifyCustomerInfoLabel", culture);
-            modifyApptButton.Text = rm.GetString("modifyApptButton", culture);
-            modifyApptLabel.Text = rm.GetString("modifyApptLabel", culture); */
+
+            conn = new DbConn();
+
+            DateTime currentTime = DateTime.Now;
+            
+            List<Customer> customerList = conn.GetAllCustomers();
+            List<Appointment> appointments = conn.GetAllCustomerAppointments();
+            
+            foreach (Appointment appt in appointments)
+            {
+                if ((appt.Start.Hour == currentTime.Hour) && (appt.Start.Minute - currentTime.Minute <= 15))
+                {
+                    if ((appt.Start.Minute - currentTime.Minute >= 1))
+                    {
+                        int minutesUntilAppt = appt.Start.Minute - currentTime.Minute;
+                        var notifyCustNameForAppt = customerList.Where(x => x.CustomerID == appt.CustomerID).Select(x => x.CustomerName).First();
+                        MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                }
+                else if ((appt.Start.Hour - currentTime.Hour == 1) && (appt.Start.Minute - currentTime.Minute <= 15))
+                {
+                    if ((appt.Start.Minute - currentTime.Minute >= 1))
+                    {
+                        int minutesUntilAppt = appt.Start.Minute - currentTime.Minute;
+                        var notifyCustNameForAppt = customerList.Where(x => x.CustomerID == appt.CustomerID).Select(x => x.CustomerName).First();
+                        MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    
+                }
+            }
+            
         }
 
         private void addCustomersButton_Click(object sender, EventArgs e)
