@@ -22,11 +22,11 @@ namespace AppointmentScheduler.Models
         public Address Address { get; set; } = new Address();
         public bool Active { get; set; } //Database value is likely either 0 or 1, aka False or True
         public DateTime CreateDate { get; set; }
-        public string CreatedBy { get; set; } = DbConn.loggedInUser.UserName;
+        public string CreatedBy { get; set; }
         public DateTime LastUpdate { get; set; }
-        public string LastUpdatedBy { get; set; } = DbConn.loggedInUser.UserName;
+        public string LastUpdatedBy { get; set; }
 
-        public List<Customer> customerList { get; set; }
+        public static BindingList<Customer> AllCustomers = new BindingList<Customer>();
 
         public Customer() 
         {
