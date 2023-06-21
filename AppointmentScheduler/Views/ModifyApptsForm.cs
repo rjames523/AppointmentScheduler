@@ -47,6 +47,11 @@ namespace AppointmentScheduler
 
         private void createAppointmentCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
+            
+        }
+
+        private void createAppointmentCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
 
         }
     }
