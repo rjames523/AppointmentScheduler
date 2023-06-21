@@ -59,15 +59,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(692, 142);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(636, 142);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 16);
+            this.label1.Size = new System.Drawing.Size(177, 18);
             this.label1.TabIndex = 18;
             this.label1.Text = "Viewing appointments for:";
             // 
             // selectedCustNameTxtBox
             // 
-            this.selectedCustNameTxtBox.Location = new System.Drawing.Point(695, 162);
+            this.selectedCustNameTxtBox.Enabled = false;
+            this.selectedCustNameTxtBox.Location = new System.Drawing.Point(639, 162);
             this.selectedCustNameTxtBox.Multiline = true;
             this.selectedCustNameTxtBox.Name = "selectedCustNameTxtBox";
             this.selectedCustNameTxtBox.Size = new System.Drawing.Size(311, 30);
@@ -87,9 +89,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(13, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 16);
+            this.label2.Size = new System.Drawing.Size(86, 18);
             this.label2.TabIndex = 21;
             this.label2.Text = "Customers:";
             // 
@@ -97,10 +100,11 @@
             // 
             this.custApptsListBox.FormattingEnabled = true;
             this.custApptsListBox.ItemHeight = 16;
-            this.custApptsListBox.Location = new System.Drawing.Point(695, 199);
+            this.custApptsListBox.Location = new System.Drawing.Point(639, 199);
             this.custApptsListBox.Name = "custApptsListBox";
             this.custApptsListBox.Size = new System.Drawing.Size(407, 212);
             this.custApptsListBox.TabIndex = 22;
+            this.custApptsListBox.SelectedIndexChanged += new System.EventHandler(this.custApptsListBox_SelectedIndexChanged);
             // 
             // editApptButton
             // 

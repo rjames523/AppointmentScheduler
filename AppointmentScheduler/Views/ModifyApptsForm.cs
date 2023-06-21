@@ -30,6 +30,9 @@ namespace AppointmentScheduler
 
         private void ModifyApptsForm_Load(object sender, EventArgs e)
         {
+
+            apptStartTimeTxtBox.Enabled = false;
+            apptEndTimeTxtBox.Enabled = false;
             Customer cust = new Customer();
             custNameTxtBox.Text = Customer.AllCustomers.Where(x => x.CustomerID == selectedAppointment.CustomerID).Select(x => x.CustomerName).First().ToString();
             titleTxtBox.Text = selectedAppointment.Title;
@@ -39,7 +42,7 @@ namespace AppointmentScheduler
             urlTxtBox.Text = selectedAppointment.Url;
             apptDescriptionRTxtBox.Text = selectedAppointment.Description;
             apptStartTimeTxtBox.Text = selectedAppointment.Start.ToShortTimeString();
-            apptStopTimeTxtBox.Text = selectedAppointment.End.ToShortTimeString();
+            apptEndTimeTxtBox.Text = selectedAppointment.End.ToShortTimeString();
         }
 
         private void createAppointmentCalendar_DateSelected(object sender, DateRangeEventArgs e)

@@ -21,30 +21,32 @@ namespace AppointmentScheduler
         }
 
         DbConn conn;
-        private bool formLoaded;
+        private bool initialLoad;
 
         Appointment selectedCustAppt;
 
         private void ViewAppointmentsForm_Load(object sender, EventArgs e)
         {
-            formLoaded = false;
+            initialLoad = true;
             conn = new DbConn();
             conn.GetAllCustomers();
             conn.GetAllCustomerAppointments();
             customersDGV.DataSource = Appointment.AllCustomerAppts;
             customersDGV.ClearSelection();
-            formLoaded = true;
+            initialLoad = false;
         }
 
         private void customersDGV_SelectionChanged(object sender, EventArgs e)
         {
-            if (formLoaded)
+            if (!initialLoad)
             {
                 Customer customer = GetSelectedCustomer();
 
                 if (customer != null)
                 {
                     selectedCustNameTxtBox.Text = customer.CustomerName;
+
+                    custApptsListBox.Items.Clear();
 
                     List<Appointment> selectedCustomerAppts = GetCustomerSpecificAppts(customer);
 
@@ -65,14 +67,14 @@ namespace AppointmentScheduler
 
                 }
 
+                
+
                 // Stops this block from running again when selection is changed
-                formLoaded = false;
+                //initialLoad = true;
             }
 
-            if (custApptsListBox.SelectedIndex > -1)
-            {
-                selectedCustAppt = Appointment.AllCustomerAppts.Where(x => x.AppointmentID == custApptsListBox.SelectedIndex + 1).First();
-            }
+            
+            
         }
 
         private List<Appointment> GetCustomerSpecificAppts(Customer customer)
@@ -105,6 +107,14 @@ namespace AppointmentScheduler
             Hide();
             modifyApptForm.ShowDialog();
             this.Show();
+        }
+
+        private void custApptsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (custApptsListBox.SelectedIndex > -1)
+            {
+                selectedCustAppt = Appointment.AllCustomerAppts.Where(x => x.AppointmentID == custApptsListBox.SelectedIndex + 1).First();
+            }
         }
     }
 }

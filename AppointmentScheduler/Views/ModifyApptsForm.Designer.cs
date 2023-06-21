@@ -52,7 +52,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.apptStartTimeTxtBox = new System.Windows.Forms.TextBox();
-            this.apptStopTimeTxtBox = new System.Windows.Forms.TextBox();
+            this.apptEndTimeTxtBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // appNameLabel
@@ -289,19 +289,19 @@
             this.apptStartTimeTxtBox.Size = new System.Drawing.Size(131, 22);
             this.apptStartTimeTxtBox.TabIndex = 39;
             // 
-            // apptStopTimeTxtBox
+            // apptEndTimeTxtBox
             // 
-            this.apptStopTimeTxtBox.Location = new System.Drawing.Point(470, 350);
-            this.apptStopTimeTxtBox.Name = "apptStopTimeTxtBox";
-            this.apptStopTimeTxtBox.Size = new System.Drawing.Size(131, 22);
-            this.apptStopTimeTxtBox.TabIndex = 40;
+            this.apptEndTimeTxtBox.Location = new System.Drawing.Point(470, 350);
+            this.apptEndTimeTxtBox.Name = "apptEndTimeTxtBox";
+            this.apptEndTimeTxtBox.Size = new System.Drawing.Size(131, 22);
+            this.apptEndTimeTxtBox.TabIndex = 40;
             // 
             // ModifyApptsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 737);
-            this.Controls.Add(this.apptStopTimeTxtBox);
+            this.Controls.Add(this.apptEndTimeTxtBox);
             this.Controls.Add(this.apptStartTimeTxtBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -361,6 +361,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox apptStartTimeTxtBox;
-        private System.Windows.Forms.TextBox apptStopTimeTxtBox;
+        private System.Windows.Forms.TextBox apptEndTimeTxtBox;
     }
 }
