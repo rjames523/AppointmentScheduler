@@ -23,12 +23,12 @@ namespace AppointmentScheduler
 
         DbConn conn;
 
-        private void CustomersForm_Load(object sender, EventArgs e)
+        private void ViewCustomersForm_Load(object sender, EventArgs e)
         {
             conn = new DbConn();       
             customer = new Customer();
-
-            customersDGV.DataSource = conn.GetAllCustomers();
+            conn.GetAllCustomers();
+            customersDGV.DataSource = Customer.AllCustomers;
             foreach (DataGridViewColumn col in customersDGV.Columns)
             {
                 // Hides column for Address object from view
@@ -54,7 +54,7 @@ namespace AppointmentScheduler
                 {
                     if(col.Name == "CustomerID")
                     {
-                        selectedCustomer = (Customer)conn.GetAllCustomers().Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                        selectedCustomer = (Customer)Customer.AllCustomers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
                     }
                 }
                 //selectedCustomer = row.DataBoundItem as Customer;
@@ -92,7 +92,7 @@ namespace AppointmentScheduler
                     {
                         if (col.Name == "CustomerID")
                         {
-                            selectedCustomer = (Customer)conn.GetAllCustomers().Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                            selectedCustomer = (Customer)Customer.AllCustomers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
                         }
                     }
                     //selectedCustomer = row.DataBoundItem as Customer;
@@ -101,11 +101,15 @@ namespace AppointmentScheduler
 
                     MessageBox.Show("The customer has been deleted successfully.", "The Scheduler - View Customers", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    ///Fix this to update DGV automatically///
-                    customer.NotifyPropertyChanged();
-                    //////////////////////////////////////////
                     
                 }
+
+                // Clears/refreshes the data grid view to show new customers
+                customersDGV.DataSource = null;
+                customersDGV.Rows.Clear();
+                conn.GetAllCustomers();
+                customersDGV.Update();
+                customersDGV.DataSource = Customer.AllCustomers;
             }
         }
 
@@ -117,6 +121,21 @@ namespace AppointmentScheduler
             }
         }
 
+        private void addCustomerButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddCustomerForm addCustomerForm = new AddCustomerForm();
+            addCustomerForm.ShowDialog();
 
+            // Clears/refreshes the data grid view to show new customers
+            customersDGV.DataSource = null;
+            customersDGV.Rows.Clear();
+            conn.GetAllCustomers();
+            customersDGV.Update();
+            customersDGV.DataSource = Customer.AllCustomers;
+
+            this.Show();
+
+        }
     }
 }

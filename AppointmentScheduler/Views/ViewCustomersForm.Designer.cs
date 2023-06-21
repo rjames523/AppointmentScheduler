@@ -43,7 +43,7 @@
             this.customersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customersDGV.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.customersDGV.Location = new System.Drawing.Point(17, 16);
-            this.customersDGV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.customersDGV.Margin = new System.Windows.Forms.Padding(4);
             this.customersDGV.MultiSelect = false;
             this.customersDGV.Name = "customersDGV";
             this.customersDGV.RowHeadersVisible = false;
@@ -56,17 +56,18 @@
             // addCustomerButton
             // 
             this.addCustomerButton.Location = new System.Drawing.Point(76, 486);
-            this.addCustomerButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addCustomerButton.Margin = new System.Windows.Forms.Padding(4);
             this.addCustomerButton.Name = "addCustomerButton";
             this.addCustomerButton.Size = new System.Drawing.Size(131, 55);
             this.addCustomerButton.TabIndex = 1;
             this.addCustomerButton.Text = "Add Customer";
             this.addCustomerButton.UseVisualStyleBackColor = true;
+            this.addCustomerButton.Click += new System.EventHandler(this.addCustomerButton_Click);
             // 
             // scheduleAppointmentButton
             // 
             this.scheduleAppointmentButton.Location = new System.Drawing.Point(543, 486);
-            this.scheduleAppointmentButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.scheduleAppointmentButton.Margin = new System.Windows.Forms.Padding(4);
             this.scheduleAppointmentButton.Name = "scheduleAppointmentButton";
             this.scheduleAppointmentButton.Size = new System.Drawing.Size(131, 55);
             this.scheduleAppointmentButton.TabIndex = 2;
@@ -77,7 +78,7 @@
             // deleteCustomerButton
             // 
             this.deleteCustomerButton.Location = new System.Drawing.Point(776, 486);
-            this.deleteCustomerButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteCustomerButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteCustomerButton.Name = "deleteCustomerButton";
             this.deleteCustomerButton.Size = new System.Drawing.Size(131, 55);
             this.deleteCustomerButton.TabIndex = 3;
@@ -88,7 +89,7 @@
             // editCustomerButton
             // 
             this.editCustomerButton.Location = new System.Drawing.Point(309, 486);
-            this.editCustomerButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editCustomerButton.Margin = new System.Windows.Forms.Padding(4);
             this.editCustomerButton.Name = "editCustomerButton";
             this.editCustomerButton.Size = new System.Drawing.Size(131, 55);
             this.editCustomerButton.TabIndex = 4;
@@ -109,7 +110,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ViewCustomersForm";
             this.Text = "The Scheduler - Customers";
-            this.Load += new System.EventHandler(this.CustomersForm_Load);
+            this.Load += new System.EventHandler(this.ViewCustomersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).EndInit();
             this.ResumeLayout(false);
 
