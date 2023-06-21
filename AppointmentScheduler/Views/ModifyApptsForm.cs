@@ -19,12 +19,32 @@ namespace AppointmentScheduler
             InitializeComponent();
         }
 
+        public ModifyApptsForm(Appointment selectedCustAppt)
+        {
+            InitializeComponent();
+            selectedAppointment = selectedCustAppt;
+        }
+
         DbConn conn;
+        Appointment selectedAppointment;
 
         private void ModifyApptsForm_Load(object sender, EventArgs e)
         {
             Customer cust = new Customer();
-            customerNamesComboBox.DataSource = conn.GetAllCustomers();
+            custNameTxtBox.Text = Customer.AllCustomers.Where(x => x.CustomerID == selectedAppointment.CustomerID).Select(x => x.CustomerName).First().ToString();
+            titleTxtBox.Text = selectedAppointment.Title;
+            contactTxtBox.Text = selectedAppointment.Contact;
+            typeTxtBox.Text = selectedAppointment.Type;
+            locationTxtBox.Text = selectedAppointment.Location;
+            urlTxtBox.Text = selectedAppointment.Url;
+            apptDescriptionRTxtBox.Text = selectedAppointment.Description;
+            apptStartTimeTxtBox.Text = selectedAppointment.Start.ToShortTimeString();
+            apptStopTimeTxtBox.Text = selectedAppointment.End.ToShortTimeString();
+        }
+
+        private void createAppointmentCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+
         }
     }
 }

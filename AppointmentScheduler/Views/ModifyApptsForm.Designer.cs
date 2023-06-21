@@ -29,46 +29,49 @@
         private void InitializeComponent()
         {
             this.appNameLabel = new System.Windows.Forms.Label();
-            this.customerNamesComboBox = new System.Windows.Forms.ComboBox();
             this.updateCustomerAppointmentButton = new System.Windows.Forms.Button();
             this.nameLabel = new System.Windows.Forms.Label();
             this.calendarLabel = new System.Windows.Forms.Label();
             this.availableApptLabel = new System.Windows.Forms.Label();
             this.availableTimesRTextBox = new System.Windows.Forms.RichTextBox();
             this.createAppointmentCalendar = new System.Windows.Forms.MonthCalendar();
-            this.customerCountryTxtBox = new System.Windows.Forms.TextBox();
+            this.typeTxtBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
             this.countryLabel = new System.Windows.Forms.Label();
-            this.customerAddressTxtBox = new System.Windows.Forms.TextBox();
-            this.customerCityTxtBox = new System.Windows.Forms.TextBox();
-            this.addressLabel = new System.Windows.Forms.Label();
+            this.titleTxtBox = new System.Windows.Forms.TextBox();
+            this.apptDescriptionRTxtBox = new System.Windows.Forms.TextBox();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.custNameTxtBox = new System.Windows.Forms.TextBox();
+            this.locationTxtBox = new System.Windows.Forms.TextBox();
+            this.urlTxtBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.contactTxtBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.apptStartTimeTxtBox = new System.Windows.Forms.TextBox();
+            this.apptStopTimeTxtBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // appNameLabel
             // 
             this.appNameLabel.AutoSize = true;
             this.appNameLabel.Font = new System.Drawing.Font("Goudy Old Style", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appNameLabel.Location = new System.Drawing.Point(36, 17);
-            this.appNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.appNameLabel.Location = new System.Drawing.Point(48, 21);
             this.appNameLabel.Name = "appNameLabel";
-            this.appNameLabel.Size = new System.Drawing.Size(152, 28);
+            this.appNameLabel.Size = new System.Drawing.Size(194, 34);
             this.appNameLabel.TabIndex = 28;
             this.appNameLabel.Text = "The Scheduler";
             this.appNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // customerNamesComboBox
-            // 
-            this.customerNamesComboBox.FormattingEnabled = true;
-            this.customerNamesComboBox.Location = new System.Drawing.Point(25, 92);
-            this.customerNamesComboBox.Name = "customerNamesComboBox";
-            this.customerNamesComboBox.Size = new System.Drawing.Size(175, 21);
-            this.customerNamesComboBox.TabIndex = 27;
-            // 
             // updateCustomerAppointmentButton
             // 
-            this.updateCustomerAppointmentButton.Location = new System.Drawing.Point(61, 319);
+            this.updateCustomerAppointmentButton.Location = new System.Drawing.Point(343, 674);
+            this.updateCustomerAppointmentButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.updateCustomerAppointmentButton.Name = "updateCustomerAppointmentButton";
-            this.updateCustomerAppointmentButton.Size = new System.Drawing.Size(101, 41);
+            this.updateCustomerAppointmentButton.Size = new System.Drawing.Size(135, 50);
             this.updateCustomerAppointmentButton.TabIndex = 26;
             this.updateCustomerAppointmentButton.Text = "Update Appointment";
             this.updateCustomerAppointmentButton.UseVisualStyleBackColor = true;
@@ -77,19 +80,21 @@
             // 
             this.nameLabel.AutoSize = true;
             this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameLabel.Location = new System.Drawing.Point(22, 74);
+            this.nameLabel.Location = new System.Drawing.Point(29, 91);
+            this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(41, 15);
+            this.nameLabel.Size = new System.Drawing.Size(52, 18);
             this.nameLabel.TabIndex = 19;
-            this.nameLabel.Text = "Name";
+            this.nameLabel.Text = "Name:";
             // 
             // calendarLabel
             // 
             this.calendarLabel.AutoSize = true;
             this.calendarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calendarLabel.Location = new System.Drawing.Point(239, 17);
+            this.calendarLabel.Location = new System.Drawing.Point(110, 408);
+            this.calendarLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.calendarLabel.Name = "calendarLabel";
-            this.calendarLabel.Size = new System.Drawing.Size(65, 15);
+            this.calendarLabel.Size = new System.Drawing.Size(75, 18);
             this.calendarLabel.TabIndex = 18;
             this.calendarLabel.Text = "Calendar";
             // 
@@ -97,97 +102,231 @@
             // 
             this.availableApptLabel.AutoSize = true;
             this.availableApptLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.availableApptLabel.Location = new System.Drawing.Point(238, 217);
+            this.availableApptLabel.Location = new System.Drawing.Point(406, 407);
+            this.availableApptLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.availableApptLabel.Name = "availableApptLabel";
-            this.availableApptLabel.Size = new System.Drawing.Size(192, 15);
+            this.availableApptLabel.Size = new System.Drawing.Size(223, 18);
             this.availableApptLabel.TabIndex = 17;
             this.availableApptLabel.Text = "Available Appointment Times";
             // 
             // availableTimesRTextBox
             // 
-            this.availableTimesRTextBox.Location = new System.Drawing.Point(241, 236);
+            this.availableTimesRTextBox.Location = new System.Drawing.Point(410, 430);
+            this.availableTimesRTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.availableTimesRTextBox.Name = "availableTimesRTextBox";
-            this.availableTimesRTextBox.Size = new System.Drawing.Size(227, 153);
+            this.availableTimesRTextBox.Size = new System.Drawing.Size(301, 207);
             this.availableTimesRTextBox.TabIndex = 16;
             this.availableTimesRTextBox.Text = "";
             // 
             // createAppointmentCalendar
             // 
-            this.createAppointmentCalendar.Location = new System.Drawing.Point(241, 35);
+            this.createAppointmentCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createAppointmentCalendar.Location = new System.Drawing.Point(112, 430);
+            this.createAppointmentCalendar.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.createAppointmentCalendar.MaxSelectionCount = 1;
             this.createAppointmentCalendar.Name = "createAppointmentCalendar";
             this.createAppointmentCalendar.TabIndex = 15;
+            this.createAppointmentCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.createAppointmentCalendar_DateSelected);
             // 
-            // customerCountryTxtBox
+            // typeTxtBox
             // 
-            this.customerCountryTxtBox.Location = new System.Drawing.Point(24, 257);
-            this.customerCountryTxtBox.Name = "customerCountryTxtBox";
-            this.customerCountryTxtBox.Size = new System.Drawing.Size(176, 20);
-            this.customerCountryTxtBox.TabIndex = 25;
+            this.typeTxtBox.Location = new System.Drawing.Point(552, 149);
+            this.typeTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.typeTxtBox.Name = "typeTxtBox";
+            this.typeTxtBox.Size = new System.Drawing.Size(233, 22);
+            this.typeTxtBox.TabIndex = 25;
             // 
             // cityLabel
             // 
             this.cityLabel.AutoSize = true;
             this.cityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cityLabel.Location = new System.Drawing.Point(22, 184);
+            this.cityLabel.Location = new System.Drawing.Point(29, 153);
+            this.cityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cityLabel.Name = "cityLabel";
-            this.cityLabel.Size = new System.Drawing.Size(29, 15);
+            this.cityLabel.Size = new System.Drawing.Size(87, 18);
             this.cityLabel.TabIndex = 21;
-            this.cityLabel.Text = "City:";
+            this.cityLabel.Text = "Description:";
             // 
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
             this.countryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countryLabel.Location = new System.Drawing.Point(22, 239);
+            this.countryLabel.Location = new System.Drawing.Point(549, 127);
+            this.countryLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.countryLabel.Name = "countryLabel";
-            this.countryLabel.Size = new System.Drawing.Size(51, 15);
+            this.countryLabel.Size = new System.Drawing.Size(44, 18);
             this.countryLabel.TabIndex = 22;
-            this.countryLabel.Text = "Country:";
+            this.countryLabel.Text = "Type:";
             // 
-            // customerAddressTxtBox
+            // titleTxtBox
             // 
-            this.customerAddressTxtBox.Location = new System.Drawing.Point(24, 147);
-            this.customerAddressTxtBox.Name = "customerAddressTxtBox";
-            this.customerAddressTxtBox.Size = new System.Drawing.Size(176, 20);
-            this.customerAddressTxtBox.TabIndex = 23;
+            this.titleTxtBox.Location = new System.Drawing.Point(295, 113);
+            this.titleTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.titleTxtBox.Name = "titleTxtBox";
+            this.titleTxtBox.Size = new System.Drawing.Size(233, 22);
+            this.titleTxtBox.TabIndex = 23;
             // 
-            // customerCityTxtBox
+            // apptDescriptionRTxtBox
             // 
-            this.customerCityTxtBox.Location = new System.Drawing.Point(24, 202);
-            this.customerCityTxtBox.Name = "customerCityTxtBox";
-            this.customerCityTxtBox.Size = new System.Drawing.Size(176, 20);
-            this.customerCityTxtBox.TabIndex = 24;
+            this.apptDescriptionRTxtBox.Location = new System.Drawing.Point(32, 176);
+            this.apptDescriptionRTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.apptDescriptionRTxtBox.Multiline = true;
+            this.apptDescriptionRTxtBox.Name = "apptDescriptionRTxtBox";
+            this.apptDescriptionRTxtBox.Size = new System.Drawing.Size(233, 196);
+            this.apptDescriptionRTxtBox.TabIndex = 24;
             // 
-            // addressLabel
+            // titleLabel
             // 
-            this.addressLabel.AutoSize = true;
-            this.addressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressLabel.Location = new System.Drawing.Point(22, 129);
-            this.addressLabel.Name = "addressLabel";
-            this.addressLabel.Size = new System.Drawing.Size(89, 15);
-            this.addressLabel.TabIndex = 20;
-            this.addressLabel.Text = "Street Address:";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(292, 91);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(39, 18);
+            this.titleLabel.TabIndex = 20;
+            this.titleLabel.Text = "Title:";
+            // 
+            // custNameTxtBox
+            // 
+            this.custNameTxtBox.Enabled = false;
+            this.custNameTxtBox.Location = new System.Drawing.Point(32, 113);
+            this.custNameTxtBox.Margin = new System.Windows.Forms.Padding(4);
+            this.custNameTxtBox.Name = "custNameTxtBox";
+            this.custNameTxtBox.Size = new System.Drawing.Size(233, 22);
+            this.custNameTxtBox.TabIndex = 29;
+            // 
+            // locationTxtBox
+            // 
+            this.locationTxtBox.Location = new System.Drawing.Point(295, 239);
+            this.locationTxtBox.Margin = new System.Windows.Forms.Padding(4);
+            this.locationTxtBox.Name = "locationTxtBox";
+            this.locationTxtBox.Size = new System.Drawing.Size(233, 22);
+            this.locationTxtBox.TabIndex = 33;
+            // 
+            // urlTxtBox
+            // 
+            this.urlTxtBox.Location = new System.Drawing.Point(552, 217);
+            this.urlTxtBox.Margin = new System.Windows.Forms.Padding(4);
+            this.urlTxtBox.Name = "urlTxtBox";
+            this.urlTxtBox.Size = new System.Drawing.Size(233, 22);
+            this.urlTxtBox.TabIndex = 32;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(292, 217);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 18);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Location:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(549, 194);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 18);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "URL:";
+            // 
+            // contactTxtBox
+            // 
+            this.contactTxtBox.Location = new System.Drawing.Point(295, 176);
+            this.contactTxtBox.Margin = new System.Windows.Forms.Padding(4);
+            this.contactTxtBox.Name = "contactTxtBox";
+            this.contactTxtBox.Size = new System.Drawing.Size(233, 22);
+            this.contactTxtBox.TabIndex = 35;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(292, 154);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 18);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "Contact:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(292, 304);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(257, 18);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "Currently Scheduled Appointment";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(292, 330);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 18);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "Start Time:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(467, 329);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 18);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "End Time:";
+            // 
+            // apptStartTimeTxtBox
+            // 
+            this.apptStartTimeTxtBox.Location = new System.Drawing.Point(292, 350);
+            this.apptStartTimeTxtBox.Name = "apptStartTimeTxtBox";
+            this.apptStartTimeTxtBox.Size = new System.Drawing.Size(131, 22);
+            this.apptStartTimeTxtBox.TabIndex = 39;
+            // 
+            // apptStopTimeTxtBox
+            // 
+            this.apptStopTimeTxtBox.Location = new System.Drawing.Point(470, 350);
+            this.apptStopTimeTxtBox.Name = "apptStopTimeTxtBox";
+            this.apptStopTimeTxtBox.Size = new System.Drawing.Size(131, 22);
+            this.apptStopTimeTxtBox.TabIndex = 40;
             // 
             // ModifyApptsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 468);
+            this.ClientSize = new System.Drawing.Size(820, 737);
+            this.Controls.Add(this.apptStopTimeTxtBox);
+            this.Controls.Add(this.apptStartTimeTxtBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.contactTxtBox);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.locationTxtBox);
+            this.Controls.Add(this.urlTxtBox);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.custNameTxtBox);
             this.Controls.Add(this.appNameLabel);
-            this.Controls.Add(this.customerNamesComboBox);
             this.Controls.Add(this.updateCustomerAppointmentButton);
-            this.Controls.Add(this.customerCountryTxtBox);
-            this.Controls.Add(this.customerCityTxtBox);
-            this.Controls.Add(this.customerAddressTxtBox);
+            this.Controls.Add(this.typeTxtBox);
+            this.Controls.Add(this.apptDescriptionRTxtBox);
+            this.Controls.Add(this.titleTxtBox);
             this.Controls.Add(this.countryLabel);
             this.Controls.Add(this.cityLabel);
-            this.Controls.Add(this.addressLabel);
+            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.calendarLabel);
             this.Controls.Add(this.availableApptLabel);
             this.Controls.Add(this.availableTimesRTextBox);
             this.Controls.Add(this.createAppointmentCalendar);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ModifyApptsForm";
             this.Text = "Modify Appointment";
             this.Load += new System.EventHandler(this.ModifyApptsForm_Load);
@@ -199,18 +338,29 @@
         #endregion
 
         private System.Windows.Forms.Label appNameLabel;
-        private System.Windows.Forms.ComboBox customerNamesComboBox;
         private System.Windows.Forms.Button updateCustomerAppointmentButton;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label calendarLabel;
         private System.Windows.Forms.Label availableApptLabel;
         private System.Windows.Forms.RichTextBox availableTimesRTextBox;
         private System.Windows.Forms.MonthCalendar createAppointmentCalendar;
-        private System.Windows.Forms.TextBox customerCountryTxtBox;
+        private System.Windows.Forms.TextBox typeTxtBox;
         private System.Windows.Forms.Label cityLabel;
         private System.Windows.Forms.Label countryLabel;
-        private System.Windows.Forms.TextBox customerAddressTxtBox;
-        private System.Windows.Forms.TextBox customerCityTxtBox;
-        private System.Windows.Forms.Label addressLabel;
+        private System.Windows.Forms.TextBox titleTxtBox;
+        private System.Windows.Forms.TextBox apptDescriptionRTxtBox;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.TextBox custNameTxtBox;
+        private System.Windows.Forms.TextBox locationTxtBox;
+        private System.Windows.Forms.TextBox urlTxtBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox contactTxtBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox apptStartTimeTxtBox;
+        private System.Windows.Forms.TextBox apptStopTimeTxtBox;
     }
 }
