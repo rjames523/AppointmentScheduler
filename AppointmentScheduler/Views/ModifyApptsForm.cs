@@ -27,6 +27,7 @@ namespace AppointmentScheduler
 
         DbConn conn;
         Appointment selectedAppointment;
+        DateTime selectedApptTime;
 
         private void ModifyApptsForm_Load(object sender, EventArgs e)
         {
@@ -54,6 +55,15 @@ namespace AppointmentScheduler
         private void createAppointmentCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
 
+        }
+
+        private void apptDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            selectedApptTime = apptDateTimePicker.Value;
+            if (apptDateTimePicker.Value != null)
+            {
+                selectedApptTime = apptDateTimePicker.Value;
+            }
         }
     }
 }

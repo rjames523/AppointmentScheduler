@@ -294,6 +294,7 @@
             this.apptDateTimePicker.Name = "apptDateTimePicker";
             this.apptDateTimePicker.Size = new System.Drawing.Size(248, 22);
             this.apptDateTimePicker.TabIndex = 41;
+            this.apptDateTimePicker.ValueChanged += new System.EventHandler(this.apptDateTimePicker_ValueChanged);
             // 
             // apptDateTxtBox
             // 
