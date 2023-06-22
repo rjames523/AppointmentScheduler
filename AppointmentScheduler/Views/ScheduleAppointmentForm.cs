@@ -32,10 +32,10 @@ namespace AppointmentScheduler
 
         private void createAppointmentButton_Click(object sender, EventArgs e)
         {
-            if (availableTimesRTextBox.SelectedText == string.Empty)
-            {
-                MessageBox.Show("You must select an appointment time to continue", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            //if (availableTimesRTextBox.SelectedText == string.Empty)
+            //{
+            //    MessageBox.Show("You must select an appointment time to continue", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
         }
 
         private void customerNamesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -49,6 +49,19 @@ namespace AppointmentScheduler
 
             // Calendar culture?
             // Be sure to use customer's Country to change calendar culture/time zone
+        }
+
+        private void scheduleAppointmentCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(scheduleAppointmentCalendar.SelectionRange.ToString()))
+            {
+                string appointmentDate = scheduleAppointmentCalendar.SelectionRange.ToString();
+            }
+        }
+
+        private void scheduleAppointmentButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

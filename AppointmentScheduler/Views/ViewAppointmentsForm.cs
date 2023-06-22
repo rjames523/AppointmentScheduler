@@ -30,6 +30,7 @@ namespace AppointmentScheduler
         private void ViewAppointmentsForm_Load(object sender, EventArgs e)
         {
             initialLoad = true;
+            editApptButton.Enabled = false;
             selectedCustomer = new Customer();
             appts = new List<Appointment>();
             customerList = new List<Customer>();
@@ -60,13 +61,8 @@ namespace AppointmentScheduler
 
                     List<Appointment> selectedCustomerAppts = GetCustomerSpecificAppts(customer);
 
-                    if (appts.Count != 0)
+                    if (selectedCustomerAppts.Count != 0)
                     {
-                        foreach (Appointment appt in selectedCustomerAppts)
-                        {
-                            //custApptsListBox.Items.Add($"{appt.Type}\t{appt.Start.ToShortTimeString()}\t{appt.End.ToShortTimeString()}");
-                            
-                        }
 
                         customerSpecificApptsDGV.DataSource = selectedCustomerAppts;
                         customerSpecificApptsDGV.ClearSelection();
@@ -77,6 +73,11 @@ namespace AppointmentScheduler
                             if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
                                 customerSpecificApptsDGV.Columns[col.Name].Visible = false;
                         }
+                        editApptButton.Enabled = true;
+                    }
+                    else
+                    {
+                        editApptButton.Enabled = false;
                     }
                 }
                 else
@@ -151,7 +152,11 @@ namespace AppointmentScheduler
                     }
                 }
             }
-            
+        }
+
+        private void cancelApptButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

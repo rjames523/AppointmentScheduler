@@ -34,7 +34,6 @@
             this.calendarLabel = new System.Windows.Forms.Label();
             this.availableApptLabel = new System.Windows.Forms.Label();
             this.availableTimesRTextBox = new System.Windows.Forms.RichTextBox();
-            this.createAppointmentCalendar = new System.Windows.Forms.MonthCalendar();
             this.typeTxtBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
             this.countryLabel = new System.Windows.Forms.Label();
@@ -53,6 +52,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.apptStartTimeTxtBox = new System.Windows.Forms.TextBox();
             this.apptEndTimeTxtBox = new System.Windows.Forms.TextBox();
+            this.apptDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.apptDateTxtBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // appNameLabel
@@ -94,9 +96,9 @@
             this.calendarLabel.Location = new System.Drawing.Point(110, 408);
             this.calendarLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.calendarLabel.Name = "calendarLabel";
-            this.calendarLabel.Size = new System.Drawing.Size(75, 18);
+            this.calendarLabel.Size = new System.Drawing.Size(111, 18);
             this.calendarLabel.TabIndex = 18;
-            this.calendarLabel.Text = "Calendar";
+            this.calendarLabel.Text = "Select a date:";
             // 
             // availableApptLabel
             // 
@@ -117,17 +119,6 @@
             this.availableTimesRTextBox.Size = new System.Drawing.Size(301, 207);
             this.availableTimesRTextBox.TabIndex = 16;
             this.availableTimesRTextBox.Text = "";
-            // 
-            // createAppointmentCalendar
-            // 
-            this.createAppointmentCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createAppointmentCalendar.Location = new System.Drawing.Point(112, 430);
-            this.createAppointmentCalendar.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.createAppointmentCalendar.MaxSelectionCount = 1;
-            this.createAppointmentCalendar.Name = "createAppointmentCalendar";
-            this.createAppointmentCalendar.TabIndex = 15;
-            this.createAppointmentCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.createAppointmentCalendar_DateChanged);
-            this.createAppointmentCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.createAppointmentCalendar_DateSelected);
             // 
             // typeTxtBox
             // 
@@ -267,7 +258,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(292, 330);
+            this.label5.Location = new System.Drawing.Point(476, 330);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 18);
             this.label5.TabIndex = 37;
@@ -277,7 +268,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(467, 329);
+            this.label6.Location = new System.Drawing.Point(651, 329);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 18);
             this.label6.TabIndex = 38;
@@ -285,23 +276,50 @@
             // 
             // apptStartTimeTxtBox
             // 
-            this.apptStartTimeTxtBox.Location = new System.Drawing.Point(292, 350);
+            this.apptStartTimeTxtBox.Location = new System.Drawing.Point(476, 350);
             this.apptStartTimeTxtBox.Name = "apptStartTimeTxtBox";
             this.apptStartTimeTxtBox.Size = new System.Drawing.Size(131, 22);
             this.apptStartTimeTxtBox.TabIndex = 39;
             // 
             // apptEndTimeTxtBox
             // 
-            this.apptEndTimeTxtBox.Location = new System.Drawing.Point(470, 350);
+            this.apptEndTimeTxtBox.Location = new System.Drawing.Point(654, 350);
             this.apptEndTimeTxtBox.Name = "apptEndTimeTxtBox";
             this.apptEndTimeTxtBox.Size = new System.Drawing.Size(131, 22);
             this.apptEndTimeTxtBox.TabIndex = 40;
+            // 
+            // apptDateTimePicker
+            // 
+            this.apptDateTimePicker.Location = new System.Drawing.Point(113, 430);
+            this.apptDateTimePicker.Name = "apptDateTimePicker";
+            this.apptDateTimePicker.Size = new System.Drawing.Size(248, 22);
+            this.apptDateTimePicker.TabIndex = 41;
+            // 
+            // apptDateTxtBox
+            // 
+            this.apptDateTxtBox.Location = new System.Drawing.Point(295, 350);
+            this.apptDateTxtBox.Name = "apptDateTxtBox";
+            this.apptDateTxtBox.Size = new System.Drawing.Size(151, 22);
+            this.apptDateTxtBox.TabIndex = 43;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(295, 330);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 18);
+            this.label7.TabIndex = 42;
+            this.label7.Text = "Date:";
             // 
             // ModifyApptsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 737);
+            this.Controls.Add(this.apptDateTxtBox);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.apptDateTimePicker);
             this.Controls.Add(this.apptEndTimeTxtBox);
             this.Controls.Add(this.apptStartTimeTxtBox);
             this.Controls.Add(this.label6);
@@ -326,7 +344,6 @@
             this.Controls.Add(this.calendarLabel);
             this.Controls.Add(this.availableApptLabel);
             this.Controls.Add(this.availableTimesRTextBox);
-            this.Controls.Add(this.createAppointmentCalendar);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ModifyApptsForm";
             this.Text = "Modify Appointment";
@@ -344,7 +361,6 @@
         private System.Windows.Forms.Label calendarLabel;
         private System.Windows.Forms.Label availableApptLabel;
         private System.Windows.Forms.RichTextBox availableTimesRTextBox;
-        private System.Windows.Forms.MonthCalendar createAppointmentCalendar;
         private System.Windows.Forms.TextBox typeTxtBox;
         private System.Windows.Forms.Label cityLabel;
         private System.Windows.Forms.Label countryLabel;
@@ -363,5 +379,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox apptStartTimeTxtBox;
         private System.Windows.Forms.TextBox apptEndTimeTxtBox;
+        private System.Windows.Forms.DateTimePicker apptDateTimePicker;
+        private System.Windows.Forms.TextBox apptDateTxtBox;
+        private System.Windows.Forms.Label label7;
     }
 }

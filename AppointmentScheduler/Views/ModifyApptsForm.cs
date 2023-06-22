@@ -41,8 +41,9 @@ namespace AppointmentScheduler
             locationTxtBox.Text = selectedAppointment.Location;
             urlTxtBox.Text = selectedAppointment.Url;
             apptDescriptionRTxtBox.Text = selectedAppointment.Description;
-            apptStartTimeTxtBox.Text = selectedAppointment.Start.ToShortTimeString();
-            apptEndTimeTxtBox.Text = selectedAppointment.End.ToShortTimeString();
+            apptDateTxtBox.Text = selectedAppointment.Start.ToShortDateString();
+            apptStartTimeTxtBox.Text = selectedAppointment.Start.ToString("HH:mm");
+            apptEndTimeTxtBox.Text = selectedAppointment.End.ToString("HH:mm");
         }
 
         private void createAppointmentCalendar_DateSelected(object sender, DateRangeEventArgs e)
