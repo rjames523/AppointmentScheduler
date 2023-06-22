@@ -24,6 +24,8 @@ namespace AppointmentScheduler
         private bool initialLoad;
         List<Appointment> appts;
         List<Customer> customerList;
+        List<Appointment> upcomingSelectedCustAppts;
+        List<Appointment> pastSelectedCustAppts;
         Customer selectedCustomer;
         Appointment selectedCustAppt;
 
@@ -33,6 +35,7 @@ namespace AppointmentScheduler
             editApptButton.Enabled = false;
             selectedCustomer = new Customer();
             appts = new List<Appointment>();
+            upcomingSelectedCustAppts = new List<Appointment>();
             customerList = new List<Customer>();
             conn = new DbConn();
             customersDGV.DataSource = conn.GetAllCustomers();
@@ -59,24 +62,42 @@ namespace AppointmentScheduler
 
                     //customerSpecificApptsDGV.DataSource = null;
 
-                    List<Appointment> selectedCustomerAppts = GetCustomerSpecificAppts(customer);
+                    //GetCustomerSpecificAppts() returns two values by using the out keyword
+                    upcomingSelectedCustAppts = GetCustomerSpecificAppts(customer, out pastSelectedCustAppts);
 
-                    if (selectedCustomerAppts.Count != 0)
+                    if (upcomingSelectedCustAppts.Count != 0 || pastSelectedCustAppts.Count != 0)
                     {
-
-                        customerSpecificApptsDGV.DataSource = selectedCustomerAppts;
-                        customerSpecificApptsDGV.ClearSelection();
-
-                        foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                        if (viewPastCurrApptsLabel.Text == "View past appointments")
                         {
-                            
-                            if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
-                                customerSpecificApptsDGV.Columns[col.Name].Visible = false;
+                            customerSpecificApptsDGV.DataSource = upcomingSelectedCustAppts;
+                            customerSpecificApptsDGV.ClearSelection();
+
+                            foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                            {
+
+                                if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
+                                    customerSpecificApptsDGV.Columns[col.Name].Visible = false;
+                            }
+                            editApptButton.Enabled = true;
                         }
-                        editApptButton.Enabled = true;
+                        else
+                        {
+                            customerSpecificApptsDGV.DataSource = pastSelectedCustAppts;
+                            customerSpecificApptsDGV.ClearSelection();
+
+                            foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                            {
+
+                                if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
+                                    customerSpecificApptsDGV.Columns[col.Name].Visible = false;
+                            }
+                            editApptButton.Enabled = true;
+                        }
+                        
                     }
                     else
                     {
+                        customerSpecificApptsDGV.DataSource = null;
                         editApptButton.Enabled = false;
                     }
                 }
@@ -93,12 +114,13 @@ namespace AppointmentScheduler
             
         }
 
-        private List<Appointment> GetCustomerSpecificAppts(Customer customer)
+        private List<Appointment> GetCustomerSpecificAppts(Customer customer, out List<Appointment> pastCustAppts)
         {
             
             appts = conn.GetAllCustomerAppointments();
-            var custAppts = appts.Where(x => x.CustomerID == customer.CustomerID).ToList();
-            return custAppts;
+            var upcomingCustAppts = appts.Where(x => x.Start >= DateTime.Now && x.CustomerID == customer.CustomerID).ToList();
+            pastCustAppts = appts.Where(x => x.End < DateTime.Now && x.CustomerID == customer.CustomerID).ToList();
+            return upcomingCustAppts;
         }
 
         public Customer GetSelectedCustomer()
@@ -157,6 +179,47 @@ namespace AppointmentScheduler
         private void cancelApptButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void viewPastCurrApptsLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            List<Appointment> pastCustAppts = new List<Appointment>();
+            if (viewPastCurrApptsLabel.Text == "View past appointments")
+            {
+                
+                    viewPastCurrApptsLabel.Text = "View current appointments";
+                if (upcomingSelectedCustAppts.Count != 0 || pastSelectedCustAppts.Count != 0)
+                {
+                    customerSpecificApptsDGV.DataSource = null;
+                    customerSpecificApptsDGV.DataSource = pastSelectedCustAppts;
+                    customerSpecificApptsDGV.ClearSelection();
+
+                    foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                    {
+
+                        if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
+                            customerSpecificApptsDGV.Columns[col.Name].Visible = false;
+                    }
+                }
+            }
+            else if (viewPastCurrApptsLabel.Text == "View current appointments")
+            {
+                
+                    viewPastCurrApptsLabel.Text = "View past appointments";
+                if (upcomingSelectedCustAppts.Count != 0 || pastSelectedCustAppts.Count != 0)
+                {
+                    customerSpecificApptsDGV.DataSource = null;
+                    customerSpecificApptsDGV.DataSource = upcomingSelectedCustAppts;
+                    customerSpecificApptsDGV.ClearSelection();
+
+                    foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                    {
+
+                        if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
+                            customerSpecificApptsDGV.Columns[col.Name].Visible = false;
+                    }
+                }
+            }
         }
     }
 }

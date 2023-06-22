@@ -36,6 +36,7 @@
             this.editApptButton = new System.Windows.Forms.Button();
             this.cancelApptButton = new System.Windows.Forms.Button();
             this.customerSpecificApptsDGV = new System.Windows.Forms.DataGridView();
+            this.viewPastCurrApptsLabel = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerSpecificApptsDGV)).BeginInit();
             this.SuspendLayout();
@@ -137,11 +138,24 @@
             this.customerSpecificApptsDGV.TabIndex = 25;
             this.customerSpecificApptsDGV.SelectionChanged += new System.EventHandler(this.customerSpecificApptsDGV_SelectionChanged);
             // 
+            // viewPastCurrApptsLabel
+            // 
+            this.viewPastCurrApptsLabel.AutoSize = true;
+            this.viewPastCurrApptsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewPastCurrApptsLabel.Location = new System.Drawing.Point(973, 176);
+            this.viewPastCurrApptsLabel.Name = "viewPastCurrApptsLabel";
+            this.viewPastCurrApptsLabel.Size = new System.Drawing.Size(164, 18);
+            this.viewPastCurrApptsLabel.TabIndex = 26;
+            this.viewPastCurrApptsLabel.TabStop = true;
+            this.viewPastCurrApptsLabel.Text = "View past appointments";
+            this.viewPastCurrApptsLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.viewPastCurrApptsLabel_LinkClicked);
+            // 
             // ViewAppointmentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 491);
+            this.Controls.Add(this.viewPastCurrApptsLabel);
             this.Controls.Add(this.customerSpecificApptsDGV);
             this.Controls.Add(this.cancelApptButton);
             this.Controls.Add(this.editApptButton);
@@ -170,5 +184,6 @@
         private System.Windows.Forms.Button editApptButton;
         private System.Windows.Forms.Button cancelApptButton;
         private System.Windows.Forms.DataGridView customerSpecificApptsDGV;
+        private System.Windows.Forms.LinkLabel viewPastCurrApptsLabel;
     }
 }
