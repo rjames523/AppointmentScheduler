@@ -45,7 +45,7 @@ namespace AppointmentScheduler
 
         private void CreateAppointmentForm_Load(object sender, EventArgs e)
         {
-            
+
 
             // Calendar culture?
             // Be sure to use customer's Country to change calendar culture/time zone
@@ -63,5 +63,6 @@ namespace AppointmentScheduler
         {
 
         }
+    
+        }
     }
-}

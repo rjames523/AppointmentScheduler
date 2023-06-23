@@ -124,7 +124,6 @@ namespace schedulerLoginForm
             passwordLabel.Text = rm.GetString("passwordLabel", culture);
             loginButton.Text = rm.GetString("loginButton", culture);
 
-            loginFailStatusLabel.Text = rm.GetString("loginFailStatusLabel", culture);
         }
     }
 }
