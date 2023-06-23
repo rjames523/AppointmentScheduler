@@ -78,7 +78,9 @@ namespace AppointmentScheduler
                                 if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
                                     customerSpecificApptsDGV.Columns[col.Name].Visible = false;
                             }
-                            editApptButton.Enabled = true;
+
+                            
+                            
                         }
                         else
                         {
@@ -91,7 +93,6 @@ namespace AppointmentScheduler
                                 if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
                                     customerSpecificApptsDGV.Columns[col.Name].Visible = false;
                             }
-                            editApptButton.Enabled = true;
                         }
                         
                     }
@@ -114,12 +115,12 @@ namespace AppointmentScheduler
             
         }
 
-        private List<Appointment> GetCustomerSpecificAppts(Customer customer, out List<Appointment> pastCustAppts)
+        private List<Appointment> GetCustomerSpecificAppts(Customer customer, out List<Appointment> pastSelectedCustAppts)
         {
             
             appts = conn.GetAllCustomerAppointments();
-            var upcomingCustAppts = appts.Where(x => x.Start >= DateTime.Now && x.CustomerID == customer.CustomerID).ToList();
-            pastCustAppts = appts.Where(x => x.End < DateTime.Now && x.CustomerID == customer.CustomerID).ToList();
+            var upcomingCustAppts = appts.Where(x => ((x.Start >= DateTime.Now) || (x.Start < DateTime.Now && x.End > DateTime.Now)) && (x.CustomerID == customer.CustomerID)).ToList();
+            pastSelectedCustAppts = appts.Where(x => (x.End < DateTime.Now) && (x.CustomerID == customer.CustomerID)).ToList();
             return upcomingCustAppts;
         }
 
@@ -173,6 +174,11 @@ namespace AppointmentScheduler
                         }
                     }
                 }
+
+                if (customerSpecificApptsDGV.SelectedRows.Count > 0 && viewPastCurrApptsLabel.Text == "View past appointments")
+                {
+                    editApptButton.Enabled = true;
+                }
             }
         }
 
@@ -186,8 +192,8 @@ namespace AppointmentScheduler
             List<Appointment> pastCustAppts = new List<Appointment>();
             if (viewPastCurrApptsLabel.Text == "View past appointments")
             {
-                
-                    viewPastCurrApptsLabel.Text = "View current appointments";
+                viewPastCurrApptsLabel.Text = "View current appointments";
+
                 if (upcomingSelectedCustAppts.Count != 0 || pastSelectedCustAppts.Count != 0)
                 {
                     customerSpecificApptsDGV.DataSource = null;
@@ -196,7 +202,6 @@ namespace AppointmentScheduler
 
                     foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
                     {
-
                         if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
                             customerSpecificApptsDGV.Columns[col.Name].Visible = false;
                     }
@@ -204,8 +209,8 @@ namespace AppointmentScheduler
             }
             else if (viewPastCurrApptsLabel.Text == "View current appointments")
             {
-                
-                    viewPastCurrApptsLabel.Text = "View past appointments";
+                viewPastCurrApptsLabel.Text = "View past appointments";
+
                 if (upcomingSelectedCustAppts.Count != 0 || pastSelectedCustAppts.Count != 0)
                 {
                     customerSpecificApptsDGV.DataSource = null;

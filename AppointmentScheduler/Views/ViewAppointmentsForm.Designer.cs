@@ -101,7 +101,7 @@
             // 
             // editApptButton
             // 
-            this.editApptButton.Location = new System.Drawing.Point(770, 434);
+            this.editApptButton.Location = new System.Drawing.Point(814, 434);
             this.editApptButton.Name = "editApptButton";
             this.editApptButton.Size = new System.Drawing.Size(87, 41);
             this.editApptButton.TabIndex = 23;
@@ -111,7 +111,7 @@
             // 
             // cancelApptButton
             // 
-            this.cancelApptButton.Location = new System.Drawing.Point(889, 434);
+            this.cancelApptButton.Location = new System.Drawing.Point(933, 434);
             this.cancelApptButton.Name = "cancelApptButton";
             this.cancelApptButton.Size = new System.Drawing.Size(87, 41);
             this.cancelApptButton.TabIndex = 24;
@@ -134,15 +134,16 @@
             this.customerSpecificApptsDGV.RowHeadersWidth = 51;
             this.customerSpecificApptsDGV.RowTemplate.Height = 24;
             this.customerSpecificApptsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.customerSpecificApptsDGV.Size = new System.Drawing.Size(494, 215);
+            this.customerSpecificApptsDGV.Size = new System.Drawing.Size(561, 215);
             this.customerSpecificApptsDGV.TabIndex = 25;
             this.customerSpecificApptsDGV.SelectionChanged += new System.EventHandler(this.customerSpecificApptsDGV_SelectionChanged);
             // 
             // viewPastCurrApptsLabel
             // 
             this.viewPastCurrApptsLabel.AutoSize = true;
+            this.viewPastCurrApptsLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.viewPastCurrApptsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewPastCurrApptsLabel.Location = new System.Drawing.Point(973, 176);
+            this.viewPastCurrApptsLabel.Location = new System.Drawing.Point(971, 174);
             this.viewPastCurrApptsLabel.Name = "viewPastCurrApptsLabel";
             this.viewPastCurrApptsLabel.Size = new System.Drawing.Size(164, 18);
             this.viewPastCurrApptsLabel.TabIndex = 26;
@@ -154,7 +155,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 491);
+            this.ClientSize = new System.Drawing.Size(1214, 491);
             this.Controls.Add(this.viewPastCurrApptsLabel);
             this.Controls.Add(this.customerSpecificApptsDGV);
             this.Controls.Add(this.cancelApptButton);
