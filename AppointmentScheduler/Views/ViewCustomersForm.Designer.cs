@@ -109,6 +109,7 @@
             this.Controls.Add(this.customersDGV);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ViewCustomersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Scheduler - Customers";
             this.Load += new System.EventHandler(this.ViewCustomersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).EndInit();
