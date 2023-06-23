@@ -65,25 +65,31 @@ namespace AppointmentScheduler
             
             foreach (Appointment appt in appointments)
             {
-                if ((appt.Start.Hour == currentTime.Hour) && (appt.Start.Minute - currentTime.Minute <= 15))
+                if (currentTime.Date == appt.Start.Date)
                 {
-                    if ((appt.Start.Minute - currentTime.Minute >= 1))
+                    if ((appt.Start.Hour == currentTime.Hour) && (appt.Start.Minute - currentTime.Minute <= 15))
                     {
-                        int minutesUntilAppt = appt.Start.Minute - currentTime.Minute;
-                        var notifyCustNameForAppt = customerList.Where(x => x.CustomerID == appt.CustomerID).Select(x => x.CustomerName).First();
-                        MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                        if ((appt.Start.Minute - currentTime.Minute >= 1))
+                        {
+                            int minutesUntilAppt = appt.Start.Minute - currentTime.Minute;
+                            var notifyCustNameForAppt = customerList.Where(x => x.CustomerID == appt.CustomerID).Select(x => x.CustomerName).First();
+                            MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
 
-                }
-                else if ((appt.Start.Hour - currentTime.Hour == 1) && (appt.Start.Minute - currentTime.Minute <= 15))
-                {
-                    if ((appt.Start.Minute - currentTime.Minute >= 1))
-                    {
-                        int minutesUntilAppt = appt.Start.Minute - currentTime.Minute;
-                        var notifyCustNameForAppt = customerList.Where(x => x.CustomerID == appt.CustomerID).Select(x => x.CustomerName).First();
-                        MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    
+                    else if ((appt.Start.Hour - currentTime.Hour == 1) && (appt.Start.Minute - currentTime.Minute <= 15))
+                    {
+                        if (appt.Start.Date.Minute == 0)
+                        {
+                            if ((60 - currentTime.Minute >= 1))
+                            {
+                                int minutesUntilAppt = 60 - currentTime.Minute;
+                                var notifyCustNameForAppt = customerList.Where(x => x.CustomerID == appt.CustomerID).Select(x => x.CustomerName).First();
+                                MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+
+                    }
                 }
             }
             

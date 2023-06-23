@@ -31,9 +31,7 @@
             this.appNameLabel = new System.Windows.Forms.Label();
             this.customersGroupBox = new System.Windows.Forms.GroupBox();
             this.addCustomersButton = new System.Windows.Forms.Button();
-            this.modifyCustomersButton = new System.Windows.Forms.Button();
             this.addCustomersLabel = new System.Windows.Forms.Label();
-            this.modifyCustomerInfoLabel = new System.Windows.Forms.Label();
             this.viewCustomersButton = new System.Windows.Forms.Button();
             this.viewCustomersLabel = new System.Windows.Forms.Label();
             this.appointmentsGroupBox = new System.Windows.Forms.GroupBox();
@@ -62,9 +60,7 @@
             // customersGroupBox
             // 
             this.customersGroupBox.Controls.Add(this.addCustomersButton);
-            this.customersGroupBox.Controls.Add(this.modifyCustomersButton);
             this.customersGroupBox.Controls.Add(this.addCustomersLabel);
-            this.customersGroupBox.Controls.Add(this.modifyCustomerInfoLabel);
             this.customersGroupBox.Controls.Add(this.viewCustomersButton);
             this.customersGroupBox.Controls.Add(this.viewCustomersLabel);
             this.customersGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -72,7 +68,7 @@
             this.customersGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.customersGroupBox.Name = "customersGroupBox";
             this.customersGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.customersGroupBox.Size = new System.Drawing.Size(399, 247);
+            this.customersGroupBox.Size = new System.Drawing.Size(399, 206);
             this.customersGroupBox.TabIndex = 2;
             this.customersGroupBox.TabStop = false;
             this.customersGroupBox.Text = "Customers";
@@ -81,7 +77,7 @@
             // 
             this.addCustomersButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addCustomersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addCustomersButton.Location = new System.Drawing.Point(16, 111);
+            this.addCustomersButton.Location = new System.Drawing.Point(16, 127);
             this.addCustomersButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addCustomersButton.Name = "addCustomersButton";
             this.addCustomersButton.Size = new System.Drawing.Size(107, 39);
@@ -90,43 +86,20 @@
             this.addCustomersButton.UseVisualStyleBackColor = true;
             this.addCustomersButton.Click += new System.EventHandler(this.addCustomersButton_Click);
             // 
-            // modifyCustomersButton
-            // 
-            this.modifyCustomersButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.modifyCustomersButton.Enabled = false;
-            this.modifyCustomersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyCustomersButton.Location = new System.Drawing.Point(16, 187);
-            this.modifyCustomersButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.modifyCustomersButton.Name = "modifyCustomersButton";
-            this.modifyCustomersButton.Size = new System.Drawing.Size(107, 39);
-            this.modifyCustomersButton.TabIndex = 4;
-            this.modifyCustomersButton.Text = "Modify";
-            this.modifyCustomersButton.UseVisualStyleBackColor = true;
-            this.modifyCustomersButton.Click += new System.EventHandler(this.modifyCustomersButton_Click);
-            // 
             // addCustomersLabel
             // 
             this.addCustomersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addCustomersLabel.Location = new System.Drawing.Point(128, 123);
+            this.addCustomersLabel.Location = new System.Drawing.Point(128, 139);
             this.addCustomersLabel.Name = "addCustomersLabel";
             this.addCustomersLabel.Size = new System.Drawing.Size(237, 41);
             this.addCustomersLabel.TabIndex = 3;
             this.addCustomersLabel.Text = "Add a new customer";
             // 
-            // modifyCustomerInfoLabel
-            // 
-            this.modifyCustomerInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyCustomerInfoLabel.Location = new System.Drawing.Point(128, 199);
-            this.modifyCustomerInfoLabel.Name = "modifyCustomerInfoLabel";
-            this.modifyCustomerInfoLabel.Size = new System.Drawing.Size(237, 41);
-            this.modifyCustomerInfoLabel.TabIndex = 2;
-            this.modifyCustomerInfoLabel.Text = "Modify customer information";
-            // 
             // viewCustomersButton
             // 
             this.viewCustomersButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.viewCustomersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewCustomersButton.Location = new System.Drawing.Point(16, 34);
+            this.viewCustomersButton.Location = new System.Drawing.Point(16, 50);
             this.viewCustomersButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.viewCustomersButton.Name = "viewCustomersButton";
             this.viewCustomersButton.Size = new System.Drawing.Size(107, 39);
@@ -138,11 +111,11 @@
             // viewCustomersLabel
             // 
             this.viewCustomersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewCustomersLabel.Location = new System.Drawing.Point(128, 47);
+            this.viewCustomersLabel.Location = new System.Drawing.Point(128, 63);
             this.viewCustomersLabel.Name = "viewCustomersLabel";
             this.viewCustomersLabel.Size = new System.Drawing.Size(237, 41);
             this.viewCustomersLabel.TabIndex = 0;
-            this.viewCustomersLabel.Text = "View all current customers";
+            this.viewCustomersLabel.Text = "View, edit, and remove current customers";
             // 
             // appointmentsGroupBox
             // 
@@ -252,6 +225,7 @@
             this.Controls.Add(this.appNameLabel);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LandingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Scheduler";
             this.Load += new System.EventHandler(this.LandingForm_Load);
             this.customersGroupBox.ResumeLayout(false);
@@ -272,9 +246,7 @@
         private System.Windows.Forms.Button viewCurrApptsButton;
         private System.Windows.Forms.Button logOutButton;
         private System.Windows.Forms.Button addCustomersButton;
-        private System.Windows.Forms.Button modifyCustomersButton;
         private System.Windows.Forms.Label addCustomersLabel;
-        private System.Windows.Forms.Label modifyCustomerInfoLabel;
         private System.Windows.Forms.Button scheduleNewApptButton;
         private System.Windows.Forms.Label modifyApptLabel;
         private System.Windows.Forms.Label scheduleNewApptLabel;
