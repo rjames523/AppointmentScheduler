@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace AppointmentScheduler
         DbConn conn;
         Appointment selectedAppointment;
         DateTime selectedApptTime;
+        bool isDaylightSaving;
 
         private void ModifyApptsForm_Load(object sender, EventArgs e)
         {
@@ -43,8 +45,11 @@ namespace AppointmentScheduler
             urlTxtBox.Text = selectedAppointment.Url;
             apptDescriptionRTxtBox.Text = selectedAppointment.Description;
             apptDateTxtBox.Text = selectedAppointment.Start.ToShortDateString();
-            apptStartTimeTxtBox.Text = selectedAppointment.Start.ToString("HH:mm");
-            apptEndTimeTxtBox.Text = selectedAppointment.End.ToString("HH:mm");
+            apptStartTimeTxtBox.Text = selectedAppointment.Start.ToShortTimeString();
+            apptEndTimeTxtBox.Text = selectedAppointment.End.ToShortTimeString();
+
+            //Test this
+            isDaylightSaving = TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now.ToLocalTime());
         }
 
         private void createAppointmentCalendar_DateSelected(object sender, DateRangeEventArgs e)
