@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AppointmentScheduler.Models;
 using System.ComponentModel;
 using System.Net.NetworkInformation;
+using System.Globalization;
 //using MySqlX.XDevAPI.Relational;
 
 namespace AppointmentScheduler.Connections
@@ -625,11 +626,11 @@ namespace AppointmentScheduler.Connections
                             break;
                         case "start":
                             DateTime startTime = (DateTime)reader.GetValue(i);
-                            custAppt.Start = startTime.ToLocalTime();
+                            custAppt.Start = startTime;
                             break;
                         case "end":
                             DateTime endTime = (DateTime)reader.GetValue(i);
-                            custAppt.End = endTime.ToLocalTime();
+                            custAppt.End = endTime;
                             break;
                         case "createdate":
                             custAppt.CreateDate = (DateTime)reader.GetValue(i);

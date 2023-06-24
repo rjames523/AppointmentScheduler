@@ -130,20 +130,30 @@ namespace AppointmentScheduler
             }
             else
             {
-                Appointment newAppt = new Appointment();
-                
-                newAppt.AppointmentID = conn.GetAppointmentCount();
-                newAppt.CustomerID = customers.Where(x => x.CustomerName == custNameComboBox.Text).Select(x => x.CustomerID).FirstOrDefault();
-                newAppt.Description = apptDescriptionRTxtBox.Text;
-                newAppt.Title = titleTxtBox.Text;
-                newAppt.Contact = contactTxtBox.Text;
-                newAppt.Location = locationTxtBox.Text;
-                newAppt.Type = typeTxtBox.Text;
-                newAppt.Url = urlTxtBox.Text;
-                newAppt.Start = DateTime.Parse(schedApptDatePicker.Text +" "+ schedApptStartTimePicker.Text);
-                newAppt.End = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptEndTimePicker.Text);
+                try
+                {
+                    Appointment newAppt = new Appointment();
 
-                conn.AddAppointment(newAppt, custNameComboBox.Text);
+                    newAppt.AppointmentID = conn.GetAppointmentCount();
+
+                    // Lambda expression is used to retrieve the customer ID of the object in the customers list that has a name matching that of the Customer Name Combo Box; the first element is returned if found, if not, a default value is found
+                    newAppt.CustomerID = customers.Where(x => x.CustomerName == custNameComboBox.Text).Select(x => x.CustomerID).FirstOrDefault();
+
+                    newAppt.Description = apptDescriptionRTxtBox.Text;
+                    newAppt.Title = titleTxtBox.Text;
+                    newAppt.Contact = contactTxtBox.Text;
+                    newAppt.Location = locationTxtBox.Text;
+                    newAppt.Type = typeTxtBox.Text;
+                    newAppt.Url = urlTxtBox.Text;
+                    newAppt.Start = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptStartTimePicker.Text);
+                    newAppt.End = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptEndTimePicker.Text);
+
+                    conn.AddAppointment(newAppt, custNameComboBox.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred when scheduling the appointment.\n{ex}", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
             }
         }

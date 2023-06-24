@@ -59,28 +59,29 @@ namespace AppointmentScheduler
             conn = new DbConn();
 
             DateTime currentTime = DateTime.Now;
-            TimeSpan ts;
             
             List<Customer> customerList = conn.GetAllCustomers();
             List<Appointment> appointments = conn.GetAllCustomerAppointments();
             
             foreach (Appointment appt in appointments)
             {
+                DateTime startTime = appt.Start;
+                
                 if (currentTime.Date == appt.Start.Date)
                 {
-                    if ((appt.Start.Hour == currentTime.Hour) && (appt.Start.Minute - currentTime.Minute <= 15))
+                    if ((startTime.Hour == currentTime.Hour) && (startTime.Minute - currentTime.Minute <= 15))
                     {
-                        if ((appt.Start.Minute - currentTime.Minute >= 1))
+                        if ((startTime.Minute - currentTime.Minute >= 1))
                         {
-                            int minutesUntilAppt = appt.Start.Minute - currentTime.Minute;
+                            int minutesUntilAppt = startTime.Minute - currentTime.Minute;
                             var notifyCustNameForAppt = customerList.Where(x => x.CustomerID == appt.CustomerID).Select(x => x.CustomerName).First();
                             MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
                     }
-                    else if ((appt.Start.Hour - currentTime.Hour == 1) && ((appt.Start.Minute - currentTime.Minute <= 15) && (appt.Start.Minute - currentTime.Minute >= 0)))
+                    else if ((startTime.Hour - currentTime.Hour == 1) && ((startTime.Minute - currentTime.Minute <= 15) && (startTime.Minute - currentTime.Minute >= 0)))
                     {
-                        if (appt.Start.Date.Minute == 0)
+                        if (startTime.Date.Minute == 0)
                         {
                             if ((60 - currentTime.Minute >= 1))
                             {
@@ -91,9 +92,16 @@ namespace AppointmentScheduler
                         }
 
                     }
-                    else if(TimeSpan)
+                    else
                     {
+                        double minutesBetweenTimes = (currentTime - startTime).TotalMinutes;
 
+                        if (minutesBetweenTimes <= 15 && !(minutesBetweenTimes < 0))
+                        {
+                            int minutesUntilAppt = 60 - currentTime.Minute;
+                            var notifyCustNameForAppt = customerList.Where(x => x.CustomerID == appt.CustomerID).Select(x => x.CustomerName).First();
+                            MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
             }
