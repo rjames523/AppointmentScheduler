@@ -33,6 +33,9 @@ namespace AppointmentScheduler
             {
                 try
                 {
+                    List<Customer> customers = new List<Customer>();
+                    customers = conn.GetAllCustomers();
+
                     int countryId = conn.GetAllCountries().Count + 1;
 
                     Address custAddress = new Address();
@@ -50,7 +53,7 @@ namespace AppointmentScheduler
 
                     conn.AddCountry(countryId, countryComboBox.SelectedItem.ToString());
                     conn.AddCity(custAddress.City.CityID, countryId, cityComboBox.Text);
-                    conn.AddCustomerAddress(custAddress);
+                    conn.AddCustomerAddress(custAddress, customers);
 
                     Customer cust = new Customer()
                     {

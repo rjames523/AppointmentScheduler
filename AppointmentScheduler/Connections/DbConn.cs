@@ -113,7 +113,7 @@ namespace AppointmentScheduler.Connections
         {
             connection.Open();
 
-            Customer.AllCustomers.Clear();
+            //Customer.AllCustomers.Clear();
 
             List<Customer> customerList = new List<Customer>();
             //string sql = "SELECT * FROM customer";
@@ -188,7 +188,7 @@ namespace AppointmentScheduler.Connections
                     }
                 }
 
-                Customer.AllCustomers.Add(newCust);
+                //Customer.AllCustomers.Add(newCust);
                 customerList.Add(newCust);
 
             }
@@ -298,14 +298,14 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
-        public int AddCustomerAddress(Address customerAddr)
+        public int AddCustomerAddress(Address customerAddr, List<Customer> customers)
         {
             connection.Open();
 
             string sql = "INSERT INTO address( addressid, address, address2, cityid, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES( @addressid, @address1, @address2, @cityid, @postalcode, @phone, @createdate, @createdby, @lastupdate, @lastupdateby)";
             cmd = new MySqlCommand(sql, connection);
 
-            cmd.Parameters.AddWithValue("@addressid", Customer.AllCustomers.Count + 1);
+            cmd.Parameters.AddWithValue("@addressid", customerAddr.AddressID);
             cmd.Parameters.AddWithValue("@address1", customerAddr.Address1);
             cmd.Parameters.AddWithValue("@address2", customerAddr.Address2);
             cmd.Parameters.AddWithValue("@cityid", customerAddr.City.CityID);
@@ -362,6 +362,34 @@ namespace AppointmentScheduler.Connections
 
             connection.Close();
             return 0;
+        }
+
+        public void AddAppointment(Appointment newAppt, string text)
+        {
+            connection.Open();
+
+            string sql = "INSERT INTO appointment( appointmentId, customerId, userId, title, description, location, contact, type, url, start, end, createdate, createdby, lastupdate, lastupdateby) VALUES( @appointmentId, @customerId, @userId, @title, @description, @location, @contact, @type, @url, @start, @end, @createdate, @createdby, @lastupdate, @lastupdateby)";
+            cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@appointmentid", newAppt.AppointmentID);
+            cmd.Parameters.AddWithValue("@customerid", newAppt.CustomerID);
+            cmd.Parameters.AddWithValue("@userid", loggedInUser.UserID);
+            cmd.Parameters.AddWithValue("@title", newAppt.Title);
+            cmd.Parameters.AddWithValue("@description", newAppt.Description);
+            cmd.Parameters.AddWithValue("@location", newAppt.Location);
+            cmd.Parameters.AddWithValue("@contact", newAppt.Contact);
+            cmd.Parameters.AddWithValue("@type", newAppt.Type);
+            cmd.Parameters.AddWithValue("@url", newAppt.Url);
+            cmd.Parameters.AddWithValue("@start", newAppt.Start.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@end", newAppt.End.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@createdate", DateTime.Now.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@createdby", loggedInUser.UserName);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
         }
 
         public List<City> GetAllCities()
@@ -596,10 +624,12 @@ namespace AppointmentScheduler.Connections
                             custAppt.Url = (string)reader.GetValue(i);
                             break;
                         case "start":
-                            custAppt.Start = (DateTime)reader.GetValue(i);
+                            DateTime startTime = (DateTime)reader.GetValue(i);
+                            custAppt.Start = startTime.ToLocalTime();
                             break;
                         case "end":
-                            custAppt.End = (DateTime)reader.GetValue(i);
+                            DateTime endTime = (DateTime)reader.GetValue(i);
+                            custAppt.End = endTime.ToLocalTime();
                             break;
                         case "createdate":
                             custAppt.CreateDate = (DateTime)reader.GetValue(i);
@@ -618,7 +648,7 @@ namespace AppointmentScheduler.Connections
                     }
                 }
 
-                Appointment.AllCustomerAppts.Add(custAppt);
+                //Appointment.AllCustomerAppts.Add(custAppt);
                 appointments.Add(custAppt);
 
             }
@@ -628,5 +658,20 @@ namespace AppointmentScheduler.Connections
 
             return appointments;
         }
+
+        public int GetAppointmentCount()
+        {
+            connection.Open();
+
+            string sql = "SELECT MAX(appointmentId) FROM appointment";
+            cmd = new MySqlCommand(sql, connection);
+
+            int appointmentCount = int.Parse(cmd.ExecuteScalar().ToString());
+
+            connection.Close();
+            return appointmentCount + 1;
+        }
+
+        
     }
 }

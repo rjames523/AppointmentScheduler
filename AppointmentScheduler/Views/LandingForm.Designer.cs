@@ -35,9 +35,7 @@
             this.viewCustomersButton = new System.Windows.Forms.Button();
             this.viewCustomersLabel = new System.Windows.Forms.Label();
             this.appointmentsGroupBox = new System.Windows.Forms.GroupBox();
-            this.modifyApptLabel = new System.Windows.Forms.Label();
             this.scheduleNewApptLabel = new System.Windows.Forms.Label();
-            this.modifyApptButton = new System.Windows.Forms.Button();
             this.viewCurrApptsButton = new System.Windows.Forms.Button();
             this.scheduleNewApptButton = new System.Windows.Forms.Button();
             this.viewCurrApptsLabel = new System.Windows.Forms.Label();
@@ -111,17 +109,15 @@
             // viewCustomersLabel
             // 
             this.viewCustomersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewCustomersLabel.Location = new System.Drawing.Point(128, 63);
+            this.viewCustomersLabel.Location = new System.Drawing.Point(128, 53);
             this.viewCustomersLabel.Name = "viewCustomersLabel";
-            this.viewCustomersLabel.Size = new System.Drawing.Size(237, 41);
+            this.viewCustomersLabel.Size = new System.Drawing.Size(237, 35);
             this.viewCustomersLabel.TabIndex = 0;
-            this.viewCustomersLabel.Text = "View, edit, and remove current customers";
+            this.viewCustomersLabel.Text = "View, edit, or remove current customers";
             // 
             // appointmentsGroupBox
             // 
-            this.appointmentsGroupBox.Controls.Add(this.modifyApptLabel);
             this.appointmentsGroupBox.Controls.Add(this.scheduleNewApptLabel);
-            this.appointmentsGroupBox.Controls.Add(this.modifyApptButton);
             this.appointmentsGroupBox.Controls.Add(this.viewCurrApptsButton);
             this.appointmentsGroupBox.Controls.Add(this.scheduleNewApptButton);
             this.appointmentsGroupBox.Controls.Add(this.viewCurrApptsLabel);
@@ -130,47 +126,25 @@
             this.appointmentsGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.appointmentsGroupBox.Name = "appointmentsGroupBox";
             this.appointmentsGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.appointmentsGroupBox.Size = new System.Drawing.Size(399, 247);
+            this.appointmentsGroupBox.Size = new System.Drawing.Size(399, 206);
             this.appointmentsGroupBox.TabIndex = 3;
             this.appointmentsGroupBox.TabStop = false;
             this.appointmentsGroupBox.Text = "Appointments";
             // 
-            // modifyApptLabel
-            // 
-            this.modifyApptLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyApptLabel.Location = new System.Drawing.Point(128, 199);
-            this.modifyApptLabel.Name = "modifyApptLabel";
-            this.modifyApptLabel.Size = new System.Drawing.Size(245, 41);
-            this.modifyApptLabel.TabIndex = 8;
-            this.modifyApptLabel.Text = "Modify an upcoming customer appointment";
-            // 
             // scheduleNewApptLabel
             // 
             this.scheduleNewApptLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scheduleNewApptLabel.Location = new System.Drawing.Point(128, 123);
+            this.scheduleNewApptLabel.Location = new System.Drawing.Point(128, 138);
             this.scheduleNewApptLabel.Name = "scheduleNewApptLabel";
             this.scheduleNewApptLabel.Size = new System.Drawing.Size(245, 41);
             this.scheduleNewApptLabel.TabIndex = 7;
             this.scheduleNewApptLabel.Text = "Schedule a new appointment";
             // 
-            // modifyApptButton
-            // 
-            this.modifyApptButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.modifyApptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyApptButton.Location = new System.Drawing.Point(16, 187);
-            this.modifyApptButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.modifyApptButton.Name = "modifyApptButton";
-            this.modifyApptButton.Size = new System.Drawing.Size(107, 39);
-            this.modifyApptButton.TabIndex = 6;
-            this.modifyApptButton.Text = "Modify";
-            this.modifyApptButton.UseVisualStyleBackColor = true;
-            this.modifyApptButton.Click += new System.EventHandler(this.modifyApptButton_Click);
-            // 
             // viewCurrApptsButton
             // 
             this.viewCurrApptsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.viewCurrApptsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewCurrApptsButton.Location = new System.Drawing.Point(16, 36);
+            this.viewCurrApptsButton.Location = new System.Drawing.Point(15, 50);
             this.viewCurrApptsButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.viewCurrApptsButton.Name = "viewCurrApptsButton";
             this.viewCurrApptsButton.Size = new System.Drawing.Size(107, 39);
@@ -183,7 +157,7 @@
             // 
             this.scheduleNewApptButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.scheduleNewApptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scheduleNewApptButton.Location = new System.Drawing.Point(16, 111);
+            this.scheduleNewApptButton.Location = new System.Drawing.Point(15, 127);
             this.scheduleNewApptButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.scheduleNewApptButton.Name = "scheduleNewApptButton";
             this.scheduleNewApptButton.Size = new System.Drawing.Size(107, 39);
@@ -195,17 +169,17 @@
             // viewCurrApptsLabel
             // 
             this.viewCurrApptsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewCurrApptsLabel.Location = new System.Drawing.Point(128, 47);
+            this.viewCurrApptsLabel.Location = new System.Drawing.Point(128, 50);
             this.viewCurrApptsLabel.Name = "viewCurrApptsLabel";
-            this.viewCurrApptsLabel.Size = new System.Drawing.Size(245, 41);
+            this.viewCurrApptsLabel.Size = new System.Drawing.Size(245, 39);
             this.viewCurrApptsLabel.TabIndex = 1;
-            this.viewCurrApptsLabel.Text = "View all upcoming appointments";
+            this.viewCurrApptsLabel.Text = "View, edit, or cancel upcoming appointments";
             // 
             // logOutButton
             // 
             this.logOutButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logOutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logOutButton.Location = new System.Drawing.Point(760, 382);
+            this.logOutButton.Location = new System.Drawing.Point(760, 332);
             this.logOutButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logOutButton.Name = "logOutButton";
             this.logOutButton.Size = new System.Drawing.Size(107, 39);
@@ -218,7 +192,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 434);
+            this.ClientSize = new System.Drawing.Size(887, 391);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.appointmentsGroupBox);
             this.Controls.Add(this.customersGroupBox);
@@ -248,8 +222,6 @@
         private System.Windows.Forms.Button addCustomersButton;
         private System.Windows.Forms.Label addCustomersLabel;
         private System.Windows.Forms.Button scheduleNewApptButton;
-        private System.Windows.Forms.Label modifyApptLabel;
         private System.Windows.Forms.Label scheduleNewApptLabel;
-        private System.Windows.Forms.Button modifyApptButton;
     }
 }

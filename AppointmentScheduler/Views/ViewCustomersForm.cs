@@ -20,6 +20,7 @@ namespace AppointmentScheduler
         }
 
         Customer customer;
+        List<Customer> customers;
 
         DbConn conn;
 
@@ -27,8 +28,8 @@ namespace AppointmentScheduler
         {
             conn = new DbConn();       
             customer = new Customer();
-            conn.GetAllCustomers();
-            customersDGV.DataSource = Customer.AllCustomers;
+            customers = conn.GetAllCustomers();
+            customersDGV.DataSource = customers;
             foreach (DataGridViewColumn col in customersDGV.Columns)
             {
                 // Hides column for Address object from view
@@ -54,7 +55,7 @@ namespace AppointmentScheduler
                 {
                     if(col.Name == "CustomerID")
                     {
-                        selectedCustomer = (Customer)Customer.AllCustomers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                        selectedCustomer = (Customer)customers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
                     }
                 }
                 //selectedCustomer = row.DataBoundItem as Customer;
@@ -92,7 +93,7 @@ namespace AppointmentScheduler
                     {
                         if (col.Name == "CustomerID")
                         {
-                            selectedCustomer = (Customer)Customer.AllCustomers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                            selectedCustomer = (Customer)customers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
                         }
                     }
                     //selectedCustomer = row.DataBoundItem as Customer;
@@ -128,11 +129,21 @@ namespace AppointmentScheduler
             addCustomerForm.ShowDialog();
 
             // Clears/refreshes the data grid view to show new customers
+
+            customer.NotifyPropertyChanged();
+            
             customersDGV.DataSource = null;
             customersDGV.Rows.Clear();
-            conn.GetAllCustomers();
+            customers = conn.GetAllCustomers();
             customersDGV.Update();
-            customersDGV.DataSource = Customer.AllCustomers;
+            customersDGV.DataSource = customers;
+
+            foreach (DataGridViewColumn col in customersDGV.Columns)
+            {
+                // Hides column for Address object from view
+                if (col.Name == "Address")
+                    customersDGV.Columns[col.Name].Visible = false;
+            }
 
             this.Show();
 

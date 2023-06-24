@@ -59,6 +59,7 @@ namespace AppointmentScheduler
             conn = new DbConn();
 
             DateTime currentTime = DateTime.Now;
+            TimeSpan ts;
             
             List<Customer> customerList = conn.GetAllCustomers();
             List<Appointment> appointments = conn.GetAllCustomerAppointments();
@@ -77,7 +78,7 @@ namespace AppointmentScheduler
                         }
 
                     }
-                    else if ((appt.Start.Hour - currentTime.Hour == 1) && (appt.Start.Minute - currentTime.Minute <= 15))
+                    else if ((appt.Start.Hour - currentTime.Hour == 1) && ((appt.Start.Minute - currentTime.Minute <= 15) && (appt.Start.Minute - currentTime.Minute >= 0)))
                     {
                         if (appt.Start.Date.Minute == 0)
                         {
@@ -88,6 +89,10 @@ namespace AppointmentScheduler
                                 MessageBox.Show($"Upcoming Appointment for {notifyCustNameForAppt}\nin {minutesUntilAppt} minutes", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
+
+                    }
+                    else if(TimeSpan)
+                    {
 
                     }
                 }
