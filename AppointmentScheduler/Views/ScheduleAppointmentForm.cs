@@ -69,7 +69,7 @@ namespace AppointmentScheduler
         private void scheduleAppointmentButton_Click(object sender, EventArgs e)
         {
             schedApptStartTimePicker.Checked = true;
-            DateTime selectedDate = DateTime.Parse(schedApptStartTimePicker.Text);
+            DateTime selectedDate = DateTime.Parse(schedApptDatePicker.Text);
 
             if (selectedDate < DateTime.Now)
             {
@@ -97,6 +97,7 @@ namespace AppointmentScheduler
                     if (isTimeAvailable)
                     {
                         VerifyAppointmentInfo();
+
                     }
                     else
                     {
@@ -134,21 +135,47 @@ namespace AppointmentScheduler
                 {
                     Appointment newAppt = new Appointment();
 
-                    newAppt.AppointmentID = conn.GetAppointmentCount();
+                    string startDateTimeString = schedApptDatePicker.Text + " " + schedApptStartTimePicker.Text;
+                    string endDateTimeString = schedApptDatePicker.Text + " " + schedApptEndTimePicker.Text;
 
-                    // Lambda expression is used to retrieve the customer ID of the object in the customers list that has a name matching that of the Customer Name Combo Box; the first element is returned if found, if not, a default value is found
-                    newAppt.CustomerID = customers.Where(x => x.CustomerName == custNameComboBox.Text).Select(x => x.CustomerID).FirstOrDefault();
+                    if (!DateTime.TryParse(startDateTimeString, out DateTime startTime) || !DateTime.TryParse(endDateTimeString, out DateTime endTime))
+                    {
+                        MessageBox.Show("The date and/or time you entered was invalid. Please try again.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        newAppt.Start = DateTime.Parse(startDateTimeString);
+                        newAppt.End = DateTime.Parse(endDateTimeString);
 
-                    newAppt.Description = apptDescriptionRTxtBox.Text;
-                    newAppt.Title = titleTxtBox.Text;
-                    newAppt.Contact = contactTxtBox.Text;
-                    newAppt.Location = locationTxtBox.Text;
-                    newAppt.Type = typeTxtBox.Text;
-                    newAppt.Url = urlTxtBox.Text;
-                    newAppt.Start = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptStartTimePicker.Text);
-                    newAppt.End = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptEndTimePicker.Text);
+                        if (newAppt.Start.Hour < 8 || newAppt.End.Hour > 17)
+                        {
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        else
+                        {
+                            newAppt.AppointmentID = conn.GetAppointmentCount();
 
-                    conn.AddAppointment(newAppt, custNameComboBox.Text);
+                            // Lambda expression is used to retrieve the customer ID of the object in the customers list that has a name matching that of the Customer Name Combo Box; the first element is returned if found, if not, a default value is found
+                            newAppt.CustomerID = customers.Where(x => x.CustomerName == custNameComboBox.Text).Select(x => x.CustomerID).FirstOrDefault();
+
+                            newAppt.Description = apptDescriptionRTxtBox.Text;
+                            newAppt.Title = titleTxtBox.Text;
+                            newAppt.Contact = contactTxtBox.Text;
+                            newAppt.Location = locationTxtBox.Text;
+                            newAppt.Type = typeTxtBox.Text;
+                            newAppt.Url = urlTxtBox.Text;
+
+                            conn.AddAppointment(newAppt, custNameComboBox.Text);
+
+                            MessageBox.Show($"The appointment for {custNameComboBox.Text} was scheduled successfully.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                    }
+
+                    
+
                 }
                 catch (Exception ex)
                 {
@@ -213,6 +240,11 @@ namespace AppointmentScheduler
         private void schedApptStartTimePicker_ValueChanged(object sender, EventArgs e)
         {
             schedApptStartTimePicker.Checked = true;
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
