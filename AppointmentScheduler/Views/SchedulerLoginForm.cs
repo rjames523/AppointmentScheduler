@@ -23,6 +23,8 @@ namespace schedulerLoginForm
         public SchedulerLoginForm()
         {
             InitializeComponent();
+            CultureInfo.CurrentCulture.ClearCachedData();
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture;
         }
 
         ResourceManager rm;
