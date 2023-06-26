@@ -36,6 +36,7 @@ namespace AppointmentScheduler
             selectedCustomer = new Customer();
             appts = new List<Appointment>();
             upcomingSelectedCustAppts = new List<Appointment>();
+            pastSelectedCustAppts = new List<Appointment>();
             customerList = new List<Customer>();
             conn = new DbConn();
             customersDGV.DataSource = conn.GetAllCustomers();
@@ -63,7 +64,7 @@ namespace AppointmentScheduler
                     //customerSpecificApptsDGV.DataSource = null;
 
                     //GetCustomerSpecificAppts() returns two values by using the out keyword
-                    upcomingSelectedCustAppts = GetCustomerSpecificAppts(customer, out pastSelectedCustAppts);
+                    upcomingSelectedCustAppts = GetCustomerSpecificAppts(customer);
 
                     if (upcomingSelectedCustAppts.Count != 0 || pastSelectedCustAppts.Count != 0)
                     {
@@ -115,7 +116,7 @@ namespace AppointmentScheduler
             
         }
 
-        private List<Appointment> GetCustomerSpecificAppts(Customer customer, out List<Appointment> pastSelectedCustAppts)
+        private List<Appointment> GetCustomerSpecificAppts(Customer customer)
         {
             
             appts = conn.GetAllCustomerAppointments();
