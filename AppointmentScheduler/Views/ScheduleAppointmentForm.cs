@@ -71,7 +71,7 @@ namespace AppointmentScheduler
             schedApptStartTimePicker.Checked = true;
             DateTime selectedDate = DateTime.Parse(schedApptDatePicker.Text);
 
-            if (selectedDate < DateTime.Now)
+            if (selectedDate < DateTime.UtcNow.Date)
             {
                 MessageBox.Show("You must select a future date.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
