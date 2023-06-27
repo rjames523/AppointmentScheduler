@@ -23,10 +23,10 @@ namespace AppointmentScheduler.Connections
         public static User loggedInUser;
 
         // home laptop testing --
-        string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
+        //string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
 
         // work laptop
-        //private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule";
+        private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule";
 
         // school VM
         //private string _connectionStr = @"server=127.0.0.1;userid=sqlUser;password=Passw0rd!;database=client_schedule";
@@ -266,7 +266,7 @@ namespace AppointmentScheduler.Connections
 
             cmd.Parameters.AddWithValue("@customername", customer.CustomerName);
             cmd.Parameters.AddWithValue("@addressid", customer.Address.AddressID);
-            cmd.Parameters.AddWithValue("@createdate", DateTime.Now.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@createdate", DateTime.UtcNow.ToUniversalTime());
             cmd.Parameters.AddWithValue("@createdby", customer.CreatedBy);
             cmd.Parameters.AddWithValue("@lastupdatedby", customer.LastUpdatedBy);
 
@@ -286,8 +286,8 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.AddWithValue("@addressid", cust.Address.AddressID);
             cmd.Parameters.AddWithValue("@active", cust.Active);
             cmd.Parameters.AddWithValue("@createdby", loggedInUser.UserName);
-            cmd.Parameters.AddWithValue("@createdate", DateTime.Now);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@createdate", DateTime.UtcNow);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
@@ -309,8 +309,8 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.AddWithValue("@postalcode", customerAddr.PostalCode);
             cmd.Parameters.AddWithValue("@phone", customerAddr.Phone);
             cmd.Parameters.AddWithValue("@createdby", loggedInUser.UserName);
-            cmd.Parameters.AddWithValue("@createdate", DateTime.Now);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@createdate", DateTime.UtcNow);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
@@ -329,9 +329,9 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.AddWithValue("@cityid", cityId);
             cmd.Parameters.AddWithValue("@cityname", cityName);
             cmd.Parameters.AddWithValue("@countryid", countryId);
-            cmd.Parameters.AddWithValue("@createdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@createdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@createdby", loggedInUser.UserName);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
@@ -349,9 +349,9 @@ namespace AppointmentScheduler.Connections
 
             cmd.Parameters.AddWithValue("@countryid", countryId);
             cmd.Parameters.AddWithValue("@country", countryName);
-            cmd.Parameters.AddWithValue("@createdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@createdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@createdby", loggedInUser.UserName);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
@@ -376,11 +376,11 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.AddWithValue("@contact", newAppt.Contact);
             cmd.Parameters.AddWithValue("@type", newAppt.Type);
             cmd.Parameters.AddWithValue("@url", newAppt.Url);
-            cmd.Parameters.AddWithValue("@start", newAppt.Start);
-            cmd.Parameters.AddWithValue("@end", newAppt.End);
-            cmd.Parameters.AddWithValue("@createdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@start", newAppt.Start.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@end", newAppt.End.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@createdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@createdby", loggedInUser.UserName);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
@@ -448,7 +448,7 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.AddWithValue("@customername", selectedCustomer.CustomerName);
             //cmd.Parameters.AddWithValue("@addressId", selectedCustomer.Address.AddressID);
             cmd.Parameters.AddWithValue("@active", selectedCustomer.Active);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
@@ -471,7 +471,7 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.AddWithValue("@cityid", selectedCustomer.Address.City.CityID);
             cmd.Parameters.AddWithValue("@postalcode", selectedCustomer.Address.PostalCode);
             cmd.Parameters.AddWithValue("@phone", selectedCustomer.Address.Phone);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
@@ -489,7 +489,7 @@ namespace AppointmentScheduler.Connections
 
             cmd.Parameters.AddWithValue("@countryid", countryId);
             cmd.Parameters.AddWithValue("@country", countryName);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
@@ -508,18 +508,13 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.AddWithValue("@cityid", cityId);
             cmd.Parameters.AddWithValue("@city", cityName);
             cmd.Parameters.AddWithValue("@countryid", countryId);
-            cmd.Parameters.AddWithValue("@lastupdate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
 
             cmd.ExecuteNonQuery();
 
             cmd.Parameters.Clear();
             connection.Close();
-        }
-
-        internal void UpdateCustomerAddress(object custAddress)
-        {
-            throw new NotImplementedException();
         }
 
         public void DeleteCustomerData(Customer selectedCustomer)
@@ -621,11 +616,11 @@ namespace AppointmentScheduler.Connections
                             break;
                         case "start":
                             DateTime startTime = (DateTime)reader.GetValue(i);
-                            custAppt.Start = startTime; //startTime.ToLocalTime();
+                            custAppt.Start = startTime.ToLocalTime();
                             break;
                         case "end":
                             DateTime endTime = (DateTime)reader.GetValue(i);
-                            custAppt.End = endTime; //TimeZoneInfo.ConvertTimeFromUtc(endTime, TimeZoneInfo.Local);
+                            custAppt.End = TimeZoneInfo.ConvertTimeFromUtc(endTime, TimeZoneInfo.Local);
                             break;
                         case "createdate":
                             custAppt.CreateDate = (DateTime)reader.GetValue(i);
@@ -667,7 +662,5 @@ namespace AppointmentScheduler.Connections
             connection.Close();
             return appointmentCount + 1;
         }
-
-        
     }
 }
