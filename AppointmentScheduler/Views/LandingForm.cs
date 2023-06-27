@@ -1,5 +1,6 @@
 ﻿using AppointmentScheduler.Connections;
 using AppointmentScheduler.Models;
+using AppointmentScheduler.Views;
 using schedulerLoginForm;
 using System;
 using System.Collections.Generic;
@@ -118,10 +119,6 @@ namespace AppointmentScheduler
 
         private void modifyCustomersButton_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            //ModifyCustomerForm modifyCustForm = new ModifyCustomerForm();
-            //modifyCustForm.ShowDialog();
-            //this.Show();
         }
 
         private void scheduleNewApptButton_Click(object sender, EventArgs e)
@@ -137,6 +134,14 @@ namespace AppointmentScheduler
             this.Hide();
             ModifyApptsForm modifyApptsForm = new ModifyApptsForm();
             modifyApptsForm.ShowDialog();
+            this.Show();
+        }
+
+        private void viewReportsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ViewReportsForm viewReports = new ViewReportsForm();
+            viewReports.ShowDialog();
             this.Show();
         }
     }

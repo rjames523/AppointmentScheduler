@@ -1,5 +1,6 @@
 ﻿using AppointmentScheduler.Connections;
 using AppointmentScheduler.Models;
+using AppointmentScheduler.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -108,8 +109,6 @@ namespace AppointmentScheduler
 
                 }
 
-                // Stops this block from running again when selection is changed
-                //initialLoad = true;
             }
 
             
@@ -147,8 +146,8 @@ namespace AppointmentScheduler
 
         private void editApptButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             ModifyApptsForm modifyApptForm = new ModifyApptsForm(selectedCustAppt);
-            Hide();
             modifyApptForm.ShowDialog();
             this.Show();
         }
@@ -226,6 +225,22 @@ namespace AppointmentScheduler
                     }
                 }
             }
+        }
+
+        private void viewByWeekButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CalendarByWeekOrMonthForm calendarByWeekOrMonthForm = new CalendarByWeekOrMonthForm("week");
+            calendarByWeekOrMonthForm.ShowDialog();
+            this.Show();
+        }
+
+        private void viewByMonthButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CalendarByWeekOrMonthForm calendarByWeekOrMonthForm = new CalendarByWeekOrMonthForm("month");
+            calendarByWeekOrMonthForm.ShowDialog();
+            this.Show();
         }
     }
 }

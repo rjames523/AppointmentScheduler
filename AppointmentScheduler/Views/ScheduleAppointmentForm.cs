@@ -61,9 +61,6 @@ namespace AppointmentScheduler
 
             custNameComboBox.DataSource = customers.Select(x => x.CustomerName).ToList();
 
-
-            // Calendar culture?
-            // Be sure to use customer's Country to change calendar culture/time zone
         }
 
         private void scheduleAppointmentButton_Click(object sender, EventArgs e)

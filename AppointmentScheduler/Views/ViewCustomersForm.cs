@@ -38,10 +38,14 @@ namespace AppointmentScheduler
             }
             customersDGV.ClearSelection();
             editCustomerButton.Enabled = false;
+            scheduleAppointmentButton.Enabled = false;
+            deleteCustomerButton.Enabled = false;
 
             if (customersDGV.SelectedRows.Count > 0)
             {
                 editCustomerButton.Enabled = true;
+                scheduleAppointmentButton.Enabled = true;
+                deleteCustomerButton.Enabled = true;
             }
         }
 
@@ -108,9 +112,9 @@ namespace AppointmentScheduler
                 // Clears/refreshes the data grid view to show new customers
                 customersDGV.DataSource = null;
                 customersDGV.Rows.Clear();
-                conn.GetAllCustomers();
+                customers = conn.GetAllCustomers();
                 customersDGV.Update();
-                customersDGV.DataSource = Customer.AllCustomers;
+                customersDGV.DataSource = customers;
             }
         }
 
@@ -119,6 +123,8 @@ namespace AppointmentScheduler
             if (customersDGV.SelectedRows.Count > 0)
             {
                 editCustomerButton.Enabled = true;
+                scheduleAppointmentButton.Enabled = true;
+                deleteCustomerButton.Enabled = true;
             }
         }
 

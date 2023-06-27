@@ -28,16 +28,19 @@ namespace AppointmentScheduler
 
         DbConn conn;
         Appointment selectedAppointment;
+        List<Customer> customers;
         DateTime selectedApptTime;
         bool isDaylightSaving;
 
         private void ModifyApptsForm_Load(object sender, EventArgs e)
         {
-
+            conn = new DbConn();
+            customers = new List<Customer>();
             apptStartTimeTxtBox.Enabled = false;
             apptEndTimeTxtBox.Enabled = false;
             Customer cust = new Customer();
-            custNameTxtBox.Text = Customer.AllCustomers.Where(x => x.CustomerID == selectedAppointment.CustomerID).Select(x => x.CustomerName).First().ToString();
+            customers = conn.GetAllCustomers();
+            custNameTxtBox.Text = customers.Where(x => x.CustomerID == selectedAppointment.CustomerID).Select(x => x.CustomerName).FirstOrDefault().ToString();
             titleTxtBox.Text = selectedAppointment.Title;
             contactTxtBox.Text = selectedAppointment.Contact;
             typeTxtBox.Text = selectedAppointment.Type;
