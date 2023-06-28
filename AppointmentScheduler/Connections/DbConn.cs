@@ -25,7 +25,7 @@ namespace AppointmentScheduler.Connections
         public static User loggedInUser;
 
         // home laptop testing --
-        //string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
+        //private string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
 
         // work laptop
         private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule";
@@ -727,7 +727,7 @@ namespace AppointmentScheduler.Connections
 
         public List<Appointment> LoadConsultantSchedules(string userName)
         {
-            //string sql = "SELECT u.userName, a.appointmentId, c.customerName, a.title, a.description, a.location, a.contact, a.type, a.url, a.start, a.end\r\nFROM  user u INNER JOIN appointment a ON u.userId = a.userID\r\nINNER JOIN customer c on c.customerId = a.customerID";
+            //string sql = "SELECT u.userName, a.appointmentId, c.customerName, a.title, a.description, a.location, a.contact, a.type, a.url, a.start, a.end FROM  user u INNER JOIN appointment a ON u.userId = a.userID INNER JOIN customer c on c.customerId = a.customerID";
             var consultant = GetAllUsers().Where(x => x.UserName == userName).FirstOrDefault();
 
             var result = GetAllCustomerAppointments().Where(x => x.UserID == consultant.UserID).Select(x => x).ToList();
@@ -738,6 +738,41 @@ namespace AppointmentScheduler.Connections
         public void CountCustomersCreatedByMonth()
         {
             // Complete final report
+        }
+
+        public void UpdateAppointment(Appointment modifiedAppt, string text)
+        {
+            connection.Open();
+
+            UpdateUser(loggedInUser);
+
+            string sql = "UPDATE appointment a SET appointmentId = @appointmentid, customerId = @customerid, userId = @userid, title = @title, description = @description, location = @location, contact = @contact, type = @type, url = @url, start = @start, end = @end, lastUpdate = @lastupdate, lastUpdateBy = @lastupdateby WHERE appointmentId = @appointmentid";
+
+            cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@appointmentid", modifiedAppt.AppointmentID);
+            cmd.Parameters.AddWithValue("@customerid", modifiedAppt.CustomerID);
+            cmd.Parameters.AddWithValue("@userid", modifiedAppt.UserID);
+            cmd.Parameters.AddWithValue("@title", modifiedAppt.Title);
+            cmd.Parameters.AddWithValue("@description", modifiedAppt.Description);
+            cmd.Parameters.AddWithValue("@location", modifiedAppt.Location);
+            cmd.Parameters.AddWithValue("@contact", modifiedAppt.Contact);
+            cmd.Parameters.AddWithValue("@type", modifiedAppt.Type);
+            cmd.Parameters.AddWithValue("@url", modifiedAppt.Url);
+            cmd.Parameters.AddWithValue("@start", modifiedAppt.Start.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@end", modifiedAppt.End.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
+            cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Parameters.Clear();
+            connection.Close();
+        }
+
+        private void UpdateUser(User loggedInUser)
+        {
+            
         }
     }
 }
