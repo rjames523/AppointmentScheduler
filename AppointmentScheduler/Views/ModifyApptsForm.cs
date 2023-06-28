@@ -82,10 +82,16 @@ namespace AppointmentScheduler
         {
             schedApptStartTimePicker.Checked = true;
             DateTime selectedDate = DateTime.Parse(apptDatePicker.Text);
+            DateTime selectedStartTime = DateTime.Parse(apptDatePicker.Text + " " + schedApptStartTimePicker.Text);
+            DateTime selectedEndTime = DateTime.Parse(apptDatePicker.Text + " " + schedApptEndTimePicker.Text);
 
-            if (selectedDate < DateTime.UtcNow.Date)
+            if (selectedDate < DateTime.Now.Date)
             {
                 MessageBox.Show("You must select a future date.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (selectedStartTime < DateTime.Now || selectedEndTime < DateTime.Now)
+            {
+                MessageBox.Show("You must select a future timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -146,7 +152,12 @@ namespace AppointmentScheduler
                         modifiedAppt.Start = DateTime.Parse(startDateTimeString);
                         modifiedAppt.End = DateTime.Parse(endDateTimeString);
 
-                        if (modifiedAppt.Start.Hour < 8 || modifiedAppt.End.Hour > 17)
+                        if (modifiedAppt.Start.Hour < 8 || modifiedAppt.Start.Hour > 17)
+                        {
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        else if (modifiedAppt.End.Hour < 8 || modifiedAppt.End.Hour > 17)
                         {
                             MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
@@ -165,8 +176,10 @@ namespace AppointmentScheduler
                             modifiedAppt.Type = typeTxtBox.Text;
                             modifiedAppt.Url = urlTxtBox.Text;
 
+                            conn.UpdateUser(DbConn.loggedInUser);
+                            conn.UpdateCustomer(modifiedAppt.CustomerID, customers);
                             conn.UpdateAppointment(modifiedAppt, custNameTxtBox.Text);
-
+                            
                             MessageBox.Show($"The appointment information for {custNameTxtBox.Text} was updated successfully.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
