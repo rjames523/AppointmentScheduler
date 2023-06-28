@@ -26,10 +26,10 @@ namespace AppointmentScheduler
             selectedAppointment = selectedCustAppt;
         }
 
-        DbConn conn;
-        Appointment selectedAppointment;
-        List<Customer> customers;
-        List<Appointment> appointments;
+        private DbConn conn;
+        private Appointment selectedAppointment;
+        private List<Customer> customers;
+        private List<Appointment> appointments;
         DateTime selectedApptTime;
 
         private void ModifyApptsForm_Load(object sender, EventArgs e)
