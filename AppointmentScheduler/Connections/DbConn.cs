@@ -735,18 +735,28 @@ namespace AppointmentScheduler.Connections
             return result;
         }
 
-        public void CountCustomersCreatedByMonth()
+        public DataTable CountCustomersCreatedByMonth()
         {
             // Complete final report
+            connection.Open();
+
+            DataTable dt = new DataTable();
+
+            string sql = "SELECT MONTHNAME(createDate) as Month, COUNT(MONTH(createDate)) as Customers_Created FROM customer GROUP BY MONTHNAME(createDate)";
+
+            cmd = new MySqlCommand(sql, connection);
+            dt.Load(cmd.ExecuteReader());
+
+            connection.Close();
+
+            return dt;
         }
 
         public void UpdateAppointment(Appointment modifiedAppt, string text)
         {
             connection.Open();
 
-            UpdateUser(loggedInUser);
-
-            string sql = "UPDATE appointment a SET appointmentId = @appointmentid, customerId = @customerid, userId = @userid, title = @title, description = @description, location = @location, contact = @contact, type = @type, url = @url, start = @start, end = @end, lastUpdate = @lastupdate, lastUpdateBy = @lastupdateby WHERE appointmentId = @appointmentid";
+            string sql = "UPDATE appointment SET title = @title, description = @description, location = @location, contact = @contact, type = @type, url = @url, start = @start, end = @end, lastUpdate = @lastupdate, lastUpdateBy = @lastupdateby WHERE appointmentId = @appointmentid";
 
             cmd = new MySqlCommand(sql, connection);
 
@@ -770,33 +780,46 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
-        private void UpdateUser(User loggedInUser)
+        public void UpdateUser(User loggedInUser)
         {
             connection.Open();
 
-            UpdateUser(loggedInUser);
+            string sql = "UPDATE user SET userName = @username, password = @password, active = @active, lastUpdate = @lastupdate, lastUpdateBy = @lastupdateby WHERE userId = @userid";
 
-            //string sql = "UPDATE appointment a SET appointmentId = @appointmentid, customerId = @customerid, userId = @userid, title = @title, description = @description, location = @location, contact = @contact, type = @type, url = @url, start = @start, end = @end, lastUpdate = @lastupdate, lastUpdateBy = @lastupdateby WHERE appointmentId = @appointmentid";
-
-            //cmd = new MySqlCommand(sql, connection);
-            /*
-            cmd.Parameters.AddWithValue("@appointmentid", modifiedAppt.AppointmentID);
-            cmd.Parameters.AddWithValue("@customerid", modifiedAppt.CustomerID);
-            cmd.Parameters.AddWithValue("@userid", modifiedAppt.UserID);
-            cmd.Parameters.AddWithValue("@title", modifiedAppt.Title);
-            cmd.Parameters.AddWithValue("@description", modifiedAppt.Description);
-            cmd.Parameters.AddWithValue("@location", modifiedAppt.Location);
-            cmd.Parameters.AddWithValue("@contact", modifiedAppt.Contact);
-            cmd.Parameters.AddWithValue("@type", modifiedAppt.Type);
-            cmd.Parameters.AddWithValue("@url", modifiedAppt.Url);
-            cmd.Parameters.AddWithValue("@start", modifiedAppt.Start.ToUniversalTime());
-            cmd.Parameters.AddWithValue("@end", modifiedAppt.End.ToUniversalTime());
+            cmd = new MySqlCommand(sql, connection);
+            
+            cmd.Parameters.AddWithValue("@userid", loggedInUser.UserID);
+            cmd.Parameters.AddWithValue("@username", loggedInUser.UserName);
+            cmd.Parameters.AddWithValue("@password", loggedInUser.Password);
+            cmd.Parameters.AddWithValue("@active", loggedInUser.Active);
             cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
             cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
-            */
+
             cmd.ExecuteNonQuery();
 
             cmd.Parameters.Clear();
+            connection.Close();
+        }
+
+        public void UpdateCustomer(int customerId, List<Customer> customers)
+        {
+            Customer selectedCustomer = customers.Where(x => x.CustomerID == customerId).Select(x => x).FirstOrDefault();
+
+            connection.Open();
+
+            string sql = "UPDATE customer SET customerName = @customername, active = @active, lastUpdate = @lastupdate, lastUpdateBy = @lastupdateby WHERE customerId = @customerid";
+            
+            cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@customerid", customerId);
+            cmd.Parameters.AddWithValue("@customername", selectedCustomer.CustomerName);
+            cmd.Parameters.AddWithValue("@active", selectedCustomer.Active);
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
+            cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
+
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+
             connection.Close();
         }
     }
