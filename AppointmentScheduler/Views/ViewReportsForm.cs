@@ -47,7 +47,7 @@ namespace AppointmentScheduler.Views
             }
             else if (reportTypeComboBox.SelectedIndex == 2)
             {
-                conn.CountCustomersCreatedByMonth();
+                reportDGV.DataSource = conn.CountCustomersCreatedByMonth();
             }
             else
             {
