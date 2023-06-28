@@ -24,11 +24,16 @@ namespace AppointmentScheduler
             InitializeComponent();
         }
 
-        ResourceManager rm;
-        CultureInfo culture;
-        DbConn conn;
-        List<Customer> customers;
-        List<Appointment> appointments;
+        public ScheduleAppointmentForm(Customer selectedCustomer)
+        {
+            InitializeComponent();
+            this.selectedCustomer = selectedCustomer;
+        }
+
+        private DbConn conn;
+        private Customer selectedCustomer;
+        private List<Customer> customers;
+        private List<Appointment> appointments;
 
         private void createAppointmentCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -60,6 +65,7 @@ namespace AppointmentScheduler
             appointments = conn.GetAllCustomerAppointments();
 
             custNameComboBox.DataSource = customers.Select(x => x.CustomerName).ToList();
+            custNameComboBox.SelectedItem = customers.Where(x => x.CustomerID == selectedCustomer.CustomerID).Select(x => (x.CustomerName)).FirstOrDefault();
 
         }
 
@@ -67,10 +73,16 @@ namespace AppointmentScheduler
         {
             schedApptStartTimePicker.Checked = true;
             DateTime selectedDate = DateTime.Parse(schedApptDatePicker.Text);
+            DateTime selectedStartTime = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptStartTimePicker.Text);
+            DateTime selectedEndTime = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptEndTimePicker.Text);
 
-            if (selectedDate < DateTime.UtcNow.Date)
+            if (selectedDate < DateTime.Now.Date)
             {
                 MessageBox.Show("You must select a future date.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (selectedStartTime < DateTime.Now || selectedEndTime < DateTime.Now)
+            {
+                MessageBox.Show("You must select a future timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -104,20 +116,6 @@ namespace AppointmentScheduler
             }
         }
 
-        private void custNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void scheduleApptDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void scheduleApptDateTimePicker_KeyDown(object sender, KeyEventArgs e)
-        {
-            
-    }
-
         private void VerifyAppointmentInfo()
         {
             schedApptStartTimePicker.Checked = true;
@@ -145,7 +143,12 @@ namespace AppointmentScheduler
                         newAppt.Start = DateTime.Parse(startDateTimeString);
                         newAppt.End = DateTime.Parse(endDateTimeString);
 
-                        if (newAppt.Start.Hour < 8 || newAppt.End.Hour > 17)
+                        if (newAppt.Start.Hour < 8 || newAppt.Start.Hour > 17)
+                        {
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        else if (newAppt.End.Hour < 8 || newAppt.End.Hour > 17)
                         {
                             MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
@@ -227,11 +230,6 @@ namespace AppointmentScheduler
             }
 
             MessageBox.Show(errorBlankInfo.ToString(), "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-        }
-
-        private void availableStartTimesRTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void schedApptStartTimePicker_ValueChanged(object sender, EventArgs e)
