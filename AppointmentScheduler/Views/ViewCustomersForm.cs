@@ -59,10 +59,9 @@ namespace AppointmentScheduler
                 {
                     if(col.Name == "CustomerID")
                     {
-                        selectedCustomer = (Customer)customers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                        selectedCustomer = customers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
                     }
                 }
-                //selectedCustomer = row.DataBoundItem as Customer;
                 
                 ModifyCustomerForm modifyCustForm = new ModifyCustomerForm(selectedCustomer);
                 Hide();
@@ -74,10 +73,23 @@ namespace AppointmentScheduler
 
         private void scheduleAppointmentButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ScheduleAppointmentForm scheduleApptForm = new ScheduleAppointmentForm();
-            scheduleApptForm.ShowDialog();
-            this.Show();
+            Customer selectedCustomer = new Customer();
+
+            foreach (DataGridViewRow row in customersDGV.SelectedRows)
+            {
+                foreach (DataGridViewColumn col in customersDGV.Columns)
+                {
+                    if (col.Name == "CustomerID")
+                    {
+                        selectedCustomer = customers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                    }
+                }
+
+                this.Hide();
+                ScheduleAppointmentForm scheduleApptForm = new ScheduleAppointmentForm(selectedCustomer);
+                scheduleApptForm.ShowDialog();
+                this.Show();
+            }
         }
 
         private void deleteCustomerButton_Click(object sender, EventArgs e)
@@ -100,7 +112,6 @@ namespace AppointmentScheduler
                             selectedCustomer = (Customer)customers.Where(x => x.CustomerID == (int)row.Cells[col.Index].Value).Select(x => x).First();
                         }
                     }
-                    //selectedCustomer = row.DataBoundItem as Customer;
 
                     conn.DeleteCustomerData(selectedCustomer);
 
@@ -153,6 +164,11 @@ namespace AppointmentScheduler
 
             this.Show();
 
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
