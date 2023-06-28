@@ -772,7 +772,32 @@ namespace AppointmentScheduler.Connections
 
         private void UpdateUser(User loggedInUser)
         {
-            
+            connection.Open();
+
+            UpdateUser(loggedInUser);
+
+            //string sql = "UPDATE appointment a SET appointmentId = @appointmentid, customerId = @customerid, userId = @userid, title = @title, description = @description, location = @location, contact = @contact, type = @type, url = @url, start = @start, end = @end, lastUpdate = @lastupdate, lastUpdateBy = @lastupdateby WHERE appointmentId = @appointmentid";
+
+            //cmd = new MySqlCommand(sql, connection);
+            /*
+            cmd.Parameters.AddWithValue("@appointmentid", modifiedAppt.AppointmentID);
+            cmd.Parameters.AddWithValue("@customerid", modifiedAppt.CustomerID);
+            cmd.Parameters.AddWithValue("@userid", modifiedAppt.UserID);
+            cmd.Parameters.AddWithValue("@title", modifiedAppt.Title);
+            cmd.Parameters.AddWithValue("@description", modifiedAppt.Description);
+            cmd.Parameters.AddWithValue("@location", modifiedAppt.Location);
+            cmd.Parameters.AddWithValue("@contact", modifiedAppt.Contact);
+            cmd.Parameters.AddWithValue("@type", modifiedAppt.Type);
+            cmd.Parameters.AddWithValue("@url", modifiedAppt.Url);
+            cmd.Parameters.AddWithValue("@start", modifiedAppt.Start.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@end", modifiedAppt.End.ToUniversalTime());
+            cmd.Parameters.AddWithValue("@lastupdate", DateTime.UtcNow);
+            cmd.Parameters.AddWithValue("@lastupdateby", loggedInUser.UserName);
+            */
+            cmd.ExecuteNonQuery();
+
+            cmd.Parameters.Clear();
+            connection.Close();
         }
     }
 }
