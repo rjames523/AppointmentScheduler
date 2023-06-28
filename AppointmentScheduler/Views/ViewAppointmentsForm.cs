@@ -21,14 +21,15 @@ namespace AppointmentScheduler
             InitializeComponent();
         }
 
-        DbConn conn;
+        private DbConn conn;
         private bool initialLoad;
-        List<Appointment> appts;
-        List<Customer> customerList;
-        List<Appointment> upcomingSelectedCustAppts;
-        List<Appointment> pastSelectedCustAppts;
-        Customer selectedCustomer;
-        Appointment selectedCustAppt;
+        private bool initialSpecificApptsLoad;
+        private List<Appointment> appts;
+        private List<Customer> customerList;
+        private List<Appointment> upcomingSelectedCustAppts;
+        private List<Appointment> pastSelectedCustAppts;
+        private Customer selectedCustomer;
+        private Appointment selectedCustAppt;
 
         private void ViewAppointmentsForm_Load(object sender, EventArgs e)
         {
@@ -62,7 +63,7 @@ namespace AppointmentScheduler
                 {
                     selectedCustNameTxtBox.Text = customer.CustomerName;
 
-                    //customerSpecificApptsDGV.DataSource = null;
+                    initialSpecificApptsLoad = true;
 
                     //GetCustomerSpecificAppts() returns two values by using the out keyword
                     upcomingSelectedCustAppts = GetCustomerSpecificAppts(customer);
@@ -80,9 +81,6 @@ namespace AppointmentScheduler
                                 if (col.Name != "AppointmentID" && col.Name != "Type" && col.Name != "Start" && col.Name != "End")
                                     customerSpecificApptsDGV.Columns[col.Name].Visible = false;
                             }
-
-                            
-                            
                         }
                         else
                         {
@@ -96,6 +94,7 @@ namespace AppointmentScheduler
                                     customerSpecificApptsDGV.Columns[col.Name].Visible = false;
                             }
                         }
+
                         
                     }
                     else
@@ -103,16 +102,14 @@ namespace AppointmentScheduler
                         customerSpecificApptsDGV.DataSource = null;
                         editApptButton.Enabled = false;
                     }
+
+                    initialSpecificApptsLoad = false;
                 }
                 else
                 {
 
                 }
-
             }
-
-            
-            
         }
 
         private List<Appointment> GetCustomerSpecificAppts(Customer customer)
@@ -126,7 +123,6 @@ namespace AppointmentScheduler
 
         public Customer GetSelectedCustomer()
         {
-            
             customerList = new List<Customer>();
             customerList = conn.GetAllCustomers();
 
@@ -162,22 +158,39 @@ namespace AppointmentScheduler
 
         private void customerSpecificApptsDGV_SelectionChanged(object sender, EventArgs e)
         {
-            if (customerSpecificApptsDGV.SelectedRows.Count > 0)
+            if (!initialSpecificApptsLoad)
             {
-                foreach (DataGridViewRow row in customerSpecificApptsDGV.SelectedRows)
+
+
+                if (customerSpecificApptsDGV.SelectedRows.Count > 0)
                 {
-                    foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                    foreach (DataGridViewRow row in customerSpecificApptsDGV.SelectedRows)
                     {
-                        if (col.Name == "AppointmentID")
+                        foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
                         {
-                            selectedCustAppt = appts.Where(x => x.AppointmentID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                            if (col.Name == "AppointmentID")
+                            {
+                                selectedCustAppt = appts.Where(x => x.AppointmentID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                            }
                         }
                     }
-                }
 
-                if (customerSpecificApptsDGV.SelectedRows.Count > 0 && viewPastCurrApptsLabel.Text == "View past appointments")
-                {
-                    editApptButton.Enabled = true;
+                    if (customerSpecificApptsDGV.Rows.Count > 0 && viewPastCurrApptsLabel.Text == "View past appointments")
+                    {
+                        //for (int row = 0; row < customerSpecificApptsDGV.Rows.Count; row++)
+                        //{
+                        //    customerSpecificApptsDGV.Rows[row].Selected = true;
+
+                        //}
+
+                        editApptButton.Enabled = true;
+                    }
+                    else
+                    {
+                        editApptButton.Enabled = false;
+                    }
+
+                    
                 }
             }
         }
@@ -189,9 +202,13 @@ namespace AppointmentScheduler
 
         private void viewPastCurrApptsLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            customerSpecificApptsDGV.SelectionChanged -= customerSpecificApptsDGV_SelectionChanged;
+           // initialSpecificApptsLoad = true;
+
             List<Appointment> pastCustAppts = new List<Appointment>();
             if (viewPastCurrApptsLabel.Text == "View past appointments")
             {
+                editApptButton.Enabled = false;
                 viewPastCurrApptsLabel.Text = "View current appointments";
 
                 if (upcomingSelectedCustAppts.Count != 0 || pastSelectedCustAppts.Count != 0)
@@ -225,6 +242,8 @@ namespace AppointmentScheduler
                     }
                 }
             }
+            customerSpecificApptsDGV.SelectionChanged += customerSpecificApptsDGV_SelectionChanged;
+           // initialSpecificApptsLoad = false;
         }
 
         private void viewByWeekButton_Click(object sender, EventArgs e)
