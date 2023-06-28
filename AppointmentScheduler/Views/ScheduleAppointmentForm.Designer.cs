@@ -208,7 +208,6 @@
             this.custNameComboBox.Name = "custNameComboBox";
             this.custNameComboBox.Size = new System.Drawing.Size(175, 21);
             this.custNameComboBox.TabIndex = 2;
-            this.custNameComboBox.SelectedIndexChanged += new System.EventHandler(this.custNameComboBox_SelectedIndexChanged);
             // 
             // schedApptDatePicker
             // 
@@ -217,8 +216,6 @@
             this.schedApptDatePicker.Name = "schedApptDatePicker";
             this.schedApptDatePicker.Size = new System.Drawing.Size(190, 20);
             this.schedApptDatePicker.TabIndex = 16;
-            this.schedApptDatePicker.ValueChanged += new System.EventHandler(this.scheduleApptDateTimePicker_ValueChanged);
-            this.schedApptDatePicker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scheduleApptDateTimePicker_KeyDown);
             // 
             // schedApptStartTimePicker
             // 
