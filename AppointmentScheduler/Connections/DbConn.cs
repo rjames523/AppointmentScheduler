@@ -25,10 +25,10 @@ namespace AppointmentScheduler.Connections
         public static User loggedInUser;
 
         // home laptop testing --
-        //private string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
+        private string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
 
         // work laptop
-        private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule";
+        //private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule";
 
         // school VM
         //private string _connectionStr = @"server=127.0.0.1;userid=sqlUser;password=Passw0rd!;database=client_schedule";

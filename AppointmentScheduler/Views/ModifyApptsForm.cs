@@ -246,5 +246,10 @@ namespace AppointmentScheduler
 
             MessageBox.Show(errorBlankInfo.ToString(), "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
+
+        private void apptDatePicker_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

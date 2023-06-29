@@ -279,6 +279,7 @@
             this.apptDatePicker.Size = new System.Drawing.Size(248, 22);
             this.apptDatePicker.TabIndex = 41;
             this.apptDatePicker.ValueChanged += new System.EventHandler(this.apptDateTimePicker_ValueChanged);
+            this.apptDatePicker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.apptDatePicker_KeyDown);
             // 
             // apptDateTxtBox
             // 
