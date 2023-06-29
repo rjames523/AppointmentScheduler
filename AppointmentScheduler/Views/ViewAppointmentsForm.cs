@@ -139,10 +139,11 @@ namespace AppointmentScheduler
             this.Hide();
             ModifyApptsForm modifyApptForm = new ModifyApptsForm(selectedCustAppt);
             modifyApptForm.ShowDialog();
+            this.Show();
 
             customersDGV_SelectionChanged(sender, e);
 
-            this.Show();
+            
         }
 
         private void customerSpecificApptsDGV_SelectionChanged(object sender, EventArgs e)
