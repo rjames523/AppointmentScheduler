@@ -107,17 +107,18 @@
             // appNameLabel
             // 
             this.appNameLabel.AutoSize = true;
-            this.appNameLabel.Font = new System.Drawing.Font("Goudy Old Style", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appNameLabel.Location = new System.Drawing.Point(152, 19);
             this.appNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.appNameLabel.Name = "appNameLabel";
-            this.appNameLabel.Size = new System.Drawing.Size(152, 28);
+            this.appNameLabel.Size = new System.Drawing.Size(185, 29);
             this.appNameLabel.TabIndex = 0;
             this.appNameLabel.Text = "The Scheduler";
             this.appNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // scheduleAppointmentButton
             // 
+            this.scheduleAppointmentButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.scheduleAppointmentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scheduleAppointmentButton.Location = new System.Drawing.Point(136, 460);
             this.scheduleAppointmentButton.Name = "scheduleAppointmentButton";
@@ -204,25 +205,27 @@
             this.custNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.custNameComboBox.FormattingEnabled = true;
             this.custNameComboBox.Location = new System.Drawing.Point(26, 86);
-            this.custNameComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.custNameComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.custNameComboBox.Name = "custNameComboBox";
             this.custNameComboBox.Size = new System.Drawing.Size(175, 21);
             this.custNameComboBox.TabIndex = 2;
             // 
             // schedApptDatePicker
             // 
+            this.schedApptDatePicker.Cursor = System.Windows.Forms.Cursors.Hand;
             this.schedApptDatePicker.Location = new System.Drawing.Point(26, 344);
-            this.schedApptDatePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.schedApptDatePicker.Margin = new System.Windows.Forms.Padding(2);
             this.schedApptDatePicker.Name = "schedApptDatePicker";
             this.schedApptDatePicker.Size = new System.Drawing.Size(190, 20);
             this.schedApptDatePicker.TabIndex = 16;
             // 
             // schedApptStartTimePicker
             // 
+            this.schedApptStartTimePicker.Cursor = System.Windows.Forms.Cursors.Hand;
             this.schedApptStartTimePicker.CustomFormat = "hh:mm tt";
             this.schedApptStartTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.schedApptStartTimePicker.Location = new System.Drawing.Point(26, 401);
-            this.schedApptStartTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.schedApptStartTimePicker.Margin = new System.Windows.Forms.Padding(2);
             this.schedApptStartTimePicker.Name = "schedApptStartTimePicker";
             this.schedApptStartTimePicker.ShowUpDown = true;
             this.schedApptStartTimePicker.Size = new System.Drawing.Size(190, 20);
@@ -231,10 +234,11 @@
             // 
             // schedApptEndTimePicker
             // 
+            this.schedApptEndTimePicker.Cursor = System.Windows.Forms.Cursors.Hand;
             this.schedApptEndTimePicker.CustomFormat = "hh:mm tt";
             this.schedApptEndTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.schedApptEndTimePicker.Location = new System.Drawing.Point(245, 401);
-            this.schedApptEndTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.schedApptEndTimePicker.Margin = new System.Windows.Forms.Padding(2);
             this.schedApptEndTimePicker.Name = "schedApptEndTimePicker";
             this.schedApptEndTimePicker.ShowUpDown = true;
             this.schedApptEndTimePicker.Size = new System.Drawing.Size(190, 20);
@@ -246,9 +250,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(24, 384);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(142, 15);
+            this.label5.Size = new System.Drawing.Size(73, 15);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Available Start Times";
+            this.label5.Text = "Start Time";
             // 
             // label6
             // 
@@ -256,12 +260,13 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(242, 384);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(137, 15);
+            this.label6.Size = new System.Drawing.Size(68, 15);
             this.label6.TabIndex = 19;
-            this.label6.Text = "Available End Times";
+            this.label6.Text = "End Time";
             // 
             // cancelButton
             // 
+            this.cancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Location = new System.Drawing.Point(234, 460);
             this.cancelButton.Name = "cancelButton";

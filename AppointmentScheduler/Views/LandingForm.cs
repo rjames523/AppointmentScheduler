@@ -24,9 +24,7 @@ namespace AppointmentScheduler
             InitializeComponent();
         }
 
-        ResourceManager rm;
-        CultureInfo culture;
-        DbConn conn;
+        private DbConn conn;
 
         private void viewCustomersButton_Click(object sender, EventArgs e)
         {

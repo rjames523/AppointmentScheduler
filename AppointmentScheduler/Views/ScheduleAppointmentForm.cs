@@ -22,35 +22,33 @@ namespace AppointmentScheduler
         public ScheduleAppointmentForm()
         {
             InitializeComponent();
+            this.selectedCustomer = new Customer();
+            this.directedFromLandingForm = true;
         }
 
         public ScheduleAppointmentForm(Customer selectedCustomer)
         {
             InitializeComponent();
             this.selectedCustomer = selectedCustomer;
+            this.directedFromLandingForm = false;
         }
 
         private DbConn conn;
         private Customer selectedCustomer;
         private List<Customer> customers;
         private List<Appointment> appointments;
+        private bool directedFromLandingForm;
 
         private void createAppointmentCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
-
         }
 
         private void createAppointmentButton_Click(object sender, EventArgs e)
         {
-            //if (availableTimesRTextBox.SelectedText == string.Empty)
-            //{
-            //    MessageBox.Show("You must select an appointment time to continue", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //}
         }
 
         private void customerNamesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Populate textboxes with customer information; retrieve information using customer selected from combo box
         }
 
         private void CreateAppointmentForm_Load(object sender, EventArgs e)
@@ -65,8 +63,11 @@ namespace AppointmentScheduler
             appointments = conn.GetAllCustomerAppointments();
 
             custNameComboBox.DataSource = customers.Select(x => x.CustomerName).ToList();
-            custNameComboBox.SelectedItem = customers.Where(x => x.CustomerID == selectedCustomer.CustomerID).Select(x => (x.CustomerName)).FirstOrDefault();
 
+            if (!directedFromLandingForm)
+            {
+                custNameComboBox.SelectedItem = customers.Where(x => x.CustomerID == selectedCustomer.CustomerID).Select(x => (x.CustomerName)).FirstOrDefault();
+            }
         }
 
         private void scheduleAppointmentButton_Click(object sender, EventArgs e)
@@ -119,8 +120,15 @@ namespace AppointmentScheduler
         private void VerifyAppointmentInfo()
         {
             schedApptStartTimePicker.Checked = true;
-
-            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text)) && !string.IsNullOrWhiteSpace(schedApptStartTimePicker.Text) && !string.IsNullOrWhiteSpace(schedApptEndTimePicker.Text) && !string.IsNullOrWhiteSpace(custNameComboBox.Text))
+            //this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text))
+            if (!string.IsNullOrWhiteSpace(titleTxtBox.Text)
+                    && !string.IsNullOrWhiteSpace(apptDescriptionRTxtBox.Text)
+                    && !string.IsNullOrWhiteSpace(contactTxtBox.Text)
+                    && !string.IsNullOrWhiteSpace(typeTxtBox.Text)
+                    && !string.IsNullOrWhiteSpace(urlTxtBox.Text)
+                    && !string.IsNullOrWhiteSpace(schedApptStartTimePicker.Text) 
+                    && !string.IsNullOrWhiteSpace(schedApptEndTimePicker.Text) 
+                    && !string.IsNullOrWhiteSpace(custNameComboBox.Text))
             {
                 BuildErrorMessage();
             }

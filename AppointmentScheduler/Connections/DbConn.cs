@@ -20,18 +20,16 @@ namespace AppointmentScheduler.Connections
         MySqlCommand cmd;
         MySqlDataReader reader;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public static User loggedInUser;
 
         // home laptop testing --
-        private string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
+        //private string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
 
         // work laptop
         //private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule";
 
         // school VM
-        //private string _connectionStr = @"server=127.0.0.1;userid=sqlUser;password=Passw0rd!;database=client_schedule";
+        private string _connectionStr = @"server=127.0.0.1;userid=sqlUser;password=Passw0rd!;database=client_schedule";
 
         public DbConn()
         {
@@ -235,13 +233,15 @@ namespace AppointmentScheduler.Connections
                             newCust.Address.City.Country.CountryName = (string)reader.GetValue(i);
                             break;
                         case "createdate":
-                            newCust.CreateDate = (DateTime)reader.GetValue(i);
+                            DateTime createDate = (DateTime)reader.GetValue(i);
+                            newCust.CreateDate = createDate.ToLocalTime();
                             break;
                         case "createdby":
                             newCust.CreatedBy = (string)reader.GetValue(i);
                             break;
                         case "lastupdate":
-                            newCust.LastUpdate = (DateTime)reader.GetValue(i);
+                            DateTime lastUpdate = (DateTime)reader.GetValue(i);
+                            newCust.LastUpdate = lastUpdate.ToLocalTime();
                             break;
                         case "lastupdateby":
                             newCust.LastUpdatedBy = (string)reader.GetValue(i);
@@ -285,13 +285,15 @@ namespace AppointmentScheduler.Connections
                             country.CountryName = (string)reader.GetValue(i);
                             break;
                         case "createdate":
-                            country.CreateDate = (DateTime)reader.GetValue(i);
+                            DateTime createDate = (DateTime)reader.GetValue(i);
+                            country.CreateDate = createDate.ToLocalTime();
                             break;
                         case "createdby":
                             country.CreatedBy = (string)reader.GetValue(i);
                             break;
                         case "lastupdate":
-                            country.LastUpdate = (DateTime)reader.GetValue(i);
+                            DateTime lastUpdate = (DateTime)reader.GetValue(i);
+                            country.LastUpdate = lastUpdate.ToLocalTime();
                             break;
                         case "lastupdateby":
                             country.LastUpdatedBy = (string)reader.GetValue(i);
@@ -460,13 +462,15 @@ namespace AppointmentScheduler.Connections
                             city.Country.CountryID = (int)reader.GetValue(i);
                             break;
                         case "createdate":
-                            city.CreateDate = (DateTime)reader.GetValue(i);
+                            DateTime createDate = (DateTime)reader.GetValue(i);
+                            city.CreateDate = createDate.ToLocalTime();
                             break;
                         case "createdby":
                             city.CreatedBy = (string)reader.GetValue(i);
                             break;
                         case "lastupdate":
-                            city.LastUpdate = (DateTime)reader.GetValue(i);
+                            DateTime lastUpdate = (DateTime)reader.GetValue(i);
+                            city.LastUpdate = lastUpdate.ToLocalTime();
                             break;
                         case "lastupdateby":
                             city.LastUpdatedBy = (string)reader.GetValue(i);

@@ -54,12 +54,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.appNameLabel.AutoSize = true;
-            this.appNameLabel.Font = new System.Drawing.Font("Goudy Old Style", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appNameLabel.Location = new System.Drawing.Point(256, 27);
+            this.appNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appNameLabel.Location = new System.Drawing.Point(240, 27);
             this.appNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.appNameLabel.Name = "appNameLabel";
-            this.appNameLabel.Size = new System.Drawing.Size(152, 28);
-            this.appNameLabel.TabIndex = 1;
+            this.appNameLabel.Size = new System.Drawing.Size(185, 29);
+            this.appNameLabel.TabIndex = 0;
             this.appNameLabel.Text = "The Scheduler";
             this.appNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -74,11 +74,11 @@
             this.customersGroupBox.Controls.Add(this.viewCustomersLabel);
             this.customersGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customersGroupBox.Location = new System.Drawing.Point(14, 85);
-            this.customersGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customersGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.customersGroupBox.Name = "customersGroupBox";
-            this.customersGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customersGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.customersGroupBox.Size = new System.Drawing.Size(299, 167);
-            this.customersGroupBox.TabIndex = 2;
+            this.customersGroupBox.TabIndex = 1;
             this.customersGroupBox.TabStop = false;
             this.customersGroupBox.Text = "Customers";
             // 
@@ -87,10 +87,10 @@
             this.addCustomersButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addCustomersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCustomersButton.Location = new System.Drawing.Point(12, 103);
-            this.addCustomersButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addCustomersButton.Margin = new System.Windows.Forms.Padding(2);
             this.addCustomersButton.Name = "addCustomersButton";
             this.addCustomersButton.Size = new System.Drawing.Size(80, 32);
-            this.addCustomersButton.TabIndex = 6;
+            this.addCustomersButton.TabIndex = 2;
             this.addCustomersButton.Text = "Add";
             this.addCustomersButton.UseVisualStyleBackColor = true;
             this.addCustomersButton.Click += new System.EventHandler(this.addCustomersButton_Click);
@@ -110,10 +110,10 @@
             this.viewCustomersButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.viewCustomersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.viewCustomersButton.Location = new System.Drawing.Point(12, 41);
-            this.viewCustomersButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.viewCustomersButton.Margin = new System.Windows.Forms.Padding(2);
             this.viewCustomersButton.Name = "viewCustomersButton";
             this.viewCustomersButton.Size = new System.Drawing.Size(80, 32);
-            this.viewCustomersButton.TabIndex = 1;
+            this.viewCustomersButton.TabIndex = 0;
             this.viewCustomersButton.Text = "View";
             this.viewCustomersButton.UseVisualStyleBackColor = true;
             this.viewCustomersButton.Click += new System.EventHandler(this.viewCustomersButton_Click);
@@ -125,7 +125,7 @@
             this.viewCustomersLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.viewCustomersLabel.Name = "viewCustomersLabel";
             this.viewCustomersLabel.Size = new System.Drawing.Size(178, 28);
-            this.viewCustomersLabel.TabIndex = 0;
+            this.viewCustomersLabel.TabIndex = 1;
             this.viewCustomersLabel.Text = "View, edit, or remove current customers";
             // 
             // appointmentsGroupBox
@@ -139,11 +139,11 @@
             this.appointmentsGroupBox.Controls.Add(this.viewCurrApptsLabel);
             this.appointmentsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appointmentsGroupBox.Location = new System.Drawing.Point(351, 85);
-            this.appointmentsGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.appointmentsGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.appointmentsGroupBox.Name = "appointmentsGroupBox";
-            this.appointmentsGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.appointmentsGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.appointmentsGroupBox.Size = new System.Drawing.Size(299, 167);
-            this.appointmentsGroupBox.TabIndex = 3;
+            this.appointmentsGroupBox.TabIndex = 2;
             this.appointmentsGroupBox.TabStop = false;
             this.appointmentsGroupBox.Text = "Appointments";
             // 
@@ -154,7 +154,7 @@
             this.scheduleNewApptLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.scheduleNewApptLabel.Name = "scheduleNewApptLabel";
             this.scheduleNewApptLabel.Size = new System.Drawing.Size(184, 33);
-            this.scheduleNewApptLabel.TabIndex = 7;
+            this.scheduleNewApptLabel.TabIndex = 3;
             this.scheduleNewApptLabel.Text = "Schedule a new appointment";
             // 
             // viewCurrApptsButton
@@ -162,10 +162,10 @@
             this.viewCurrApptsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.viewCurrApptsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.viewCurrApptsButton.Location = new System.Drawing.Point(11, 41);
-            this.viewCurrApptsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.viewCurrApptsButton.Margin = new System.Windows.Forms.Padding(2);
             this.viewCurrApptsButton.Name = "viewCurrApptsButton";
             this.viewCurrApptsButton.Size = new System.Drawing.Size(80, 32);
-            this.viewCurrApptsButton.TabIndex = 2;
+            this.viewCurrApptsButton.TabIndex = 0;
             this.viewCurrApptsButton.Text = "View";
             this.viewCurrApptsButton.UseVisualStyleBackColor = true;
             this.viewCurrApptsButton.Click += new System.EventHandler(this.viewApptsButton_Click);
@@ -175,10 +175,10 @@
             this.scheduleNewApptButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.scheduleNewApptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scheduleNewApptButton.Location = new System.Drawing.Point(11, 103);
-            this.scheduleNewApptButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.scheduleNewApptButton.Margin = new System.Windows.Forms.Padding(2);
             this.scheduleNewApptButton.Name = "scheduleNewApptButton";
             this.scheduleNewApptButton.Size = new System.Drawing.Size(80, 32);
-            this.scheduleNewApptButton.TabIndex = 5;
+            this.scheduleNewApptButton.TabIndex = 2;
             this.scheduleNewApptButton.Text = "Schedule";
             this.scheduleNewApptButton.UseVisualStyleBackColor = true;
             this.scheduleNewApptButton.Click += new System.EventHandler(this.scheduleNewApptButton_Click);
@@ -199,10 +199,10 @@
             this.logOutButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logOutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logOutButton.Location = new System.Drawing.Point(574, 382);
-            this.logOutButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logOutButton.Margin = new System.Windows.Forms.Padding(2);
             this.logOutButton.Name = "logOutButton";
             this.logOutButton.Size = new System.Drawing.Size(80, 32);
-            this.logOutButton.TabIndex = 2;
+            this.logOutButton.TabIndex = 4;
             this.logOutButton.Text = "Log out";
             this.logOutButton.UseVisualStyleBackColor = true;
             this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
@@ -220,7 +220,7 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(299, 106);
-            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reports";
             // 
@@ -232,7 +232,7 @@
             this.viewReportsButton.Margin = new System.Windows.Forms.Padding(2);
             this.viewReportsButton.Name = "viewReportsButton";
             this.viewReportsButton.Size = new System.Drawing.Size(80, 32);
-            this.viewReportsButton.TabIndex = 1;
+            this.viewReportsButton.TabIndex = 0;
             this.viewReportsButton.Text = "View";
             this.viewReportsButton.UseVisualStyleBackColor = true;
             this.viewReportsButton.Click += new System.EventHandler(this.viewReportsButton_Click);
@@ -244,7 +244,7 @@
             this.viewReportsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.viewReportsLabel.Name = "viewReportsLabel";
             this.viewReportsLabel.Size = new System.Drawing.Size(178, 28);
-            this.viewReportsLabel.TabIndex = 0;
+            this.viewReportsLabel.TabIndex = 1;
             this.viewReportsLabel.Text = "View reports based on customer and appointment data";
             // 
             // LandingForm
@@ -257,7 +257,7 @@
             this.Controls.Add(this.appointmentsGroupBox);
             this.Controls.Add(this.customersGroupBox);
             this.Controls.Add(this.appNameLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LandingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Scheduler";

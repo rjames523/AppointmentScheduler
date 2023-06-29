@@ -11,8 +11,6 @@ namespace AppointmentScheduler.Models
 {
     public class Customer : INotifyPropertyChanged
     {
-        private int _addressID;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public int CustomerID { get; set; }
@@ -30,8 +28,12 @@ namespace AppointmentScheduler.Models
 
         public Customer() 
         {
+            CustomerName = string.Empty;
             Address = new Address();
+            Active = true;
+            CreateDate = DateTime.UtcNow;
             CreatedBy = DbConn.loggedInUser.UserName;
+            LastUpdate = DateTime.UtcNow;
             LastUpdatedBy = DbConn.loggedInUser.UserName;
         }
 

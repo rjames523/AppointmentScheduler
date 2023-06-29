@@ -35,7 +35,24 @@ namespace AppointmentScheduler.Models
         public static BindingList<Appointment> AllCustomerAppts = new BindingList<Appointment>();
 
 
-        public Appointment() { }
+        public Appointment() 
+        {
+            AppointmentID = 0;
+            UserID = 0;
+            CustomerID = 0;
+            Title = "n/a";
+            Description = "n/a";
+            Location = "n/a";
+            Contact = "n/a";
+            Type = "n/a";
+            Url = "n/a";
+            Start = DateTime.UtcNow;
+            End = DateTime.UtcNow;
+            CreateDate = DateTime.UtcNow;
+            CreatedBy = DbConn.loggedInUser.UserName;
+            LastUpdate = DateTime.UtcNow;
+            LastUpdatedBy = DbConn.loggedInUser.UserName;
+        }
 
         public Appointment(User user, Customer customer)
         {

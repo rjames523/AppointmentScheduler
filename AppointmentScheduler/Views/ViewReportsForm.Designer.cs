@@ -52,22 +52,23 @@
             this.reportDGV.Name = "reportDGV";
             this.reportDGV.RowHeadersVisible = false;
             this.reportDGV.Size = new System.Drawing.Size(446, 263);
-            this.reportDGV.TabIndex = 0;
+            this.reportDGV.TabIndex = 6;
             // 
             // appNameLabel
             // 
             this.appNameLabel.AutoSize = true;
-            this.appNameLabel.Font = new System.Drawing.Font("Goudy Old Style", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appNameLabel.Location = new System.Drawing.Point(159, 26);
             this.appNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.appNameLabel.Name = "appNameLabel";
-            this.appNameLabel.Size = new System.Drawing.Size(152, 28);
-            this.appNameLabel.TabIndex = 1;
+            this.appNameLabel.Size = new System.Drawing.Size(185, 29);
+            this.appNameLabel.TabIndex = 0;
             this.appNameLabel.Text = "The Scheduler";
             this.appNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // reportTypeComboBox
             // 
+            this.reportTypeComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.reportTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.reportTypeComboBox.FormattingEnabled = true;
             this.reportTypeComboBox.Location = new System.Drawing.Point(12, 100);
@@ -83,16 +84,17 @@
             this.label1.Location = new System.Drawing.Point(9, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 15);
-            this.label1.TabIndex = 3;
+            this.label1.TabIndex = 1;
             this.label1.Text = "Report to run:";
             // 
             // loadReportButton
             // 
+            this.loadReportButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadReportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadReportButton.Location = new System.Drawing.Point(350, 95);
             this.loadReportButton.Name = "loadReportButton";
             this.loadReportButton.Size = new System.Drawing.Size(75, 29);
-            this.loadReportButton.TabIndex = 4;
+            this.loadReportButton.TabIndex = 5;
             this.loadReportButton.Text = "Load";
             this.loadReportButton.UseVisualStyleBackColor = true;
             this.loadReportButton.Click += new System.EventHandler(this.loadReportButton_Click);
@@ -104,18 +106,19 @@
             this.selectConsultantLabel.Location = new System.Drawing.Point(13, 128);
             this.selectConsultantLabel.Name = "selectConsultantLabel";
             this.selectConsultantLabel.Size = new System.Drawing.Size(113, 15);
-            this.selectConsultantLabel.TabIndex = 5;
+            this.selectConsultantLabel.TabIndex = 3;
             this.selectConsultantLabel.Text = "Select a consultant:";
             this.selectConsultantLabel.Visible = false;
             // 
             // consultantNameComboBox
             // 
+            this.consultantNameComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.consultantNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.consultantNameComboBox.FormattingEnabled = true;
             this.consultantNameComboBox.Location = new System.Drawing.Point(12, 144);
             this.consultantNameComboBox.Name = "consultantNameComboBox";
             this.consultantNameComboBox.Size = new System.Drawing.Size(274, 21);
-            this.consultantNameComboBox.TabIndex = 6;
+            this.consultantNameComboBox.TabIndex = 4;
             this.consultantNameComboBox.Visible = false;
             // 
             // ViewReportsForm

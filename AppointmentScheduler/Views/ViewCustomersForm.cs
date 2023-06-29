@@ -32,10 +32,11 @@ namespace AppointmentScheduler
             customersDGV.DataSource = customers;
             foreach (DataGridViewColumn col in customersDGV.Columns)
             {
-                // Hides column for Address object from view
+                // Hides column for Address object column from view
                 if (col.Name == "Address")
                     customersDGV.Columns[col.Name].Visible = false;
             }
+
             customersDGV.ClearSelection();
             editCustomerButton.Enabled = false;
             scheduleAppointmentButton.Enabled = false;
@@ -66,6 +67,14 @@ namespace AppointmentScheduler
                 ModifyCustomerForm modifyCustForm = new ModifyCustomerForm(selectedCustomer);
                 Hide();
                 modifyCustForm.ShowDialog();
+
+                // Clears/refreshes the data grid view to show new customers
+                customersDGV.DataSource = null;
+                customersDGV.Rows.Clear();
+                customers = conn.GetAllCustomers();
+                customersDGV.Update();
+                customersDGV.DataSource = customers;
+
                 customersDGV.ClearSelection();
                 this.Show();
             }

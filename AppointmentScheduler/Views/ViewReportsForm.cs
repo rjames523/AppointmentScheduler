@@ -39,11 +39,19 @@ namespace AppointmentScheduler.Views
             {
                 reportDGV.DataSource = conn.CountApptTypesByMonth();
             }
-            else if (reportTypeComboBox.SelectedIndex == 1 && !string.IsNullOrEmpty(consultantNameComboBox.Text))
+            else if (reportTypeComboBox.SelectedIndex == 1)
             {
-                var result = conn.LoadConsultantSchedules(consultantNameComboBox.Text).Select(x => new { x.AppointmentID, x.CustomerID, x.Title, x.Description, x.Location, x.Contact, x.Type, x.Url, x.Start, x.End }).ToList();
+                if (!string.IsNullOrEmpty(consultantNameComboBox.Text))
+                {
+                    var result = conn.LoadConsultantSchedules(consultantNameComboBox.Text).Select(x => new { x.AppointmentID, x.CustomerID, x.Title, x.Description, x.Location, x.Contact, x.Type, x.Url, x.Start, x.End }).ToList();
 
-                reportDGV.DataSource = result;
+                    reportDGV.DataSource = result;
+                }
+                else
+                {
+                    MessageBox.Show("Please select a consultant before loading the report.", "The Scheduler - Reports", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                }
             }
             else if (reportTypeComboBox.SelectedIndex == 2)
             {

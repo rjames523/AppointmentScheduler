@@ -50,8 +50,8 @@ namespace AppointmentScheduler
             urlTxtBox.Text = selectedAppointment.Url;
             apptDescriptionRTxtBox.Text = selectedAppointment.Description;
             apptDateTxtBox.Text = selectedAppointment.Start.ToShortDateString();
-            apptStartTimeTxtBox.Text = selectedAppointment.Start.ToShortTimeString();
-            apptEndTimeTxtBox.Text = selectedAppointment.End.ToShortTimeString();
+            apptStartTimeTxtBox.Text = selectedAppointment.Start.ToLocalTime().ToShortTimeString();
+            apptEndTimeTxtBox.Text = selectedAppointment.End.ToLocalTime().ToShortTimeString();
         }
 
         private void createAppointmentCalendar_DateSelected(object sender, DateRangeEventArgs e)

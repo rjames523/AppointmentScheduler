@@ -22,10 +22,26 @@ namespace AppointmentScheduler
 
         DbConn conn;
 
+        private void AddCustomerForm_Load(object sender, EventArgs e)
+        {
+            conn = new DbConn();
+            this.ActiveControl = custNameTxtBox;
+
+
+            ///Test Data////
+            custNameTxtBox.Text = "Testing Test";
+            streetAddrTxtBox.Text = "1278 Fake Name Rd";
+            postalCodeTxtBox.Text = "17826";
+            phoneTxtBox.Text = "890-092-0838";
+            cityTextBox.Text = "Lancaster";
+            countryTextBox.Text = "USA";
+
+        }
+
         private void addCustomerButton_Click(object sender, EventArgs e)
         {
             // Checks to see if any textbox on the form is null or whitespace
-            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text) && x.Name != "address2TextBox") && !string.IsNullOrWhiteSpace(countryComboBox.Text) && !string.IsNullOrWhiteSpace(cityComboBox.Text))
+            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text) && x.Name != "address2TextBox"))
             {
                 BuildErrorMessage();
             }
@@ -51,8 +67,8 @@ namespace AppointmentScheduler
                     custAddress.LastUpdatedBy = DbConn.loggedInUser.UserName;
 
 
-                    conn.AddCountry(countryId, countryComboBox.SelectedItem.ToString());
-                    conn.AddCity(custAddress.City.CityID, countryId, cityComboBox.Text);
+                    conn.AddCountry(countryId, countryTextBox.Text);
+                    conn.AddCity(custAddress.City.CityID, countryId, cityTextBox.Text);
                     conn.AddCustomerAddress(custAddress, customers);
 
                     Customer cust = new Customer()
@@ -80,24 +96,6 @@ namespace AppointmentScheduler
             }
         }
 
-        private void AddCustomerForm_Load(object sender, EventArgs e)
-        {
-            conn = new DbConn();
-            countryComboBox.DataSource = conn.GetAllCountries().Select(x => x.CountryName).ToList();
-            cityComboBox.DataSource = conn.GetAllCities().Select(y => y.CityName).ToList();
-            this.ActiveControl = custNameTxtBox;
-
-
-            ///Test Data////
-            custNameTxtBox.Text = "Testing Test";
-            streetAddrTxtBox.Text = "1278 Fake Name Rd";
-            postalCodeTxtBox.Text = "17826";
-            phoneTxtBox.Text = "890-092-0838";
-            cityComboBox.SelectedIndex = 1;
-            countryComboBox.SelectedIndex = 2;
-
-        }
-
         private void BuildErrorMessage()
         {
             // Creates a StringBuilder object for the error message
@@ -113,11 +111,11 @@ namespace AppointmentScheduler
             {
                 errorBlankInfo.AppendLine("Street Address");
             }
-            if (string.IsNullOrWhiteSpace(cityComboBox.Text))
+            if (string.IsNullOrWhiteSpace(cityTextBox.Text))
             {
                 errorBlankInfo.AppendLine("City");
             }
-            if (string.IsNullOrWhiteSpace(countryComboBox.Text))
+            if (string.IsNullOrWhiteSpace(countryTextBox.Text))
             {
                 errorBlankInfo.AppendLine("Country");
             }

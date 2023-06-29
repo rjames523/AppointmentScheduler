@@ -94,8 +94,6 @@ namespace AppointmentScheduler
                                     customerSpecificApptsDGV.Columns[col.Name].Visible = false;
                             }
                         }
-
-                        
                     }
                     else
                     {
@@ -104,10 +102,6 @@ namespace AppointmentScheduler
                     }
 
                     initialSpecificApptsLoad = false;
-                }
-                else
-                {
-
                 }
             }
         }
@@ -145,15 +139,10 @@ namespace AppointmentScheduler
             this.Hide();
             ModifyApptsForm modifyApptForm = new ModifyApptsForm(selectedCustAppt);
             modifyApptForm.ShowDialog();
-            this.Show();
-        }
 
-        private void custApptsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (custApptsListBox.SelectedIndex > -1)
-            //{
-            //    selectedCustAppt = appts.Where(x => x.AppointmentID == (custApptsListBox.SelectedIndex + 1) && x.CustomerID == selectedCustomer.CustomerID).First();
-            //}
+            customersDGV_SelectionChanged(sender, e);
+
+            this.Show();
         }
 
         private void customerSpecificApptsDGV_SelectionChanged(object sender, EventArgs e)
@@ -177,12 +166,6 @@ namespace AppointmentScheduler
 
                     if (customerSpecificApptsDGV.Rows.Count > 0 && viewPastCurrApptsLabel.Text == "View past appointments")
                     {
-                        //for (int row = 0; row < customerSpecificApptsDGV.Rows.Count; row++)
-                        //{
-                        //    customerSpecificApptsDGV.Rows[row].Selected = true;
-
-                        //}
-
                         editApptButton.Enabled = true;
                     }
                     else
@@ -202,8 +185,8 @@ namespace AppointmentScheduler
 
         private void viewPastCurrApptsLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Unsubscribe from the customerSpecificApptsDGV_SelectionChanged event
             customerSpecificApptsDGV.SelectionChanged -= customerSpecificApptsDGV_SelectionChanged;
-           // initialSpecificApptsLoad = true;
 
             List<Appointment> pastCustAppts = new List<Appointment>();
             if (viewPastCurrApptsLabel.Text == "View past appointments")
@@ -242,8 +225,9 @@ namespace AppointmentScheduler
                     }
                 }
             }
+
+            // Subscribe to the customerSpecificApptsDGV_SelectionChanged event
             customerSpecificApptsDGV.SelectionChanged += customerSpecificApptsDGV_SelectionChanged;
-           // initialSpecificApptsLoad = false;
         }
 
         private void viewByWeekButton_Click(object sender, EventArgs e)

@@ -31,7 +31,7 @@ namespace AppointmentScheduler
         private void updateCustomerButton_Click(object sender, EventArgs e)
         {
             // Checks to see if any textbox on the form is null or whitespace
-            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text) && x.Name != "address2TextBox") && !string.IsNullOrWhiteSpace(countryComboBox.Text) && !string.IsNullOrWhiteSpace(cityComboBox.Text))
+            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text) && x.Name != "address2TextBox"))
             {
                 BuildErrorMessage();
             }
@@ -46,12 +46,12 @@ namespace AppointmentScheduler
                 selectedCustomer.LastUpdatedBy = DbConn.loggedInUser.UserName;
                 selectedCustomer.Active = activeCheckBox.Checked;
 
-                selectedCustomer.Address.City.Country.CountryID = countryComboBox.SelectedIndex + 1;
-                selectedCustomer.Address.City.CityID = cityComboBox.SelectedIndex + 1;
+                selectedCustomer.Address.City.Country.CountryID = conn.GetAllCountries().Where(x => x.CountryName == countryTextBox.Text).Select(x => x.CountryID).FirstOrDefault();
+                selectedCustomer.Address.City.CityID = conn.GetAllCities().Where(x => x.CityName == cityTextBox.Text).Select(x => x.CityID).FirstOrDefault(); ;
 
 
-                conn.UpdateCustomerCountry(selectedCustomer.Address.City.Country.CountryID, countryComboBox.SelectedItem.ToString());
-                conn.UpdateCustomerCity(selectedCustomer.Address.City.CityID, selectedCustomer.Address.City.Country.CountryID, cityComboBox.Text);
+                conn.UpdateCustomerCountry(selectedCustomer.Address.City.Country.CountryID, countryTextBox.Text);
+                conn.UpdateCustomerCity(selectedCustomer.Address.City.CityID, selectedCustomer.Address.City.Country.CountryID, cityTextBox.Text);
                 conn.UpdateAddress(selectedCustomer);
 
                 conn.UpdateCustomer(selectedCustomer);
@@ -65,8 +65,8 @@ namespace AppointmentScheduler
         private void ModifyCustomerForm_Load(object sender, EventArgs e)
         {
             conn = new DbConn();
-            countryComboBox.DataSource = conn.GetAllCountries().Select(x => x.CountryName).ToList();
-            cityComboBox.DataSource = conn.GetAllCities().Select(x => x.CityName).ToList();
+            countryTextBox.Text = conn.GetAllCountries().Where(x => x.CountryID == selectedCustomer.Address.City.Country.CountryID).Select(x => x.CountryName).FirstOrDefault();
+            cityTextBox.Text = conn.GetAllCities().Where(x => x.CityID == selectedCustomer.Address.City.CityID).Select(x => x.CityName).FirstOrDefault();
 
             custNameTxtBox.Text = selectedCustomer.CustomerName;
             streetAddrTxtBox.Text = selectedCustomer.Address.Address1;
@@ -74,10 +74,6 @@ namespace AppointmentScheduler
             postalCodeTxtBox.Text = selectedCustomer.Address.PostalCode;
             phoneTxtBox.Text = selectedCustomer.Address.Phone;
             activeCheckBox.Checked = selectedCustomer.Active;
-
-            // Set the selected item in the city and country combo boxes based on the customer's current city and country
-            countryComboBox.SelectedIndex = conn.GetAllCountries().Where(y => selectedCustomer.Address.City.Country.CountryID == y.CountryID).Select(y => y.CountryID - 1).First();
-            cityComboBox.SelectedIndex = conn.GetAllCities().Where(y => selectedCustomer.Address.City.CityID == y.CityID).Select(y => y.CityID - 1).First();
 
             this.ActiveControl = custNameTxtBox;
         }
@@ -97,11 +93,11 @@ namespace AppointmentScheduler
             {
                 errorBlankInfo.AppendLine("Street Address");
             }
-            if (string.IsNullOrWhiteSpace(cityComboBox.Text))
+            if (string.IsNullOrWhiteSpace(cityTextBox.Text))
             {
                 errorBlankInfo.AppendLine("City");
             }
-            if (string.IsNullOrWhiteSpace(countryComboBox.Text))
+            if (string.IsNullOrWhiteSpace(countryTextBox.Text))
             {
                 errorBlankInfo.AppendLine("Country");
             }
