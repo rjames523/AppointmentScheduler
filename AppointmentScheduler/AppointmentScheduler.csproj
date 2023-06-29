@@ -154,11 +154,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Res.es.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Res.fr.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Res.fr.resx</DependentUpon>
-    </Compile>
     <Compile Include="Views\SchedulerLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,10 +205,6 @@
     <EmbeddedResource Include="Resources\Res.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.es.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Res.fr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Res.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SchedulerLoginForm.resx">
       <DependentUpon>SchedulerLoginForm.cs</DependentUpon>

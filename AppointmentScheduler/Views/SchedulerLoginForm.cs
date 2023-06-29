@@ -35,16 +35,13 @@ namespace schedulerLoginForm
             string password = passwordTxtBox.Text;
             string timestampFormat = culture.DateTimeFormat.SortableDateTimePattern;
 
-            // If the username or password textboxes are empty, an error message is displayed using the current UI language (EN, ES, FR)
+            // If the username or password textboxes are empty, an error message is displayed using the current UI language (EN, ES)
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 switch (CultureInfo.CurrentUICulture.ToString())
                 {
                     case "en-US":
                         MessageBox.Show("You must enter a username and password to continue", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        break;
-                    case "fr-CA":
-                        MessageBox.Show("Vous devez entrer un nom d'utilisateur et un mot de passe pour continuer", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                     case "es-ES":
                         MessageBox.Show("Debe ingresar un nombre de usuario y contraseña para continuar", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -58,7 +55,7 @@ namespace schedulerLoginForm
             {
                 try
                 {
-                    // Try authenticating the user, if successful, write success message to log; if failed, an error message is displayed in the current UI language (EN, ES, FR)
+                    // Try authenticating the user, if successful, write success message to log; if failed, an error message is displayed in the current UI language (EN, ES)
 
                     DbConn conn = new DbConn();
                     if (conn.AuthenticateUser(username, password))
@@ -81,11 +78,6 @@ namespace schedulerLoginForm
                             }
                         }
 
-                        // Fix this!
-                        // this.loginStatusLabel.Visible = true;
-                        // Thread.Sleep(500);
-
-
                         this.Hide();
                         LandingForm landingForm = new LandingForm();
                         landingForm.ShowDialog();
@@ -97,9 +89,6 @@ namespace schedulerLoginForm
                         {
                             case "en-US":
                                 MessageBox.Show("The username and/or password is incorrect.", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                break;
-                            case "fr-CA":
-                                MessageBox.Show("Le nom d'utilisateur et/ou le mot de passe sont incorrects.", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 break;
                             case "es-ES":
                                 MessageBox.Show("El nombre de usuario y/o la contraseña son incorrectos.", "The Scheduler", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -120,7 +109,7 @@ namespace schedulerLoginForm
 
         private void schedulerLoginForm_Load(object sender, EventArgs e)
         {
-            // Controls on form load text using current UI language (EN, ES, FR)
+            // Controls on form load text using current UI language (EN, ES)
             rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(SchedulerLoginForm).Assembly);
             culture = CultureInfo.CurrentUICulture;
             usernameLabel.Text = rm.GetString("usernameLabel", culture);
