@@ -115,7 +115,7 @@ namespace AppointmentScheduler
             result = MessageBox.Show("Are you sure you want to delete this customer?","The Scheduler - View Customers",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation);
 
             if (result == DialogResult.Yes)
-            {\
+            {
                 // delete selected row (cast as Customer object)
                 Customer selectedCustomer = new Customer();
 
