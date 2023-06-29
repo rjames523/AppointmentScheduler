@@ -23,13 +23,13 @@ namespace AppointmentScheduler.Connections
         public static User loggedInUser;
 
         // home laptop testing --
-        //private string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
+        private string _connectionStr = @"server=localhost;userid=testuser;password=Lancaster123!;database=client_schedule";
 
         // work laptop
         //private string _connectionStr = @"server=localhost;userid=admin;password=Lancaster123!;database=client_schedule";
 
         // school VM
-        private string _connectionStr = @"server=127.0.0.1;userid=sqlUser;password=Passw0rd!;database=client_schedule";
+        //private string _connectionStr = @"server=127.0.0.1;userid=sqlUser;password=Passw0rd!;database=client_schedule";
 
         public DbConn()
         {
@@ -46,6 +46,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Verifies that the credentials used are found in the database, granting access to the application
         public bool AuthenticateUser(string username, string password)
         {
             connection.Open();
@@ -110,6 +111,7 @@ namespace AppointmentScheduler.Connections
             }
         }
 
+        // Gets all data from the user table, adds it to a list, and the list is returned
         public List<User> GetAllUsers()
         {
             connection.Open();
@@ -173,6 +175,7 @@ namespace AppointmentScheduler.Connections
             return users;
         }
 
+        // Gets all data from the customer table, adds it to a list, and the list is returned
         public List<Customer> GetAllCustomers()
         {
             connection.Open();
@@ -262,6 +265,7 @@ namespace AppointmentScheduler.Connections
 
         }
 
+        // Gets all data from the country table, adds it to a list, and the list is returned
         public List<Country> GetAllCountries()
         {
             connection.Open();
@@ -310,6 +314,7 @@ namespace AppointmentScheduler.Connections
             return countryList;
         }
 
+        // Gets the current count of addresses in the address table
         public int GetAddressCount()
         {
             connection.Open();
@@ -323,6 +328,7 @@ namespace AppointmentScheduler.Connections
             return addressCount + 1;
         }
 
+        // Adds a new customer to the customer table using values supplied by a customer object
         public void AddCustomer(Customer cust)
         {
             connection.Open();
@@ -343,6 +349,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Adds a new customer address to the address table using values supplied by an address object
         public int AddCustomerAddress(Address customerAddr, List<Customer> customers)
         {
             connection.Open();
@@ -367,6 +374,7 @@ namespace AppointmentScheduler.Connections
             return 0;
         }
 
+        // Adds a new city to the city table using values supplied by the cityId, countryId, and cityName values
         public int AddCity(int cityId, int countryId, string cityName)
         {
             connection.Open();
@@ -388,6 +396,7 @@ namespace AppointmentScheduler.Connections
             return 0;
         }
 
+        // Adds a new country to the country table using values supplied by the countryId and countryName values
         public int AddCountry(int countryId, string countryName)
         {
             connection.Open();
@@ -408,6 +417,7 @@ namespace AppointmentScheduler.Connections
             return 0;
         }
 
+        // Adds a new customer appointment to the appointment table using values supplied by an appointment object
         public void AddAppointment(Appointment newAppt, string text)
         {
             connection.Open();
@@ -436,6 +446,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Gets all data from the city table, adds it to a list, and the list is returned
         public List<City> GetAllCities()
         {
             connection.Open();
@@ -487,6 +498,7 @@ namespace AppointmentScheduler.Connections
             return cityList;
         }
 
+        // Updates the customer information for the specified customer
         public void UpdateCustomer(Customer selectedCustomer)
         {
             connection.Open();
@@ -507,6 +519,7 @@ namespace AppointmentScheduler.Connections
             
         }
 
+        // Updates the address information for the specified customer
         public void UpdateAddress(Customer selectedCustomer)
         {
             connection.Open();
@@ -529,6 +542,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Updates the country table using supplied countryId, and countryName values
         public void UpdateCustomerCountry(int countryId, string countryName)
         {
             connection.Open();
@@ -547,6 +561,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Updates the city table using supplied cityId, countryId, and cityName values
         public void UpdateCustomerCity(int cityId, int countryId, string cityName)
         {
             connection.Open();
@@ -566,6 +581,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Calls methods that fully remove all data associated with the specified customer
         public void DeleteCustomerData(Customer selectedCustomer)
         {
             connection.Open();
@@ -580,6 +596,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Deletes the specified customer from the customer table
         private void DeleteCustomerInfo(Customer selectedCustomer)
         {
             string sql = "DELETE FROM customer WHERE customerId = @customerid";
@@ -593,6 +610,7 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.Clear();
         }
 
+        // Deletes the appointments belonging to a specific customer
         private void DeleteCustomerAppointments(Customer selectedCustomer)
         {
             string sql = "DELETE FROM appointment WHERE customerId = @customerid";
@@ -605,6 +623,7 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.Clear();
         }
 
+        // Deletes the specified customer's address from the address table
         private void DeleteCustomerAddress(Customer selectedCustomer)
         {
             string sql = "DELETE a FROM address a INNER JOIN customer c ON c.addressId = a.addressId WHERE c.customerId = @customerid";
@@ -618,7 +637,7 @@ namespace AppointmentScheduler.Connections
 
         }
 
-
+        // Gets all data from the appointment table, adds it to a list, and the list is returned
         public List<Appointment> GetAllCustomerAppointments()
         {
             connection.Open();
@@ -700,6 +719,7 @@ namespace AppointmentScheduler.Connections
             return appointments;
         }
 
+        // Gets the count of appointment currently in the appointment table
         public int GetAppointmentCount()
         {
             connection.Open();
@@ -713,6 +733,7 @@ namespace AppointmentScheduler.Connections
             return appointmentCount + 1;
         }
 
+        // Gets the count of appointment types by month
         public DataTable CountApptTypesByMonth()
         {
             connection.Open();
@@ -729,6 +750,7 @@ namespace AppointmentScheduler.Connections
             return dt;
         }
 
+        // Gets the schedule for the specified consultant
         public List<Appointment> LoadConsultantSchedules(string userName)
         {
             //string sql = "SELECT u.userName, a.appointmentId, c.customerName, a.title, a.description, a.location, a.contact, a.type, a.url, a.start, a.end FROM  user u INNER JOIN appointment a ON u.userId = a.userID INNER JOIN customer c on c.customerId = a.customerID";
@@ -739,6 +761,7 @@ namespace AppointmentScheduler.Connections
             return result;
         }
 
+        // Gets the count of customers created by month
         public DataTable CountCustomersCreatedByMonth()
         {
             // Complete final report
@@ -756,6 +779,7 @@ namespace AppointmentScheduler.Connections
             return dt;
         }
 
+        // Updates the appointment table using values provided by an appointment object
         public void UpdateAppointment(Appointment modifiedAppt, string text)
         {
             connection.Open();
@@ -784,6 +808,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Updates the user table using values provided by a user object
         public void UpdateUser(User loggedInUser)
         {
             connection.Open();
@@ -805,6 +830,7 @@ namespace AppointmentScheduler.Connections
             connection.Close();
         }
 
+        // Updates the customer table using values provided by a customer object
         public void UpdateCustomer(int customerId, List<Customer> customers)
         {
             Customer selectedCustomer = customers.Where(x => x.CustomerID == customerId).Select(x => x).FirstOrDefault();

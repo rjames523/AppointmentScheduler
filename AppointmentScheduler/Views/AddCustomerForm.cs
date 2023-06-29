@@ -27,15 +27,6 @@ namespace AppointmentScheduler
             conn = new DbConn();
             this.ActiveControl = custNameTxtBox;
 
-
-            ///Test Data////
-            custNameTxtBox.Text = "Testing Test";
-            streetAddrTxtBox.Text = "1278 Fake Name Rd";
-            postalCodeTxtBox.Text = "17826";
-            phoneTxtBox.Text = "890-092-0838";
-            cityTextBox.Text = "Lancaster";
-            countryTextBox.Text = "USA";
-
         }
 
         private void addCustomerButton_Click(object sender, EventArgs e)
@@ -54,6 +45,7 @@ namespace AppointmentScheduler
 
                     int countryId = conn.GetAllCountries().Count + 1;
 
+                    // Adds customer information to the customer address object using form control values
                     Address custAddress = new Address();
                     custAddress.AddressID = conn.GetAddressCount();
                     custAddress.Address1 = streetAddrTxtBox.Text;
@@ -66,11 +58,12 @@ namespace AppointmentScheduler
                     custAddress.CreatedBy = DbConn.loggedInUser.UserName;
                     custAddress.LastUpdatedBy = DbConn.loggedInUser.UserName;
 
-
+                    // Methods for adding country, city, and address are called to satisfy foreign key constraints
                     conn.AddCountry(countryId, countryTextBox.Text);
                     conn.AddCity(custAddress.City.CityID, countryId, cityTextBox.Text);
                     conn.AddCustomerAddress(custAddress, customers);
 
+                    // A new customer is created using remaining control values and the custAddress object
                     Customer cust = new Customer()
                     {
                         CustomerID = Customer.AllCustomers.Count + 1,
@@ -83,6 +76,7 @@ namespace AppointmentScheduler
                         LastUpdatedBy = DbConn.loggedInUser.UserName
                     };
 
+                    // The customer is added to the database
                     conn.AddCustomer(cust);
 
                     MessageBox.Show("Customer has been added successfully.", "The Scheduler - Modify Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);

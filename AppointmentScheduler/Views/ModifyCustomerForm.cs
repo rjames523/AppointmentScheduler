@@ -37,6 +37,7 @@ namespace AppointmentScheduler
             }
             else
             {
+                // The selected customer's information is overwritten with data from the textboxes on the form
                 selectedCustomer.CustomerName = custNameTxtBox.Text.Trim();
                 selectedCustomer.Address.Address1 = streetAddrTxtBox.Text.Trim();
                 selectedCustomer.Address.Address2 = address2TextBox.Text.Trim();
@@ -49,7 +50,7 @@ namespace AppointmentScheduler
                 selectedCustomer.Address.City.Country.CountryID = conn.GetAllCountries().Where(x => x.CountryName == countryTextBox.Text).Select(x => x.CountryID).FirstOrDefault();
                 selectedCustomer.Address.City.CityID = conn.GetAllCities().Where(x => x.CityName == cityTextBox.Text).Select(x => x.CityID).FirstOrDefault(); ;
 
-
+                // Call the update methods for country, city, address, and customer to satisfy foreign key contraints
                 conn.UpdateCustomerCountry(selectedCustomer.Address.City.Country.CountryID, countryTextBox.Text);
                 conn.UpdateCustomerCity(selectedCustomer.Address.City.CityID, selectedCustomer.Address.City.Country.CountryID, cityTextBox.Text);
                 conn.UpdateAddress(selectedCustomer);
@@ -65,9 +66,15 @@ namespace AppointmentScheduler
         private void ModifyCustomerForm_Load(object sender, EventArgs e)
         {
             conn = new DbConn();
+
+            // Fill countryTextBox and cityTextBoxes
+            // Lamda is used to query the list returned from GetAllCountries and find where the countryID is equal to the selectedCustomer's countryID, the country name is selected based of the country ID value.
             countryTextBox.Text = conn.GetAllCountries().Where(x => x.CountryID == selectedCustomer.Address.City.Country.CountryID).Select(x => x.CountryName).FirstOrDefault();
+
+            // Lamda is used to query the list returned from GetAllCities and find where the cityID is equal to the selectedCustomer's cityID, the city name is selected based of the city ID value.
             cityTextBox.Text = conn.GetAllCities().Where(x => x.CityID == selectedCustomer.Address.City.CityID).Select(x => x.CityName).FirstOrDefault();
 
+            // The selected customer's information is loaded into the textboxes on the form
             custNameTxtBox.Text = selectedCustomer.CustomerName;
             streetAddrTxtBox.Text = selectedCustomer.Address.Address1;
             address2TextBox.Text = selectedCustomer.Address.Address2;

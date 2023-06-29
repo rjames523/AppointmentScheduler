@@ -26,6 +26,7 @@ namespace AppointmentScheduler
 
         private void ViewCustomersForm_Load(object sender, EventArgs e)
         {
+            // Initialize variables
             conn = new DbConn();       
             customer = new Customer();
             customers = conn.GetAllCustomers();
@@ -37,11 +38,13 @@ namespace AppointmentScheduler
                     customersDGV.Columns[col.Name].Visible = false;
             }
 
+            // Disable Edit, Schedule Appt, and Delete Customer buttons on intial load
             customersDGV.ClearSelection();
             editCustomerButton.Enabled = false;
             scheduleAppointmentButton.Enabled = false;
             deleteCustomerButton.Enabled = false;
 
+            // If more than one row is selected, Edit, Schedule Appt, and Delete Customer buttons are enabled
             if (customersDGV.SelectedRows.Count > 0)
             {
                 editCustomerButton.Enabled = true;
@@ -52,6 +55,7 @@ namespace AppointmentScheduler
 
         private void editCustomerButton_Click(object sender, EventArgs e)
         {
+            // Get the selected customer from the data grid view
             Customer selectedCustomer = new Customer();
 
             foreach (DataGridViewRow row in customersDGV.SelectedRows)
@@ -64,6 +68,7 @@ namespace AppointmentScheduler
                     }
                 }
                 
+                // Send the selected customer to the ModifyCustomerForm
                 ModifyCustomerForm modifyCustForm = new ModifyCustomerForm(selectedCustomer);
                 Hide();
                 modifyCustForm.ShowDialog();
@@ -82,6 +87,7 @@ namespace AppointmentScheduler
 
         private void scheduleAppointmentButton_Click(object sender, EventArgs e)
         {
+            // Get the selected customer from the data grid view
             Customer selectedCustomer = new Customer();
 
             foreach (DataGridViewRow row in customersDGV.SelectedRows)
@@ -94,6 +100,7 @@ namespace AppointmentScheduler
                     }
                 }
 
+                // Send the selected customer to the ScheduleAppointmentForm
                 this.Hide();
                 ScheduleAppointmentForm scheduleApptForm = new ScheduleAppointmentForm(selectedCustomer);
                 scheduleApptForm.ShowDialog();
@@ -108,7 +115,7 @@ namespace AppointmentScheduler
             result = MessageBox.Show("Are you sure you want to delete this customer?","The Scheduler - View Customers",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation);
 
             if (result == DialogResult.Yes)
-            {
+            {\
                 // delete selected row (cast as Customer object)
                 Customer selectedCustomer = new Customer();
 
@@ -122,6 +129,7 @@ namespace AppointmentScheduler
                         }
                     }
 
+                    // Call the DeleteCustomerData method to delete the selected customer and all related data from the database
                     conn.DeleteCustomerData(selectedCustomer);
 
                     MessageBox.Show("The customer has been deleted successfully.", "The Scheduler - View Customers", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -154,10 +162,9 @@ namespace AppointmentScheduler
             AddCustomerForm addCustomerForm = new AddCustomerForm();
             addCustomerForm.ShowDialog();
 
-            // Clears/refreshes the data grid view to show new customers
-
             customer.NotifyPropertyChanged();
-            
+
+            // Clears/refreshes the data grid view to show new customers
             customersDGV.DataSource = null;
             customersDGV.Rows.Clear();
             customers = conn.GetAllCustomers();

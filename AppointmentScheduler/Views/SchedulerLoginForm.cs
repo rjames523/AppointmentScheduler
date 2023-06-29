@@ -35,6 +35,7 @@ namespace schedulerLoginForm
             string password = passwordTxtBox.Text;
             string timestampFormat = culture.DateTimeFormat.SortableDateTimePattern;
 
+            // If the username or password textboxes are empty, an error message is displayed using the current UI language (EN, ES, FR)
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 switch (CultureInfo.CurrentUICulture.ToString())
@@ -57,6 +58,7 @@ namespace schedulerLoginForm
             {
                 try
                 {
+                    // Try authenticating the user, if successful, write success message to log; if failed, an error message is displayed in the current UI language (EN, ES, FR)
 
                     DbConn conn = new DbConn();
                     if (conn.AuthenticateUser(username, password))
@@ -118,6 +120,7 @@ namespace schedulerLoginForm
 
         private void schedulerLoginForm_Load(object sender, EventArgs e)
         {
+            // Controls on form load text using current UI language (EN, ES, FR)
             rm = new ResourceManager("AppointmentScheduler.Resources.Res", typeof(SchedulerLoginForm).Assembly);
             culture = CultureInfo.CurrentUICulture;
             usernameLabel.Text = rm.GetString("usernameLabel", culture);

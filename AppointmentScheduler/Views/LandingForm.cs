@@ -62,6 +62,7 @@ namespace AppointmentScheduler
             List<Customer> customerList = conn.GetAllCustomers();
             List<Appointment> appointments = conn.GetAllCustomerAppointments();
             
+            // Check if any appointment in the appointment table has a start time within 15 minutes of the current time; if so, a message box is shown to remind about the meeting
             foreach (Appointment appt in appointments)
             {
                 DateTime startTime = appt.Start;

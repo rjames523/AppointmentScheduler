@@ -34,6 +34,7 @@ namespace AppointmentScheduler
 
         private void ModifyApptsForm_Load(object sender, EventArgs e)
         {
+            // Initialize variables
             conn = new DbConn();
             customers = new List<Customer>();
             appointments = new List<Appointment>();
@@ -42,6 +43,9 @@ namespace AppointmentScheduler
             Customer cust = new Customer();
             customers = conn.GetAllCustomers();
             appointments = conn.GetAllCustomerAppointments();
+
+            // Load controls on form using the selected appointment from the previous form
+            // A lambda is used to load the correct customer name by searching querying the customers list and comparing the customerIDs of each item and the selected appointment
             custNameTxtBox.Text = customers.Where(x => x.CustomerID == selectedAppointment.CustomerID).Select(x => x.CustomerName).FirstOrDefault().ToString();
             titleTxtBox.Text = selectedAppointment.Title;
             contactTxtBox.Text = selectedAppointment.Contact;
@@ -55,17 +59,14 @@ namespace AppointmentScheduler
         }
 
         private void createAppointmentCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            
-        }
+        {}
 
         private void createAppointmentCalendar_DateChanged(object sender, DateRangeEventArgs e)
-        {
-
-        }
+        {}
 
         private void apptDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
+            // Assign the selected date to the selectedApptTime variable
             selectedApptTime = apptDatePicker.Value;
             if (apptDatePicker.Value != null)
             {
@@ -80,11 +81,13 @@ namespace AppointmentScheduler
 
         private void updateApptButton_Click(object sender, EventArgs e)
         {
+            // Check if the selected date and time is correct
             schedApptStartTimePicker.Checked = true;
             DateTime selectedDate = DateTime.Parse(apptDatePicker.Text);
             DateTime selectedStartTime = DateTime.Parse(apptDatePicker.Text + " " + schedApptStartTimePicker.Text);
             DateTime selectedEndTime = DateTime.Parse(apptDatePicker.Text + " " + schedApptEndTimePicker.Text);
 
+            // Check to see if the selected date is in the past, or if the time is earlier in the day; else, verify appointment information and schedule the appointment
             if (selectedDate < DateTime.Now.Date)
             {
                 MessageBox.Show("You must select a future date.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -125,6 +128,7 @@ namespace AppointmentScheduler
             }
         }
 
+        // Verifies all controls are filled, checks if times are available for sheduling, and schedules the appointment
         private void VerifyAppointmentInfo()
         {
             schedApptStartTimePicker.Checked = true;
@@ -164,24 +168,34 @@ namespace AppointmentScheduler
                         }
                         else
                         {
-                            modifiedAppt.AppointmentID = selectedAppointment.AppointmentID;
+                            var overlappingAppts = conn.GetAllCustomerAppointments().Where(x => x.Start == modifiedAppt.Start).ToList();
 
-                            // Lambda expression is used to retrieve the customer ID of the object in the customers list that has a name matching that of the Customer Name Combo Box; the first element is returned if found, if not, a default value is found
-                            modifiedAppt.CustomerID = customers.Where(x => x.CustomerName == custNameTxtBox.Text).Select(x => x.CustomerID).FirstOrDefault();
+                            if (overlappingAppts.Count > 0)
+                            {
+                                MessageBox.Show("The chosen time has already been taken.\nPlease select a different time.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return;
+                            }
+                            else
+                            {
+                                modifiedAppt.AppointmentID = selectedAppointment.AppointmentID;
 
-                            modifiedAppt.Description = apptDescriptionRTxtBox.Text;
-                            modifiedAppt.Title = titleTxtBox.Text;
-                            modifiedAppt.Contact = contactTxtBox.Text;
-                            modifiedAppt.Location = locationTxtBox.Text;
-                            modifiedAppt.Type = typeTxtBox.Text;
-                            modifiedAppt.Url = urlTxtBox.Text;
+                                // Lambda expression is used to retrieve the customer ID of the object in the customers list that has a name matching that of the Customer Name Combo Box; the first element is returned if found, if not, a default value is found
+                                modifiedAppt.CustomerID = customers.Where(x => x.CustomerName == custNameTxtBox.Text).Select(x => x.CustomerID).FirstOrDefault();
 
-                            conn.UpdateUser(DbConn.loggedInUser);
-                            conn.UpdateCustomer(modifiedAppt.CustomerID, customers);
-                            conn.UpdateAppointment(modifiedAppt, custNameTxtBox.Text);
-                            
-                            MessageBox.Show($"The appointment information for {custNameTxtBox.Text} was updated successfully.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
+                                modifiedAppt.Description = apptDescriptionRTxtBox.Text;
+                                modifiedAppt.Title = titleTxtBox.Text;
+                                modifiedAppt.Contact = contactTxtBox.Text;
+                                modifiedAppt.Location = locationTxtBox.Text;
+                                modifiedAppt.Type = typeTxtBox.Text;
+                                modifiedAppt.Url = urlTxtBox.Text;
+
+                                conn.UpdateUser(DbConn.loggedInUser);
+                                conn.UpdateCustomer(modifiedAppt.CustomerID, customers);
+                                conn.UpdateAppointment(modifiedAppt, custNameTxtBox.Text);
+
+                                MessageBox.Show($"The appointment information for {custNameTxtBox.Text} was updated successfully.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.Close();
+                            }
                         }
                     }
 
@@ -196,6 +210,7 @@ namespace AppointmentScheduler
             }
         }
 
+        // Builds an error message based on which controls have no text
         private void BuildErrorMessage()
         {
             // Creates a StringBuilder object for the error message

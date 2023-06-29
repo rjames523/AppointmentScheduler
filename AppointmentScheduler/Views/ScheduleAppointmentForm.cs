@@ -56,14 +56,17 @@ namespace AppointmentScheduler
             schedApptStartTimePicker.Checked = true;
             schedApptEndTimePicker.Checked = true;
 
+            // Initialize variables
             conn = new DbConn();
             customers = new List<Customer>();
             appointments = new List<Appointment>();
             customers = conn.GetAllCustomers();
             appointments = conn.GetAllCustomerAppointments();
 
+            // Fill the custNameComboBox with the customer names found in the customers list
             custNameComboBox.DataSource = customers.Select(x => x.CustomerName).ToList();
 
+            // Handling for when the form is launched from the landing form (no selected customer as on the ViewCustomers form)
             if (!directedFromLandingForm)
             {
                 custNameComboBox.SelectedItem = customers.Where(x => x.CustomerID == selectedCustomer.CustomerID).Select(x => (x.CustomerName)).FirstOrDefault();
@@ -72,11 +75,13 @@ namespace AppointmentScheduler
 
         private void scheduleAppointmentButton_Click(object sender, EventArgs e)
         {
+            // Check if the selected date and time is correct
             schedApptStartTimePicker.Checked = true;
             DateTime selectedDate = DateTime.Parse(schedApptDatePicker.Text);
             DateTime selectedStartTime = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptStartTimePicker.Text);
             DateTime selectedEndTime = DateTime.Parse(schedApptDatePicker.Text + " " + schedApptEndTimePicker.Text);
 
+            // Check to see if the selected date is in the past, or if the time is earlier in the day; else, verify appointment information and schedule the appointment
             if (selectedDate < DateTime.Now.Date)
             {
                 MessageBox.Show("You must select a future date.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -117,6 +122,7 @@ namespace AppointmentScheduler
             }
         }
 
+        // Verifies all controls are filled, checks if times are available for sheduling, and schedules the appointment
         private void VerifyAppointmentInfo()
         {
             schedApptStartTimePicker.Checked = true;
@@ -163,22 +169,32 @@ namespace AppointmentScheduler
                         }
                         else
                         {
-                            newAppt.AppointmentID = conn.GetAppointmentCount();
+                            var overlappingAppts = conn.GetAllCustomerAppointments().Where(x => x.Start == newAppt.Start).ToList();
 
-                            // Lambda expression is used to retrieve the customer ID of the object in the customers list that has a name matching that of the Customer Name Combo Box; the first element is returned if found, if not, a default value is found
-                            newAppt.CustomerID = customers.Where(x => x.CustomerName == custNameComboBox.Text).Select(x => x.CustomerID).FirstOrDefault();
+                            if (overlappingAppts.Count > 0)
+                            {
+                                MessageBox.Show("The chosen time has already been taken.\nPlease select a different time.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return;
+                            }
+                            else
+                            {
+                                newAppt.AppointmentID = conn.GetAppointmentCount();
 
-                            newAppt.Description = apptDescriptionRTxtBox.Text;
-                            newAppt.Title = titleTxtBox.Text;
-                            newAppt.Contact = contactTxtBox.Text;
-                            newAppt.Location = locationTxtBox.Text;
-                            newAppt.Type = typeTxtBox.Text;
-                            newAppt.Url = urlTxtBox.Text;
+                                // Lambda expression is used to retrieve the customer ID of the object in the customers list that has a name matching that of the Customer Name Combo Box; the first element is returned if found, if not, a default value is found
+                                newAppt.CustomerID = customers.Where(x => x.CustomerName == custNameComboBox.Text).Select(x => x.CustomerID).FirstOrDefault();
 
-                            conn.AddAppointment(newAppt, custNameComboBox.Text);
+                                newAppt.Description = apptDescriptionRTxtBox.Text;
+                                newAppt.Title = titleTxtBox.Text;
+                                newAppt.Contact = contactTxtBox.Text;
+                                newAppt.Location = locationTxtBox.Text;
+                                newAppt.Type = typeTxtBox.Text;
+                                newAppt.Url = urlTxtBox.Text;
 
-                            MessageBox.Show($"The appointment for {custNameComboBox.Text} was scheduled successfully.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
+                                conn.AddAppointment(newAppt, custNameComboBox.Text);
+
+                                MessageBox.Show($"The appointment for {custNameComboBox.Text} was scheduled successfully.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.Close();
+                            }
                         }
                     }
 
@@ -193,6 +209,7 @@ namespace AppointmentScheduler
             }
         }
 
+        // Builds an error message based on which controls have no text
         private void BuildErrorMessage()
         {
             // Creates a StringBuilder object for the error message

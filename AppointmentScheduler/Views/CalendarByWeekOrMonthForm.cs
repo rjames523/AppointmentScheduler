@@ -42,20 +42,25 @@ namespace AppointmentScheduler.Views
 
         private void CalendarByWeekOrMonthForm_Load(object sender, EventArgs e)
         {
+            // Initialize variables
             conn = new DbConn();
             appointments = new List<Appointment>();
 
+            // Get the current month name
             currentMonth = DateTime.UtcNow.ToString("MMMM");
 
             appointments = conn.GetAllCustomerAppointments();
 
+            // Check if form loaded with either Month or Week inside the weekOrMonthOfLabel
             if (weekOrMonthOfLabel.Text.Contains("Month"))
             {
+                // Lambda is used to query the appointments list to find all appointments that have a start month name that matches the currentMonth name
                 calendarDGV.DataSource = appointments.Where(x => x.Start.ToString("MMMM") == currentMonth).ToList();
                 weekOrMonthOfLabel.Text = "Month of:  " + currentMonth;
             }
             else if (weekOrMonthOfLabel.Text.Contains("Week"))
             {
+                // Lambda is used to query the appointments list to find all appointments that have a start date/time greater than the current time, but the start date/time is less than 7 days from now (week ahead)
                 DateTime thisWeek = DateTime.UtcNow.AddDays(7);
                 calendarDGV.DataSource = appointments.Where(x => (x.Start > DateTime.Now) && (x.Start < thisWeek.ToLocalTime())).Select(x => x).ToList();
                 weekOrMonthOfLabel.Text = "Current Week";
