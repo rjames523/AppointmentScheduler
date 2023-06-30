@@ -166,6 +166,11 @@ namespace AppointmentScheduler
                             MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
                         }
+                        else if (modifiedAppt.Start.DayOfWeek == DayOfWeek.Sunday || modifiedAppt.Start.DayOfWeek == DayOfWeek.Saturday)
+                        {
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
                         else
                         {
                             var overlappingAppts = conn.GetAllCustomerAppointments().Where(x => x.Start == modifiedAppt.Start).ToList();
