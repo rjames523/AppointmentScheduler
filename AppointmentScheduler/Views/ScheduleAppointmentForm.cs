@@ -127,14 +127,14 @@ namespace AppointmentScheduler
         {
             schedApptStartTimePicker.Checked = true;
             //this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text))
-            if (!string.IsNullOrWhiteSpace(titleTxtBox.Text)
-                    && !string.IsNullOrWhiteSpace(apptDescriptionRTxtBox.Text)
-                    && !string.IsNullOrWhiteSpace(contactTxtBox.Text)
-                    && !string.IsNullOrWhiteSpace(typeTxtBox.Text)
-                    && !string.IsNullOrWhiteSpace(urlTxtBox.Text)
-                    && !string.IsNullOrWhiteSpace(schedApptStartTimePicker.Text) 
-                    && !string.IsNullOrWhiteSpace(schedApptEndTimePicker.Text) 
-                    && !string.IsNullOrWhiteSpace(custNameComboBox.Text))
+            if (string.IsNullOrWhiteSpace(titleTxtBox.Text)
+                    && string.IsNullOrWhiteSpace(apptDescriptionRTxtBox.Text)
+                    && string.IsNullOrWhiteSpace(contactTxtBox.Text)
+                    && string.IsNullOrWhiteSpace(typeTxtBox.Text)
+                    && string.IsNullOrWhiteSpace(urlTxtBox.Text)
+                    && string.IsNullOrWhiteSpace(schedApptStartTimePicker.Text) 
+                    && string.IsNullOrWhiteSpace(schedApptEndTimePicker.Text) 
+                    && string.IsNullOrWhiteSpace(custNameComboBox.Text))
             {
                 BuildErrorMessage();
             }
@@ -163,6 +163,11 @@ namespace AppointmentScheduler
                             return;
                         }
                         else if (newAppt.End.Hour < 8 || newAppt.End.Hour > 17)
+                        {
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        else if (newAppt.Start.DayOfWeek == DayOfWeek.Sunday || newAppt.Start.DayOfWeek == DayOfWeek.Saturday)
                         {
                             MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
