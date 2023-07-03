@@ -38,6 +38,7 @@ namespace AppointmentScheduler
             conn = new DbConn();
             customers = new List<Customer>();
             appointments = new List<Appointment>();
+            apptDateTxtBox.Enabled = false;
             apptStartTimeTxtBox.Enabled = false;
             apptEndTimeTxtBox.Enabled = false;
             Customer cust = new Customer();
@@ -86,15 +87,17 @@ namespace AppointmentScheduler
             DateTime selectedDate = DateTime.Parse(apptDatePicker.Text);
             DateTime selectedStartTime = DateTime.Parse(apptDatePicker.Text + " " + schedApptStartTimePicker.Text);
             DateTime selectedEndTime = DateTime.Parse(apptDatePicker.Text + " " + schedApptEndTimePicker.Text);
+            DateTime currentTime = DateTime.Parse(DateTime.Now.ToShortTimeString());
+
 
             // Check to see if the selected date is in the past, or if the time is earlier in the day; else, verify appointment information and schedule the appointment
             if (selectedDate < DateTime.Now.Date)
             {
-                MessageBox.Show("You must select a future date.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("The selected date is invalid.\nPlease select a future date.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (selectedStartTime < DateTime.Now || selectedEndTime < DateTime.Now)
+            else if (selectedStartTime < currentTime || selectedEndTime < currentTime)
             {
-                MessageBox.Show("You must select a future timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("The selected start and/or end time is invalid.\nPlease select a future timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -104,26 +107,7 @@ namespace AppointmentScheduler
                 }
                 else
                 {
-                    var isTimeAvailable = true;
-
-                    foreach (Appointment appt in appointments)
-                    {
-                        if (schedApptStartTimePicker.Value >= appt.Start && schedApptEndTimePicker.Value <= appt.End)
-                        {
-                            isTimeAvailable = false;
-                            break;
-                        }
-                    }
-
-                    if (isTimeAvailable)
-                    {
-                        VerifyAppointmentInfo();
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("The selected time frame is not available. Please select a different time frame.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                    VerifyAppointmentInfo();
                 }
             }
         }
@@ -133,7 +117,12 @@ namespace AppointmentScheduler
         {
             schedApptStartTimePicker.Checked = true;
 
-            if (this.Controls.OfType<TextBox>().Any(x => string.IsNullOrWhiteSpace(x.Text)) && !string.IsNullOrWhiteSpace(schedApptStartTimePicker.Text) && !string.IsNullOrWhiteSpace(schedApptEndTimePicker.Text) && !string.IsNullOrWhiteSpace(custNameTxtBox.Text))
+            if (string.IsNullOrEmpty(titleTxtBox.Text)
+                    || string.IsNullOrEmpty(apptDescriptionRTxtBox.Text)
+                    || string.IsNullOrEmpty(contactTxtBox.Text)
+                    || string.IsNullOrEmpty(typeTxtBox.Text)
+                    || string.IsNullOrEmpty(locationTxtBox.Text)
+                    || string.IsNullOrEmpty(urlTxtBox.Text))
             {
                 BuildErrorMessage();
             }
@@ -156,28 +145,38 @@ namespace AppointmentScheduler
                         modifiedAppt.Start = DateTime.Parse(startDateTimeString);
                         modifiedAppt.End = DateTime.Parse(endDateTimeString);
 
-                        if (modifiedAppt.Start.Hour < 8 || modifiedAppt.Start.Hour > 17)
+                        if (modifiedAppt.Start.Hour < 8)
                         {
-                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
                         }
-                        else if (modifiedAppt.End.Hour < 8 || modifiedAppt.End.Hour > 17)
+                        else if (modifiedAppt.Start.Hour >= 17 && modifiedAppt.Start.Minute > 0)
                         {
-                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        else if (modifiedAppt.End.Hour < 8)
+                        {
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        else if (modifiedAppt.End.Hour >= 17 && modifiedAppt.End.Minute > 0)
+                        {
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
                         }
                         else if (modifiedAppt.Start.DayOfWeek == DayOfWeek.Sunday || modifiedAppt.Start.DayOfWeek == DayOfWeek.Saturday)
                         {
-                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("The chosen time is outside of regular business hours.\nPlease select a different timeframe.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
                         }
                         else
                         {
-                            var overlappingAppts = conn.GetAllCustomerAppointments().Where(x => x.Start == modifiedAppt.Start).ToList();
+                            var overlappingAppts = conn.GetAllCustomerAppointments().Where(x => (modifiedAppt.Start >= x.Start) && (modifiedAppt.Start <= x.End)).ToList();
 
                             if (overlappingAppts.Count > 0)
                             {
-                                MessageBox.Show("The chosen time has already been taken.\nPlease select a different time.", "The Scheduler - Schedule Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                MessageBox.Show("The chosen time has already been taken.\nPlease select a different time.", "The Scheduler - Modify Appointment", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 return;
                             }
                             else

@@ -36,6 +36,7 @@ namespace AppointmentScheduler
             // Initialize variables
             initialLoad = true;
             editApptButton.Enabled = false;
+            cancelApptButton.Enabled = false;
             selectedCustomer = new Customer();
             appts = new List<Appointment>();
             upcomingSelectedCustAppts = new List<Appointment>();
@@ -67,7 +68,6 @@ namespace AppointmentScheduler
 
                     initialSpecificApptsLoad = true;
 
-                    //GetCustomerSpecificAppts() returns two values by using the out keyword
                     upcomingSelectedCustAppts = GetCustomerSpecificAppts(customer);
 
                     // Swap between past and current appointment views
@@ -102,6 +102,7 @@ namespace AppointmentScheduler
                     {
                         customerSpecificApptsDGV.DataSource = null;
                         editApptButton.Enabled = false;
+                        cancelApptButton.Enabled = false;
                     }
 
                     initialSpecificApptsLoad = false;
@@ -172,20 +173,51 @@ namespace AppointmentScheduler
                     if (customerSpecificApptsDGV.Rows.Count > 0 && viewPastCurrApptsLabel.Text == "View past appointments")
                     {
                         editApptButton.Enabled = true;
+                        cancelApptButton.Enabled = true;
                     }
                     else
                     {
                         editApptButton.Enabled = false;
+                        cancelApptButton.Enabled = false;
                     }
-
-                    
                 }
             }
         }
 
         private void cancelApptButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult result = MessageBox.Show("Are you sure you want to cancel this appointment?", "The Scheduler - Appointments", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                if (customerSpecificApptsDGV.SelectedRows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in customerSpecificApptsDGV.SelectedRows)
+                    {
+                        foreach (DataGridViewColumn col in customerSpecificApptsDGV.Columns)
+                        {
+                            if (col.Name == "AppointmentID")
+                            {
+                                selectedCustAppt = appts.Where(x => x.AppointmentID == (int)row.Cells[col.Index].Value).Select(x => x).First();
+                            }
+                        }
+                    }
+
+                    conn.DeleteSpecificCustomerAppt(selectedCustAppt);
+
+                    GetCustomerSpecificAppts(selectedCustomer);
+
+
+                    initialSpecificApptsLoad = true;
+                    cancelApptButton.Enabled = false;
+                    editApptButton.Enabled = false;
+                    customersDGV_SelectionChanged(sender, e);
+                }
+            }
+            else
+            {
+                return;
+            }
         }
 
         // Swap between upcoming appointment and past appointment views
@@ -198,6 +230,7 @@ namespace AppointmentScheduler
             if (viewPastCurrApptsLabel.Text == "View past appointments")
             {
                 editApptButton.Enabled = false;
+                cancelApptButton.Enabled = false;
                 viewPastCurrApptsLabel.Text = "View current appointments";
 
                 if (upcomingSelectedCustAppts.Count != 0 || pastSelectedCustAppts.Count != 0)
@@ -251,6 +284,11 @@ namespace AppointmentScheduler
             CalendarByWeekOrMonthForm calendarByWeekOrMonthForm = new CalendarByWeekOrMonthForm("month");
             calendarByWeekOrMonthForm.ShowDialog();
             this.Show();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

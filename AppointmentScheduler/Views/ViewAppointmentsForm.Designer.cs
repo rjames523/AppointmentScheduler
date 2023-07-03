@@ -40,6 +40,7 @@
             this.viewByWeekButton = new System.Windows.Forms.Button();
             this.viewByMonthButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.closeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerSpecificApptsDGV)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +49,9 @@
             // 
             this.customersDGV.AllowUserToAddRows = false;
             this.customersDGV.AllowUserToDeleteRows = false;
+            this.customersDGV.AllowUserToResizeColumns = false;
+            this.customersDGV.AllowUserToResizeRows = false;
+            this.customersDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.customersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customersDGV.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.customersDGV.Location = new System.Drawing.Point(10, 95);
@@ -108,7 +112,7 @@
             // editApptButton
             // 
             this.editApptButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.editApptButton.Location = new System.Drawing.Point(610, 353);
+            this.editApptButton.Location = new System.Drawing.Point(617, 353);
             this.editApptButton.Margin = new System.Windows.Forms.Padding(2);
             this.editApptButton.Name = "editApptButton";
             this.editApptButton.Size = new System.Drawing.Size(65, 33);
@@ -120,7 +124,7 @@
             // cancelApptButton
             // 
             this.cancelApptButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cancelApptButton.Location = new System.Drawing.Point(700, 353);
+            this.cancelApptButton.Location = new System.Drawing.Point(696, 353);
             this.cancelApptButton.Margin = new System.Windows.Forms.Padding(2);
             this.cancelApptButton.Name = "cancelApptButton";
             this.cancelApptButton.Size = new System.Drawing.Size(65, 33);
@@ -145,7 +149,7 @@
             this.customerSpecificApptsDGV.RowHeadersWidth = 51;
             this.customerSpecificApptsDGV.RowTemplate.Height = 24;
             this.customerSpecificApptsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.customerSpecificApptsDGV.Size = new System.Drawing.Size(421, 175);
+            this.customerSpecificApptsDGV.Size = new System.Drawing.Size(438, 175);
             this.customerSpecificApptsDGV.TabIndex = 6;
             this.customerSpecificApptsDGV.SelectionChanged += new System.EventHandler(this.customerSpecificApptsDGV_SelectionChanged);
             // 
@@ -197,11 +201,24 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "View all appointments:";
             // 
+            // closeButton
+            // 
+            this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closeButton.Location = new System.Drawing.Point(844, 353);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(2);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(65, 33);
+            this.closeButton.TabIndex = 12;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // ViewAppointmentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 399);
+            this.ClientSize = new System.Drawing.Size(920, 399);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.viewByMonthButton);
             this.Controls.Add(this.viewByWeekButton);
@@ -239,5 +256,6 @@
         private System.Windows.Forms.Button viewByWeekButton;
         private System.Windows.Forms.Button viewByMonthButton;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button closeButton;
     }
 }

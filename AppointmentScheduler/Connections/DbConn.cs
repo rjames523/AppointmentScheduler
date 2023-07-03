@@ -616,6 +616,22 @@ namespace AppointmentScheduler.Connections
             cmd.Parameters.Clear();
         }
 
+        public void DeleteSpecificCustomerAppt(Appointment selectedCustAppt)
+        {
+            connection.Open();
+
+            string sql = "DELETE FROM appointment WHERE appointmentId = @appointmentid";
+
+            cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@appointmentid", selectedCustAppt.AppointmentID);
+
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+
+            connection.Close();
+        }
+
         // Deletes the specified customer's address from the address table
         private void DeleteCustomerAddress(Customer selectedCustomer)
         {

@@ -143,6 +143,13 @@ namespace AppointmentScheduler
                 customers = conn.GetAllCustomers();
                 customersDGV.Update();
                 customersDGV.DataSource = customers;
+
+                foreach (DataGridViewColumn col in customersDGV.Columns)
+                {
+                    // Hides column for Address object column from view
+                    if (col.Name == "Address")
+                        customersDGV.Columns[col.Name].Visible = false;
+                }
             }
         }
 
